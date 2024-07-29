@@ -1,0 +1,36 @@
+<div class="full-container">
+  <div class="modal-header">
+    <h2 class="modal-title" id="exampleModalLabel">{{isEdit ? 'Edit' : 'Add'}} Skill</h2>
+    <button type="button" class="btn-close close-btn" aria-label="Close" (click)="modalRef.close()"></button>
+    <!-- <hr> -->
+  </div>
+  <div class="modal-body">
+    <form class="form-body" [formGroup]="skillForm" (submit)="saveskillForm(skillForm)">
+      <div class="input-row">
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues && formValues.skill" class="form-control input-item"  formControlName="skill" />
+          <label mdbLabel class="form-label" for="form1">Skill &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues && formValues.exp" class="form-control input-item" formControlName="exp" maxlength="2" (keypress)="isNumberKey($event)"/>
+          <label mdbLabel class="form-label" for="form1">Years of Experience &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+      </div>
+
+      <div class="input-row">
+        <mdb-form-control>
+          <textarea mdbInput class="form-control" id="textAreaExample" rows="4" formControlName="remarks"></textarea>
+          <label mdbLabel class="form-label" for="textAreaExample">Comment</label>
+        </mdb-form-control>
+
+      </div> 
+      <div class="divider">&nbsp;</div>
+      <div class="footer">
+        <button class="btn btn-rounded mx-2"
+          style="border: 1px solid var(--orange-primary); color: var(--orange-primary);"
+          (click)="modalRef.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-rounded mx-2">Submit</button>
+      </div>
+    </form>
+</div>
+</div>

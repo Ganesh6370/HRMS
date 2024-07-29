@@ -1,0 +1,68 @@
+<div class="main">
+    <div>
+        <div class="card tab-box">
+            <div class="row user-tabs">
+                <div class="">
+                    <nav style="display: flex; flex-wrap: nowrap; padding-top :2px;">
+                        <ul class="nav" style="display: flex; flex-wrap: nowrap; padding: 5px;">
+                            <li class="tab">
+                                <a data-bs-toggle="tab" class="nav-link" routerLink="/main/dashboard">
+                                    <i class="fas fa-house fa-fw me-2"></i>
+                                </a>
+                            </li>
+                            <li class="tab">
+                                <a data-bs-toggle="tab" class="nav-link" routerLink="/">
+                                    <i class="fas fa-arrow-left fa-fw me-2"></i>
+                                </a>
+                            </li>
+                            <li class="tab" *ngFor="let item of menuItemsMaster; let i = index">
+                                <a data-bs-toggle="tab" class="nav-link" [routerLink]="item.routerLink"
+                                    routerLinkActive="active" (click)="selectItem(i)">
+                                    <i class="{{ item.iconClass }} me-2"></i>
+                                    {{ item.label }}
+                                </a>
+                            </li>
+                            <li class="tab nav-item">
+                                <div mdbDropdown class="dropdown dropx">
+                                    <a role="button" id="dropdownMenuLink" mdbDropdownToggle
+                                        style="width:fit-content; height: 40px; color: black; border-radius: 0px; padding:10px"
+                                        mdbTooltip="More">
+                                        <i class="fas fa-ellipsis-v fa-1.8x  ico"
+                                            style="margin-top: 11px; margin-bottom: 0px; margin-left:0px;margin-right:0px"
+                                            id="icox"></i>
+                                    </a>
+                                    <ul mdbDropdownMenu class="dropdown-menu custom-dropdown">
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li><a class="dropdown-item" routerLink="../bank"><i
+                                                    class="fa-solid fa-building-columns"></i> Bank</a></li>
+                                        <li><a class="dropdown-item" routerLink="../addfamily"><i
+                                                    class="fas fa-user-group "></i> Family</a></li>
+                                        <li><a class="dropdown-item" routerLink="../Holiday"><i
+                                                    class="fas fa-user-group "></i> Holiday Type</a></li>
+                                        <li><a class="dropdown-item" routerLink="../emptype"><i
+                                                    class="fas fa-medal "></i> Emp Type</a></li>
+                                        <li><a class="dropdown-item" routerLink="../country"><i
+                                                    class="fas fa-medal "></i> Country</a></li>
+                                        <li><a class="dropdown-item" routerLink="../state"><i class="fas fa-medal "></i>
+                                                State</a></li>
+                                        <li><a class="dropdown-item" routerLink="../supervisor"><i
+                                                    class="fas fa-user-tie"></i>
+                                                supervisors</a></li>
+                                                <li><a class="dropdown-item" routerLink="../manager"><i
+                                                    class="fas fa-user-tie"></i>
+                                                Manager</a></li>
+
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>

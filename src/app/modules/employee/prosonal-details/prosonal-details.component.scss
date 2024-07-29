@@ -1,0 +1,42 @@
+.main {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 5px 20px;
+}
+
+.mdb-tabs, .tab1, .tab2, .tab3 {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.692);
+  border-radius: 20px;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.responsive-tabs {
+  margin-top: 20px;
+}
+
+.responsive-tabs select {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .mdb-tab-content {
+      padding: 10px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1920px) {
+  .main {
+      padding: 10px 30px;
+  }
+  .mdb-tab-content {
+      padding:20px;
+ }
+}

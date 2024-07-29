@@ -1,0 +1,276 @@
+/* Resetting default styles and applying general styles */
+body {
+  margin: 0; /* Remove default margin */
+  background-color: #f0f0f0; /* Example background color */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical scrolling */
+}
+
+/* Main container styling */
+.main {
+  width: 100%;
+  border-radius: 20px;
+  padding: 5px 20px;
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Button styling */
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+/* Responsive tabs styling */
+.responsive-tabs {
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.responsive-tabs select {
+  width: 100%;
+}
+
+/* Toggle button styling */
+.toogle-button {
+  margin-top: 3%;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.toggle-slot {
+  font-size: 10px;
+  position: relative;
+  height: 2.5em;
+  width: 6em;
+  border: 0px solid transparent;
+  border-radius: 10em;
+  background-color: rgba(128, 128, 128, 0.253);
+  transition: background-color 250ms;
+}
+
+.toggle-checkbox:checked ~ .toggle-slot {
+  background-color: rgba(255, 166, 0, 0.5);
+}
+
+.toggle-button {
+  transform: translate(0.3em, 0.25em);
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background-color: #ffbb52;
+  box-shadow: inset 0px 0px 0px 0.75em #ffeccf;
+  transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(.26, 2, .46, .71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+  background-color: white;
+  box-shadow: inset 0px 0px 0px 0.75em orange;
+  transform: translate(3.65em, 0.25em);
+}
+
+.sun-icon {
+  position: absolute;
+  height: 6em;
+  width: 6em;
+  color: #ffbb52;
+}
+
+.sun-icon-wrapper {
+  position: absolute;
+  height: 6em;
+  width: 6em;
+  opacity: 1;
+  transform: translate(2em, 2em) rotate(15deg);
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26, 2, .46, .71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .sun-icon-wrapper {
+  opacity: 0;
+  transform: translate(3em, 2em) rotate(0deg);
+}
+
+.moon-icon {
+  position: absolute;
+  height: 6em;
+  width: 6em;
+  color: white;
+}
+
+.moon-icon-wrapper {
+  position: absolute;
+  height: 6em;
+  width: 6em;
+  opacity: 0;
+  transform: translate(11em, 2em) rotate(0deg);
+  transform-origin: 50% 50%;
+  transition: opacity 150ms, transform 500ms cubic-bezier(.26, 2.5, .46, .71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .moon-icon-wrapper {
+  opacity: 1;
+  transform: translate(2em, 2em) rotate(-15deg);
+}
+
+/* Additional styles */
+
+.span {
+  font-size: 15px;
+}
+
+.enable-checkbox {
+  position: absolute;
+  right: 10px; /* Adjust this value as needed to position the checkbox */
+  top: 55%;
+  transform: translateY(-50%);
+}
+
+.status-label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.savebutton {
+  background-color: rgba(0, 128, 0, 0.603);
+  color: white;
+}
+
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.close-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 0;
+  outline: 0;
+}
+
+.header {
+  font-weight: 600;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.tex-tbox {
+  margin-top: 20%;
+  width: 190%;
+  margin-left: -40%;
+}
+
+.submit-dialog {
+  margin-top: 10%;
+}
+
+/* Media queries and mixins */
+
+@mixin mobile-and-up {
+  @media screen and (min-width: 601px) {
+    @content;
+  }
+}
+
+@mixin tablet-and-down {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mobile-only {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+/* Specific media query implementations */
+
+@include tablet-and-down {
+  .tabx {
+    display: none;
+  }
+}
+
+@include mobile-and-up {
+  .modal-content {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    height: 450px;
+    width: 900px;
+    align-items: center;
+    max-height: 700px;
+    overflow: hidden;
+    /* max-width: 800%; */
+  }
+
+  .widthdecider {
+    width: 410px;
+  }
+}
+
+@include mobile-only {
+  .widthdecider {
+    width: 310px;
+    margin-top: 20px;
+  }
+
+  .mergecentermobile {
+    /* justify-content: center;
+       align-items: center; */
+    padding-right: 50px;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    height: 630px;
+    width: 350px;
+    align-items: center;
+    max-height: 700px;
+    overflow: hidden;
+    /* max-width: 800%; */
+  }
+
+  .margmobiletop {
+    margin-top: 20px;
+  }
+
+  .margmobileright {
+    margin-right: 20px;
+  }
+
+  .iconx {
+    display: none;
+  }
+
+  .mobileg {
+    margin-left: 10px;
+  }
+
+  .modal-dialog-phone {
+    width: 90%;
+  }
+
+  .mobmodel {
+    margin-top: 15px;
+  }
+}

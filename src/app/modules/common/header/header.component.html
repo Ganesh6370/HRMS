@@ -1,0 +1,365 @@
+<nav class="navbar">
+    <div [ngClass]="{'upper-navbar': true, 'upper-navbar-rtl': !isLayoutLtr}">
+        <span class="navbar-heading" style="white-space: nowrap;">
+            <ng-container *ngFor="let link of pageTitleArr; let last = last">
+                <a *ngIf="!last" [routerLink]="link.link">{{ link.text }}</a>
+                <span *ngIf="last">{{ link.text }}</span>
+                <span *ngIf="!last"> / </span>
+            </ng-container>
+            <span *ngIf="!pageTitleArr[1]">Dashboard</span>
+        </span>
+        <div class="upper-navbar-right">
+            <div class="search-container">
+                <input type="text">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            </div>
+            <div class="btn-section">
+                <!-- Settings Toggle button -->
+                <div class="btn-container" (click)="onSettingsClick()">
+                    <button>
+                        <i class="fa-solid fa-gear fa-xl" style="color: #ffffff;"></i>
+                    </button>
+                </div>
+
+                <!-- Language dropdown -->
+                <div class="btn-container">
+                    <button (click)="onLangBtnClick()">
+                        <i class="fa-solid fa-language fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container" *ngIf="isLangDropOpen">
+                        <div class="btn-dropdown-list">
+                            <button *ngFor="let language of languages">
+                                <i class={{language.flagClass}}></i>
+                                {{language.name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Alert Dropdown -->
+                <div class="btn-container">
+                    <button (click)="onAlertBtnClick()">
+                        <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container alert-dropdown-container" *ngIf="isAlertDropOpen">
+                        <div class="btn-dropdown-list">
+                            <p *ngFor="let alert of alerts">
+                                {{alert.data}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message dropdown -->
+                <div class="btn-container">
+                    <button (click)="onMsgBtnClick()">
+                        <i class="fa-solid fa-message fa-xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container msg-dropdown-container" *ngIf="isMsgDropOpen">
+                        <div class="btn-dropdown-list">
+                            <p *ngFor="let message of messages">
+                                {{message.msg}}
+                                <br>
+                                -{{message.by}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- QUICK LINK SECTION -->
+            <div class="quick-link-dropdown-container" style="position: relative;">
+                <button class="quick-link-dropdown-btn" (click)="onQuickLinkBtnClick()">
+                    <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                </button>
+                <div class="quick-link-dropdown-div" *ngIf="isQuickLinkDropOpen">
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="dashboard" class="quick-link-btn">
+                            <i class="fa-regular fa-circle-user fa-xl"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Dashboard</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="employee/Empdashboard"
+                            class="quick-link-btn"><i class="fa-solid fa-user fa-2xl"></i></a>
+                        <span class="quick-link-btn-text">Employee</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="master/MasterHeader"
+                            class="quick-link-btn"><i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Master</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="attendence/empatt"
+                            class="quick-link-btn"><i class="fa-solid fa-fingerprint fa-xl"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Attendance</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="leave/apply" class="quick-link-btn">
+                            <i class="fa-solid fa-person-through-window fa-xl"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Leave</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false" routerLink="asset/category" class="quick-link-btn">
+                            <i class="fa-solid fa-boxes-stacked fa-xl"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Assets</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="jobs/JobDashboard"
+                            class="quick-link-btn"><i class="fa fa-briefcase fa-xl" aria-hidden="true"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Jobs</span>
+                    </div>
+                    <div class="quick-link-btn-div">
+                        <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="task/ProjectDashboard"
+                            class="quick-link-btn"><i class="fa fa-tasks fa-xl" aria-hidden="true"></i>
+                        </a>
+                        <span class="quick-link-btn-text">Project</span>
+                    </div>
+                </div>
+            </div>
+            <!-- UPPER NAVBAR RIGHT PROFILE ICON -->
+            <div>
+                <button (click)="onProfileBtnClick()" class="upper-navbar-right-profile-btn">
+                    <ng-container *ngIf="personal?.profileImage; else defaultImage">
+                        <img [src]="'./../../../assets/img/' + personal.profileImage">
+                    </ng-container>
+                    <ng-template #defaultImage>
+                        <img src="../../../../assets/img/default.png">
+                   </ng-template>
+                </button>
+                <div class="profile-dropdown-container" *ngIf="isProfileDropOpen">
+                    <div class="btn-dropdown-list">
+                        <button (click)="viewProfile()"> <i class="far fa-user"></i> &nbsp; View Profile</button>                  
+                        <!-- <button (click)="redirectToProfile(item.empRegId)"><i class="far fa-user"></i> &nbsp; View Profile</button> -->
+                        <button (click)="logout()" class="upper-navbar-right-btn"><i class="fas fa-power-off"></i> &nbsp;Logout</button>
+                        <button (click)="toggleTabs()"> <i class="fas fa-lock-open"></i> &nbsp;Change Password</button>
+
+                    </div>
+                </div>
+            </div>
+            <button class="lower-navbar-toggle-btn" (click)="toggleLowerNavbar()">
+                <i class="fa-solid fa-ellipsis-vertical fa-xl" style="color: #ffffff;"></i>
+            </button>
+        </div>
+    </div>
+    <!-- LOWER NAVBAR SECTION -->
+    <div [ngClass]="{'lower-navbar':true, 'lower-navbar-active':isLowerNav, 'lower-navbar-inactive':!isLowerNav}">
+        <div class="upper-navbar-right">
+            <div class="search-container">
+                <input type="text">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            </div>
+            <div class="btn-section">
+                <!-- Language dropdown -->
+                <div class="btn-container">
+                    <button (click)="onLangBtnClick()">
+                        <i class="fa-solid fa-language fa-2xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container" *ngIf="isLangDropOpen">
+                        <div class="btn-dropdown-list">
+                            <button *ngFor="let language of languages">
+                                <i class={{language.flagClass}}></i>
+                                {{language.name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Alert Dropdown -->
+                <div class="btn-container">
+                    <button (click)="onAlertBtnClick()">
+                        <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container alert-dropdown-container" *ngIf="isAlertDropOpen">
+                        <div class="btn-dropdown-list">
+                            <p *ngFor="let alert of alerts">
+                                {{alert.data}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message dropdown -->
+                <div class="btn-container">
+                    <button (click)="onMsgBtnClick()">
+                        <i class="fa-solid fa-message fa-xl" style="color: #ffffff;"></i>
+                    </button>
+                    <div class="btn-dropdown-container msg-dropdown-container" *ngIf="isMsgDropOpen">
+                        <div class="btn-dropdown-list">
+                            <p *ngFor="let message of messages">
+                                {{message.msg}}
+                                <br>
+                                -{{message.by}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- QUICK LINK SECTION For MOBILE -->
+        <div class="quick-link-dropdown-container">
+            <button class="quick-link-dropdown-btn" (click)="onQuickLinkBtnClick()">
+                <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                <i style="margin: 0px 2px;" class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+            </button>
+            <div class="quick-link-dropdown-div" *ngIf="isQuickLinkDropOpen">
+                <div class="quick-link-btn-div">
+                    <a routerLink="dashboard" class="quick-link-btn"
+                        (click)="isQuickLinkDropOpen = false; isLowerNav = false"><i
+                            class="fa-solid fa-house fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Dashboard</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="employee/Empdashboard"
+                        class="quick-link-btn"><i class="fa-solid fa-user fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Employee</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="master/MasterHeader"
+                        class="quick-link-btn"><i class="fa-solid fa-user-tie fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Master</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="attendence/atteHeader"
+                        class="quick-link-btn"><i class="fa-solid fa-clipboard-user fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Attendance</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="leave/leaveHeader"
+                        class="quick-link-btn"><i class="fa-solid fa-mug-hot fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Leave</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="asset/assetheader"
+                        class="quick-link-btn"><i class="fa-solid fa-laptop fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Assets</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="jobs/JobDashboard"
+                        class="quick-link-btn"><i class="fa-solid fa-mug-hot fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Project</span>
+                </div>
+                <div class="quick-link-btn-div">
+                    <a (click)="isQuickLinkDropOpen = false; isLowerNav = false" routerLink="task/ProjectDashboard"
+                        class="quick-link-btn"><i class="fa-solid fa-laptop fa-2xl"></i></a>
+                    <span class="quick-link-btn-text">Task</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div *ngIf="showTabs" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+        <button mat-icon-button (click)="toggleTabs()"
+            style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+            <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+        </button>
+
+        <form class="modal-content" style="border: 0px solid rgb(128, 0, 15); position: relative; border-radius: 20px;  height:  320px ;
+      width: 500px;">
+            <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+
+                <button mat-icon-button (click)="toggleTabs()"
+                    style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+                    <i class="far fa-times-circle " style="background-color:orange;
+          border-radius: 14px;"></i>
+                </button>
+
+                <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+                    <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                        <div style=" border-bottom: 2px solid lightgray ;width: 95%; ">
+                            <h2 class="popupheader"><b>Change Password</b></h2>
+                        </div>
+
+                        <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;"
+                            class="commentresp">
+
+                            <div style="position: relative; width: 70%;margin-left: 50px;">
+                                <mdb-form-control style="border: 0px solid ; border-radius: 0px;">
+                                    <input mdbValidate style=" padding: 5px; font-weight: 800;
+                                                  border-radius: 10px; padding-right: 40px;" [(ngModel)]="userEmail"
+                                        formControlName="oldpass" matInput [type]="hideold ? 'password' : 'text'"
+                                        id="password" class="form-control" mdbInput id="form2" required />
+                                    <label mdbLabel class="form-label" for="form2">Old Password &nbsp;<span
+                                            class="text-danger">*</span></label>
+                                </mdb-form-control>
+                                <button  type="button" style="position: absolute; top:-7px;
+                                     right: 5px;  
+                                    " mat-icon-button matSuffix (click)="hideold = !hideold"
+                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hideold">
+                                    <mat-icon>
+                                        {{hideold ? 'visibility_off' : 'visibility'}}
+                                    </mat-icon>
+                                </button>
+                            </div>
+
+                            <div style="position: relative; width: 70%;margin-left: 50px;margin-top: 10px;">
+                                <mdb-form-control style="border: 0px solid ; border-radius: 0px;">
+                                    <input mdbValidate style=" padding: 5px; font-weight: 800;
+                                                  border-radius: 10px; padding-right: 40px;" [(ngModel)]="password"
+                                        formControlName="chanpass" matInput [type]="hidenew ? 'password' : 'text'"
+                                        id="password" class="form-control" mdbInput id="form2" required />
+                                    <label mdbLabel class="form-label" for="form2">New Password &nbsp;<span
+                                            class="text-danger">*</span></label>
+                                </mdb-form-control>
+                                <button type="button" style="position: absolute; top:-7px;
+                                     right: 5px;  
+                                    " mat-icon-button matSuffix (click)="hidenew = !hidenew"
+                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hidenew">
+                                    <mat-icon>
+                                        {{hidenew ? 'visibility_off' : 'visibility'}}
+                                    </mat-icon>
+                                </button>
+                            </div>
+
+                            <div style="position: relative; width: 70%;margin-left: 50px;margin-top: 10px;">
+                                <mdb-form-control style="border: 0px solid ; border-radius: 0px;">
+                                    <input mdbValidate style=" padding: 5px; font-weight: 800;
+                                                  border-radius: 10px; padding-right: 40px;"
+                                        [(ngModel)]="changePassword" formControlName="confpass" matInput
+                                        [type]="hideconf ? 'password' : 'text'" id="password" class="form-control"
+                                        mdbInput id="form2" required />
+                                    <label mdbLabel class="form-label" for="form2">Confirm Password &nbsp;<span
+                                            class="text-danger">*</span></label>
+                                </mdb-form-control>
+                                <button  type="button" style="position: absolute; top:-7px;
+                                     right: 5px;  
+                                    " mat-icon-button matSuffix (click)="hideconf = !hideconf"
+                                    [attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hideconf">
+                                    <mat-icon>
+                                        {{hideconf ? 'visibility_off' : 'visibility'}}
+                                    </mat-icon>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+                        <br>
+                        <div class="mycontainer">
+                            <div class="req">
+                                <span class="text-danger req">*</span> Required
+                            </div>
+                            <div style="text-align: right;">
+                                <button type="button" class="btn btn-outline-primary btn-rounded cancel-button"
+                                    data-mdb-ripple-init (click)="toggleTabs()"
+                                    data-mdb-ripple-color="dark">Cancel</button>
+                            </div>
+                            <div class="sub">
+                                <button type="submit" class="btn btn-primary btn-rounded"
+                                    data-mdb-ripple-init>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </form>
+    </div>
+</div>

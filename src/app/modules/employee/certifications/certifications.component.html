@@ -1,0 +1,62 @@
+<div class="full-container">
+  <div class="modal-header">
+    <h2 class="modal-title" id="exampleModalLabel">{{isEdit ? 'Edit' : 'Add'}} Certification</h2>
+    <button type="button" class="btn-close close-btn" aria-label="Close" (click)="modalRef.close()"></button>
+    <!-- <hr> -->
+  </div>
+  <div class="modal-body">
+    <form class="form-body" [formGroup]="certForm" (submit)="saveCertForm(certForm)">
+      <div class="input-row">
+        <!-- <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues.skill" class="form-control input-item" formControlName="skill" />
+          <label mdbLabel class="form-label" for="form1">Skill</label>
+        </mdb-form-control> -->
+
+
+        <mdb-form-control class="tex-tbox">
+          <select mdbInput id="form8Example6"  [required]="true" formControlName="skill"
+            class="form-control" aria-labelledby="dropdownMenuLink" [(ngModel)]="skillId"
+            name="skillId" (change)="handleSkillInput($event)">
+            <option [value]="" disabled selected hidden></option>
+            <option *ngFor="let skill of EmpSkillList; let i = index" value="{{skill.value}}">
+              {{skill.name}}</option>
+          </select>
+          <label mdbLabel class="form-label" for="form8Example6">Skill&nbsp;<span
+              class="text-danger">*</span></label>
+          <i class="fas fa-caret-down"
+            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+        </mdb-form-control> 
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues && formValues.exp" class="form-control input-item" formControlName="exp" maxlength="2" (keypress)="isNumberKey($event)" />
+          <label mdbLabel class="form-label" for="form1">Years of Experience &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+      </div>
+
+      <div class="input-row">
+        <mdb-form-control>
+          <textarea mdbInput class="form-control" id="textAreaExample" rows="4" formControlName="remarks"></textarea>
+          <label mdbLabel class="form-label" for="textAreaExample">Comment</label>
+        </mdb-form-control>
+
+        <div class="col upload-img" style="width: fit-content; margin-left: 1rem;">
+          <div style="display: flex; flex-direction: column;  margin-bottom: 0.5rem;">
+            <label mdbLabel for="document">Upload document &nbsp;<span class="text-danger">*</span></label>
+            <input id="document" type="file" (change)="onFileSelected($event)" accept="image/*">
+          </div>
+          <div *ngIf="imageUrl" class="image-container">
+            <img [src]="imageUrl" alt="Uploaded Image">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="divider">&nbsp;</div>
+      <div class="footer">
+        <button class="btn btn-rounded mx-2"
+          style="border: 1px solid var(--orange-primary); color: var(--orange-primary);"
+          (click)="modalRef.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-rounded mx-2">Submit</button>
+      </div>
+    </form>
+</div>
+</div>

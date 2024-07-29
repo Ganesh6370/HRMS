@@ -1,0 +1,684 @@
+<app-task-sub-header></app-task-sub-header>
+<div class="container" style="margin-top: 50px; background-color: whitesmoke; max-width:93vw;margin-left:5px;">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <div class="container d-flex" style="margin-top: 10px;">
+        <b style="margin-left: 12px; margin-top: 8px">Leader</b>
+        <div class="avatar-container">
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <button mat-mini-fab (click)="toggleTabs()">
+            <span class="material-icons">add</span>
+          </button>
+        </div>
+
+        <b style="margin-left: 25px; margin-top: 8px">Teams</b>
+        <div class="avatar-container">
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border" />
+          <button mat-mini-fab (click)="toggleTabs()">
+            <span class="material-icons">add</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="text-align: right; margin-top: 10px;">
+      <a href="project-view.html" class="btn waves-effect btn-white right border" title="View Board"><i
+          class="fa fa-link"></i></a>
+      <button class="btn waves-effect modal-trigger btn-white right ms-2 border" data-bs-toggle="modal"
+        (click)="toggleTask()" href="#add_task_board" matTooltip="Add New Task"><i class="fa fa-plus"></i> Create Task</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="progress" style="height: 20px; margin-top: 5px">
+        <b >Progress</b>
+        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;margin-left: 5px;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100">
+          25%
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container mt-2 bg-light">
+      <div class="horizontal-scroll">
+        <div class="scroll-item bg-danger bg-opacity-10">
+          <h4 style="
+                background-color: rgb(237, 77, 56);
+                padding: 8px;
+                color: white;
+              ">
+            Pedding
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-item bg-primary bg-opacity-10">
+          <h4 style="
+                background-color: rgb(16, 133, 236);
+                padding: 8px;
+                color: white;
+              ">
+            Progress
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Make a WireFrame</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-item bg-success bg-opacity-10">
+          <h4 style="background-color: rgb(2, 112, 7); padding: 8px; color: white">
+            Completed
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-item bg-warning bg-opacity-10">
+          <h4 style="
+                background-color: rgb(254, 208, 6);
+                padding: 8px;
+                color: white;
+              ">
+            Inprogress
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-item" style="background-color: rgb(243, 233, 252)">
+          <h4 style="
+                background-color: rgb(84, 3, 142);
+                padding: 8px;
+                color: white;
+              ">
+            On Hold
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-item" style="background-color: rgb(237, 222, 196)">
+          <h4 style="background-color: orange; padding: 8px; color: white">
+            Review
+          </h4>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+          <div class="card-container m-4 bg-white">
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <b style="margin-top: 10px; margin-bottom: 10px">Website redesign</b>
+
+              <div>
+                <div class="progress" style="margin-bottom: 5px; margin-top: 5px">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%; left: 0px"
+                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="80"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="padding-left: 5%; padding-right: 5%">
+              <div class="col">
+                <span class="task-date"><i class="fa-regular fa-clock"></i> Sep 26</span>
+                <br /><span class="task-priority matBadge bg-inverse-success">Low</span>
+              </div>
+              <div class="col">
+                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                  style="width: 40px; height: 40px; margin-left: 60%"
+                  class="rounded-circle border img-fluid float-left" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="showTabs" class="modal-overlay">
+  <div class="modal-dialog" (click)="preventClose($event)">
+    <form class="modal-content">
+      <form>
+        <button mat-icon-button (click)="toggleTask()" class="close-icon">
+          <i class="far fa-times-circle"></i>
+        </button>
+
+        <h1 class="header">Assign Leader to the project</h1>
+        <div class="container">
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control search-input" placeholder="Search a user to assign" />
+              <button class="btn btn-warning waves-effect">Search</button>
+            </div>
+            <div>
+              <ul class="list-unstyled chat-user-list">
+                <li>
+                  <a href="#">
+                    <div class="media d-flex mt-2" style="border-top:solid lightgray;">
+                      <span class="avatar flex-shrink-0">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border"
+                          style="height: 45px; height: 45px" />
+                      </span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Richard Miles</div>
+                        <span class="designation">Web Developer</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex mt-2" style="border-top:solid lightgray;">
+                      <span class="avatar flex-shrink-0">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border"
+                          style="height: 45px; height: 45px" />
+                      </span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">John Smith</div>
+                        <span class="designation">Android Developer</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex mt-2" style="border-top:solid lightgray;">
+                      <span class="avatar flex-shrink-0">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="rounded-circle border"
+                          style="height: 45px; height: 45px" />
+                      </span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Jeffery Lalor</div>
+                        <span class="designation">Team Leader</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+      <pre></pre>
+      <div mat-dialog-actions [align]="'end'" class="submit-dialog">
+        <button class="btn btn-warning waves-effect modal-close submit-btn bg-warning">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showTask" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="toggleTask()" style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+      border-radius: 14px;"></i>
+    </button>
+
+    <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;">
+      <form>
+        <button mat-icon-button (click)="toggleTask()"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+            <div style=" border-bottom: 2px solid lightgray ;width: 95%; ">
+              <h2 class="popupheader"><b>Add New Task</b></h2>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;"
+              class="commentresp">
+              <div style="width: 96%;">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"/>
+                  <label mdbLabel class="form-label" for="form8Example1">Task Name&nbsp;<span class="text-danger">*</span></label>
+                  <!-- <mdb-error *ngIf="model?.invalid && (model?.dirty || model?.touched)">
+                  </mdb-error>
+                  <mdb-success *ngIf="model?.valid && (model?.dirty || model?.touched)">
+                  </mdb-success> -->
+                </mdb-form-control>
+                <div class="row">
+                  <div class="col-md-6">
+                  <mdb-form-control style="margin-top: 12px;">
+                    <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"/>
+                    <label mdbLabel class="form-label" for="form8Example1">Start Date&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <!-- <mdb-error *ngIf="warrantyStart?.invalid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                    </mdb-error>
+                    <mdb-success *ngIf="warrantyStart?.valid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                    </mdb-success> -->
+                  </mdb-form-control>
+                </div>
+                <div class="col-md-6">
+                  <mdb-form-control style="margin-top: 12px;">
+                    <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"/>
+                    <label mdbLabel class="form-label" for="form8Example1">End Date&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <!-- <mdb-error *ngIf="warrantyStart?.invalid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                    </mdb-error>
+                    <mdb-success *ngIf="warrantyStart?.valid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                    </mdb-success> -->
+                  </mdb-form-control>
+                </div>
+                </div>
+                <mdb-form-control style="margin-top: 12px;">
+                  <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink">
+                    <option value="" disabled selected hidden></option>
+                    <option value="Pedding">Pedding</option>
+                    <option value="Progress">Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Inprogress">Inprogress</option>
+                    <option value="On Hold">On Hold</option>
+                    <option value="Deploy">Deploy</option>
+                    <option value="Testing">Testing</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="status">Status&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                  <!-- <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                  </mdb-error>
+                  <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                  </mdb-success> -->
+                </mdb-form-control>
+                <mdb-form-control style="margin-top: 12px;">
+                  <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink">
+                    <option value="" disabled selected hidden></option>
+                    <option value="Aman">Aman</option>
+                    <option value="Virdhi">Virdhi</option>
+                    <option value="Amandeep">Amandeep</option>
+                    <option value="Amandeep Virdhi">Amandeep Virdhi</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="status">Developer&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                  <!-- <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                  </mdb-error>
+                  <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                  </mdb-success> -->
+                </mdb-form-control>
+                <mdb-form-control style="margin-top: 12px;">
+                  <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink">
+                    <option value="" disabled selected hidden></option>
+                    <option value="Sandeep">Sandeep</option>
+                    <option value="Niraj">Niraj</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="status">Team Lead&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                  <!-- <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                  </mdb-error>
+                  <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                  </mdb-success> -->
+                </mdb-form-control>
+                <mdb-form-control style="margin-top: 12px;">
+                  <textarea mdbInput class="form-control" id="textAreaExample" rows="2"></textarea>
+                  <label mdbLabel class="form-label" for="textAreaExample">Task Description</label>
+                </mdb-form-control>
+                <div class="col-lg-4 col-sm-8 mt-3">
+                  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                  <div *ngIf="imageUrl" class="image-container">
+                    <img [src]="imageUrl" alt="Uploaded Image" class="uploadImg">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+            <br>
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-outline-primary btn-rounded cancel-button" data-mdb-ripple-init
+                  (click)="toggleTask()" data-mdb-ripple-color="dark">Cancel</button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </form>
+ </div>
+</div>

@@ -1,0 +1,117 @@
+
+<app-leave-sub-header></app-leave-sub-header>
+<div class="card"
+  style="border: 1px solid lightgray; margin: 15px 14px;border-radius: 10px;overflow: scroll;height:450px;position: relative;margin-top: 40px; ">
+  <table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light" style="position: sticky; ">
+      <tr>
+        <th>Leave Type <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </th>
+        <th>Leave Period</th>
+        <th>Unit</th>
+        <th>Entitlements</th>
+        <th>Pending Approval</th>
+        <th>Scheduled</th>
+        <th>Taken</th>
+        <th>Net Balance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <div class="round-button" style="position: fixed; top:100px;right:10px; width:50px">
+      <button mat-fab extended (click)="toggleTabs()" matTooltip="Add Department"
+        aria-label="Button that displays a tooltip in various positions" color="warn">
+        <i class="fas fa-plus fa-2x" style="color: rgba(10, 253, 253, 0.773);"></i></button>
+    </div>
+    <tbody>
+      <tr *ngFor="let m of AttendanceEmployee">
+        <td>{{ m.id }}</td>
+        <td>{{ m.date }}</td>
+        <td>{{ m.punch_in }}</td>
+        <td>{{ m.punch_out }}</td>
+        <td>{{ m.production }}</td>
+        <td>{{ m.break }}</td>
+        <td>{{ m.overtime }}</td>
+        <td>{{m.netbalance}}</td>
+        <td>
+          <span style="text-decoration: none;">
+            <div mdbDropdown class="dropdown dropx">
+              <a role="button" id="dropdownMenuLink" mdbDropdownToggle
+                style="width:4px; height: 10px; color: black; border-radius: 0px; padding:0px 30px">
+                <i class="fas fa-ellipsis-v fa-1.8x  ico" style="margin-bottom: 0px; margin-left:0px;margin-right:20px"
+                  id="icox"></i> </a>
+              <ul mdbDropdownMenu class="dropdown-menu" style="margin-right: 40px;">
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" routerLink="../bankaccount"><i class="fa-solid fa-pen-to-square"></i> Edit
+                  </a></li>
+                <li><a class="dropdown-item" routerLink="../family"><i class="fas fa-user-group "></i> Family</a></li>
+                <li><a class="dropdown-item" routerLink="../experience"><i class="fas fa-medal "></i> Experience</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+              </ul>
+            </div>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+</div> 
+<div *ngIf="showTabs" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="toggleTabs()"
+      style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+      border-radius: 14px;"></i>
+    </button>
+
+    <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  260px ;
+    width: 500px;">
+      <form>
+        <button mat-icon-button (click)="toggleTabs()"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+            <div style=" border-bottom: 2px solid lightgray ;width: 95%; ">
+              <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: black;"><b>Add Department</b></h2>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;"
+              class="commentresp">
+              <div style="width: 47%;">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="form1"
+                    class="form-control" formControlName="deptName" required />
+                  <label mdbLabel class="form-label" for="form1">Department name &nbsp;<span
+                      class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+            <br>
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+            <br>
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-outline-primary btn-rounded cancel-button" data-mdb-ripple-init
+                  (click)="toggleTabs()" data-mdb-ripple-color="dark">Cancel</button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </form>
+</div>
+</div>

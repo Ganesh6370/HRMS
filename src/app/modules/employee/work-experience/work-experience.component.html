@@ -1,0 +1,59 @@
+<div class="full-container">
+  <div class="modal-header">
+    <h2 class="modal-title" id="exampleModalLabel">{{isEdit ? 'Edit' : 'Add'}} Work Experience</h2>
+    <button type="button" class="btn-close close-btn" aria-label="Close" (click)="modalRef.close()"></button>
+    <!-- <hr> -->
+  </div>
+  <div class="modal-body">
+    <form class="form-body" [formGroup]="workExpForm" (submit)="addWorkExp(workExpForm)">
+      <div class="input-row">
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues && formValues.company"
+            class="form-control input-item" formControlName="company"  />
+          <label mdbLabel class="form-label" for="form1">Company &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input mdbInput type="text" id="form1" [value]="formValues && formValues.jobTitle"
+            class="form-control input-item" formControlName="jobTitle" />
+          <label mdbLabel class="form-label" for="form1">Job Title &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+      </div>
+      <div class="input-row">
+        <mdb-form-control>
+          <input mdbInput type="date" id="form1" [value]="formValues && formValues.fromDate"
+            class="form-control input-item" formControlName="fromDate" />
+          <label mdbLabel class="form-label" for="form1">From Date &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <input mdbInput type="date" id="form1" [value]="formValues && formValues.toDate"
+            class="form-control input-item" formControlName="toDate" />
+          <label mdbLabel class="form-label" for="form1">To Date &nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+      </div>
+      <div class="input-row">
+        <mdb-form-control>
+          <textarea mdbInput class="form-control" id="textAreaExample" rows="4" formControlName="remarks"></textarea>
+          <label mdbLabel class="form-label" for="textAreaExample">Comment</label>
+        </mdb-form-control>
+
+        <div class="col upload-img" style="width: min-content; margin-left: 1rem;">
+          <div style="display: flex; flex-direction: column;  margin-bottom: 0.5rem;">
+            <label mdbLabel for="document">Upload document &nbsp;<span class="text-danger">*</span></label>
+            <input id="document" type="file" (change)="onFileSelected($event)" accept="image/*">
+          </div>
+          <div *ngIf="imageUrl" class="image-container">
+            <img [src]="imageUrl" alt="Uploaded Image">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">&nbsp;</div>
+      <div class="footer">
+        <button class="btn btn-rounded mx-2"
+          style="border: 1px solid var(--orange-primary); color: var(--orange-primary);"
+          (click)="modalRef.close()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-rounded mx-2" (click)="modalRef.close()">Submit</button>
+      </div>
+    </form>
+</div>
+</div>

@@ -1,0 +1,75 @@
+.table-container {
+  position: relative;
+  height: 421px;
+  overflow: auto;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.paginator {
+  width: 100%;
+}
+
+.filter{
+  height:70px;
+}
+.navbar2{
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+}
+
+.aptituderesult{
+  font-size: 20px; 
+  font-weight: bold;
+
+}
+
+.container-fluid{
+  width: 97%;
+  height: 500px;
+}
+
+.status{
+min-width: 180px;
+}
+ 
+
+.tablex{
+background-color: #ECECEC; 
+max-width: 100% !important;
+width: 100% !important; 
+overflow: scroll;
+position: relative;
+height:380px;
+// box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.image{
+width: 45px; 
+height: 45px
+}
+
+
+#status:hover{
+  background-color: orange;
+}
+
+.totalmarks{
+min-width: 120px;
+}
+
+.categorywisemark{
+min-width: 180px;
+}
+
+.jobtitle{
+min-width: 155px;
+}
+
+.name{
+min-width:155px;
+}

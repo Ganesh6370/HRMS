@@ -1,0 +1,124 @@
+<div class="full-container">
+    <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">{{isEdit ? 'Edit' : 'Add'}} Education</h2>
+        <button type="button" class="btn-close close-btn" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="form-body" [formGroup]="educationForm" (submit)="addEducation(educationForm)">
+            <div class="row">
+                <div class="col-md-6 col-sm-10 mt-2">
+                    <mdb-form-control>
+                        <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                            mdbValidate required formControlName="level">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let educationName of educationLevelArr" [value]="educationName">
+                                {{educationName}}</option>
+                        </select>
+                        <label mdbLabel class="form-label" for="form8Example6">Level/Course <span
+                                class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 col-sm-10 mt-2">
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="form1" [value]="formValues && formValues.institute"
+                            class="form-control input-item" formControlName="institute" />
+                        <label mdbLabel class="form-label" for="form1">Institute&nbsp;<span
+                                class="text-danger">*</span></label>
+                    </mdb-form-control>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-10 mt-3">
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="form1" [value]="formValues && formValues.major"
+                            class="form-control input-item" formControlName="specialization" />
+                        <label mdbLabel class="form-label" for="form1">Major/Specialization&nbsp;<span
+                                class="text-danger">*</span></label>
+                    </mdb-form-control>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-4 mt-3">
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="form1" [value]="formValues && formValues.year"
+                                    class="form-control input-item" formControlName="year" 
+                                    maxlength="1" (keypress)="isNumberKey($event)"/>
+                                <label mdbLabel class="form-label" for="form1">Cource Year &nbsp;<span
+                                        class="text-danger">*</span></label>
+                            </mdb-form-control>
+                        </div>
+                        <div class="col-md-6 col-sm-4 mt-3">
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="form1" [value]="formValues && formValues.score"
+                                    class="form-control input-item" formControlName="score" 
+                                    maxlength="2" (keypress)="isNumberKey($event)"/>
+                                <label mdbLabel class="form-label" for="form1">Score/GPA&nbsp;<span
+                                        class="text-danger">*</span></label>
+                            </mdb-form-control>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-10 mt-3">
+                    <mdb-form-control>
+                        <input mdbInput type="date" id="form1" [value]="formValues && formValues.startDate"
+                            class="form-control input-item" formControlName="startDate" />
+                        <label mdbLabel class="form-label" for="form1">Start Date&nbsp;<span
+                                class="text-danger">*</span></label>
+                    </mdb-form-control>
+                </div>
+                <div class="col-md-6 col-sm-10 mt-3">
+                    <mdb-form-control>
+                        <input mdbInput type="date" id="form1" [value]="formValues && formValues.endDate"
+                            class="form-control input-item" formControlName="endDate" />
+                        <label mdbLabel class="form-label" for="form1">End Date&nbsp;<span
+                                class="text-danger">*</span></label>
+                    </mdb-form-control>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6 col-sm-12">
+                    <mdb-form-control>
+                        <textarea mdbInput class="form-control" id="textAreaExample" rows="4"
+                            formControlName="remarks"></textarea>
+                        <label mdbLabel class="form-label" for="textAreaExample">Comment</label>
+                    </mdb-form-control>
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-3 upload-img">
+                    <div>
+                        <label mdbLabel for="document">Upload document&nbsp;<span class="text-danger">*</span></label>
+                        <input id="document" type="file" (change)="onFileSelected($event)" accept="image/*">
+                    </div>
+                    <div *ngIf="imageUrl" class="image-container">
+                        <img [src]="imageUrl" alt="Uploaded Image">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- <div class="divider">&nbsp;</div>
+            <div class="footer">
+                <button class="btn btn-rounded mx-2"
+                    style="border: 1px solid var(--orange-primary); color: var(--orange-primary);"
+                    (click)="modalRef.close()">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-rounded mx-2">Submit</button>
+            </div> -->
+            <div class="mycontainer">
+                <div class="req">
+                    <span class="text-danger req">*</span> Required
+                </div>
+                <div style="text-align: right;">
+                    <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                        (click)="modalRef.close()" data-mdb-ripple-color="dark"
+                        style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px;">
+                        Cancel</button>
+                </div>
+                <div style="margin-left: 18px;">
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                </div>
+            </div>
+        </form>
+  </div>
+</div>

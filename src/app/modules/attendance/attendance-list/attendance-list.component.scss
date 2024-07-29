@@ -1,0 +1,252 @@
+td,
+th {
+    white-space: nowrap;
+}
+
+.form1 {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    text-align: center;
+
+    .mb-4 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px);
+    border: 1px solid rgb(174, 174, 175);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 10px;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+}
+
+.timesheet,
+.activity {
+    flex: 1 1 calc(48% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid rgb(174, 174, 175);
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.timesheet {
+
+    .punch,
+    .time,
+    .punch-out,
+    .break-ov {
+        margin-bottom: 5%;
+    }
+
+    .punch {
+        padding: 2%;
+        background-color: rgb(247, 242, 249);
+        border-radius: 10px;
+        border: 1px solid rgb(174, 174, 175);
+    }
+
+    .time {
+        margin: auto;
+        padding-top: 9.5%;
+        white-space: nowrap;
+        height: 90px;
+        width: 90px;
+        border: 3px solid rgb(174, 174, 175);
+        border-radius: 50%;
+        background-color: rgb(247, 242, 249);
+    }
+
+    .break-ov {
+        height: 16%;
+        display: flex;
+        padding-top: 5%;
+
+        .break,
+        .overtime {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            background-color: rgb(247, 242, 249);
+            border: 1px solid rgb(174, 174, 175);
+            // margin-bottom: 5%;
+        }
+
+        .overtime {
+            margin-left: 25%;
+        }
+    }
+}
+
+.activity {
+
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        padding-bottom: 0.1rem;
+        border-left: 1px solid rgb(174, 174, 175);
+        position: relative;
+        padding-left: 20px;
+        margin-left: 10px;
+
+        &:last-child {
+            border: 3px;
+            padding-bottom: 0;
+        }
+
+        &:before {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: white;
+            border: 2px solid orange;
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 0px;
+        }
+    }
+}
+
+tr:nth-child(even) {
+    background-color: #f1e7c5;
+}
+
+tr {
+    height: 30px;
+}
+
+@media (min-width: 768px) {
+    .form1 {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .mb-4 {
+            width: 100%;
+            margin-bottom: 0;
+            margin-left: 4%;
+        }
+
+        .btn {
+            width: 30%;
+            margin-left: 4%;
+        }
+    }
+}
+
+.present {
+    color: rgb(59, 133, 237);
+}
+
+.absent {
+    color: #ff2414;
+}
+
+.holiday {
+    color: #ffa500;
+}
+
+
+.modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    left: 0;
+}
+
+.close-icon {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: 0;
+    outline: 0;
+}
+
+.modal-content {
+    position: relative;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+}
+
+.model-body {
+    border-bottom: 0px solid black;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
+    padding-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        height: 100% !important;
+        width: 350px !important;
+    }
+
+    .content-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timesheet,
+    .activity {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 667px) {
+    .modal-content {
+        height: 390px;
+        width: 700px;
+    }
+}
+
+@media (min-width: 769px) {
+    .modal-content {
+        height: 100%;
+        width: 50vw;
+    }
+}
+
+.clickable:hover {
+    background-color:#fdf5f5;
+}
+
+.sticky{
+    position: sticky;
+     left: 0; 
+     background-color: white;
+    //z-index:2;
+  }

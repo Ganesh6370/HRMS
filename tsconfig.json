@@ -22,7 +22,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "noImplicitAny": false,// this added by vickey for list in check box check all
+    
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

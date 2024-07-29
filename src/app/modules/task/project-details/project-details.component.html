@@ -1,0 +1,362 @@
+<app-task-sub-header></app-task-sub-header>
+<div class="container-fluid " style="margin-top: 30px;">
+  <div class="dashboard-header">
+    <h2 style="font-weight: bold;">{{ project.projectName }}</h2>
+    <div>
+      <a class="btn waves-effect btn-white right m-r-10" data-bs-toggle="tooltip" data-tooltip="Task Board">
+        <i class="fa fa-bars"></i>
+      </a>
+      <button class="btn add-btn btn-primary">Edit Project</button>
+
+    </div>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Project</li>
+    </ol>
+  </nav>
+
+  <div class="row mt-4">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title" style="font-weight: bold;"> {{ project.projectName }}</h3>
+          <p class="card-text">2 <span class="text-muted">open tasks, </span> 5 <span class="text-muted">tasks
+              completed</span></p>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent taciti sociosqu
+            ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sollicitudin libero vitae est
+            consectetur, a molestie tortor consectetur. Aenean tincidunt interdum ipsum, id pellentesque diam suscipit
+            ut. Vivamus massa mi, fermentum eget neque eget, imperdiet tristique lectus. Proin at purus ut sem
+            pellentesque tempor sit amet ut lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer
+            scelerisque libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
+            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat mi, eu euismod
+            ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula. Morbi volutpat tincidunt urna,
+            vel ullamcorper ligula fermentum at.
+          </p>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent taciti sociosqu
+            ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sollicitudin libero vitae est
+            consectetur, a molestie tortor consectetur. Aenean tincidunt interdum ipsum, id pellentesque diam suscipit
+            ut. Vivamus massa mi, fermentum eget neque eget, imperdiet tristique lectus. Proin at purus ut sem
+            pellentesque tempor sit amet ut lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer
+            scelerisque libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
+            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat mi, eu euismod
+            ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula. Morbi volutpat tincidunt urna,
+            vel ullamcorper ligula fermentum at.
+          </p>
+        </div>
+      </div>
+
+      <!-- New section for uploaded image files -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title" style="font-weight: bold;">Uploaded image files</h3>
+          <div class="row uploaded-images">
+            <div class="col-6 col-md-3">
+             <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="demo" class="rounded-circle border">
+              <p class="">demo.png</p>
+            </div>
+            <div class="col-6 col-md-3">
+             <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="demo" class="rounded-circle border">
+              <p class="">demo.png</p>
+            </div>
+            <div class="col-6 col-md-3">
+             <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="demo" class="rounded-circle border">
+              <p class="">demo.png</p>
+            </div>
+            <div class="col-6 col-md-3">
+             <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="demo" class="rounded-circle border">
+              <p class="">demo.png</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- New section for Uploaded files -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title" style="font-weight: bold;"> Uploaded files</h3>
+          <div class="uploaded-file">
+            <i class="fa-regular fa-file-pdf"></i>
+            <div class="file-info">
+              <a href="#">AHA Selfcare Mobile Application Test-Cases.xls</a>
+              <small><span style="color: #ff9b44;text-decoration: underline;"> John Doe</span> May 31st at 6:53
+                PM</small>
+              <small>Size: 14.8Mb</small>
+            </div>
+            <div class="file-actions">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+          </div>
+          <div class="uploaded-file">
+            <i class="fa-regular fa-file-pdf"></i>
+            <div class="file-info">
+              <a href="#">AHA Selfcare Mobile Application Test-Cases.xls</a>
+              <small><span style="color: #ff9b44;text-decoration: underline;"> Richard Miles</span> May 31st at 6:53
+                PM</small>
+              <small>Size: 14.8Mb</small>
+            </div>
+            <div class="file-actions">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- New section for Memorandum files -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3 class="card-title" style="font-weight: bold;">Memorandum</h3>
+          <div class="uploaded-file">
+            <i class="fa-regular fa-file-pdf"></i>
+            <div class="file-info">
+              <a href="#">AHA Selfcare Mobile Application Test-Cases.xls</a>
+              <small><span style="color: #ff9b44;text-decoration: underline;"> John Doe</span> May 31st at 6:53
+                PM</small>
+              <small>Size: 14.8Mb</small>
+            </div>
+            <div class="file-actions">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+          </div>
+          <div class="uploaded-file">
+            <i class="fa-regular fa-file-pdf"></i>
+            <div class="file-info">
+              <a href="#">AHA Selfcare Mobile Application Test-Cases.xls</a>
+              <small><span style="color: #ff9b44;text-decoration: underline;"> Richard Miles</span> May 31st at 6:53
+                PM</small>
+              <small>Size: 14.8Mb</small>
+            </div>
+            <div class="file-actions">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- New section for tasks with tabs -->
+      <div class="card mt-4 tasks-card">
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="all-tasks-tab" data-mdb-toggle="tab" href="#all-tasks" role="tab"
+                aria-controls="all-tasks" aria-selected="true">All Tasks</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="pending-tasks-tab" data-mdb-toggle="tab" href="#pending-tasks" role="tab"
+                aria-controls="pending-tasks" aria-selected="false">Pending Tasks</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="completed-tasks-tab" data-mdb-toggle="tab" href="#completed-tasks" role="tab"
+                aria-controls="completed-tasks" aria-selected="false">Completed Tasks</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="all-tasks" role="tabpanel" aria-labelledby="all-tasks-tab">
+              <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Patient appointment booking</li>
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Appointment booking with payment
+                  gateway</li>
+                <li class="list-group-item"><i class="fas fa-check-circle text-success"></i> Doctor available module
+                </li>
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Patient and Doctor video
+                  conferencing</li>
+                <li class="list-group-item"><i class="fa-regular fa-check-circle "></i> Private chat module</li>
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Patient Profile add</li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="pending-tasks" role="tabpanel" aria-labelledby="pending-tasks-tab">
+              <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Patient appointment booking</li>
+                <li class="list-group-item"><i class="fa-regular fa-check-circle"></i> Appointment booking with payment
+                  gateway</li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="completed-tasks" role="tabpanel" aria-labelledby="completed-tasks-tab">
+              <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><i class="fas fa-check-circle text-success"></i> Private chat module</li>
+                <li class="list-group-item"><i class="fas fa-check-circle text-success"></i> Patient Profile add</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title" style="font-weight: bold;">Project details</h3>
+          <ul class="project-details">
+            <li><span>Cost:</span> <span>&#8377;{{ project.projectRate }}</span></li>
+            <li><span>Total Hours:</span> <span>100 Hours</span></li>
+            <li><span>Created:</span> <span>{{ project.startDate |date }}</span></li>
+            <li><span>Deadline:</span> <span>{{ project.endDate |date }}</span></li>
+            <li><span>Priority:</span> <span class="badge bg-danger">{{ project.priority }}</span></li>
+            <li><span>Created by:</span> <span> {{ project.projectLeader }}</span></li>
+            <li><span>Status:</span> <span>Working</span></li>
+            <li style="margin-bottom: 10px;"><span>Progress:</span> <span class="text-success">40%</span></li>
+            <div class="progress progress-xs mb-0">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 40%" data-bs-toggle="tooltip"
+                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="card-title" style="font-weight: bold;">Assigned Leader</h3> 
+            <button mat-mini-fab extended  matTooltip="Assigned Leader"
+            aria-label="Button that displays a tooltip in various positions" style="background-color: #FF9B44;">
+            <i class="fas fa-plus fa-2x" style="color: white"></i>
+          </button>
+          </div>
+          <div class="assigned-section">
+            <div class="d-flex align-items-center mb-3">
+              <img src="assets/img/profile.png" alt="leader">
+              <div>
+                <p class="mb-0"><b>{{ project.projectLeader }}</b></p>
+                <p class="text-muted mb-0">Team Leader</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="card-title" style="font-weight: bold;">Assigned users</h3>           
+            <button mat-mini-fab extended  matTooltip="Assigned users"
+                aria-label="Button that displays a tooltip in various positions" style="background-color: #FF9B44;">
+                <i class="fas fa-plus fa-2x" style="color: white"></i>
+              </button>
+          </div>
+          <div class="assigned-section">
+            <div *ngFor="let user of teamLeaderData" class="d-flex align-items-center mb-3">
+              <img src="assets/img/profile.png" alt="user">
+              <div>
+                <p class="mb-0"><b>{{ user }}</b></p>
+                <p class="text-muted mb-0">Web Developer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- for memorandum -->
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="card-title" style="font-weight: bold;">Memorandum</h3>
+            
+            <div class="round-button">
+              <button mat-mini-fab extended (click)="toggleTask()" matTooltip="Add Memorandum"
+                aria-label="Button that displays a tooltip in various positions" style="background-color: #FF9B44;">
+                <i class="fas fa-plus fa-2x" style="color: white"></i>
+              </button>
+   </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="showTask" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="toggleTask()" style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+      border-radius: 14px;"></i>
+    </button>
+
+    <form class="modal-content" style="border: 0px solid rgb(128, 0, 15); position: relative; border-radius: 20px;">
+      <form>
+        <button mat-icon-button (click)="toggleTask()"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;width: 95%;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+            <div style=" border-bottom: 2px solid lightgray ; ">
+              <h2 class="popupheader"><b>Add Memorandum</b></h2>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;width: 95%;"
+              class="commentresp">
+              <div style="width: 98%;">
+              <mdb-form-control>
+                <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Amandeep">Amandeep</option>
+                  <option value="Virdhi">Virdhi</option>
+                </select>
+                <label mdbLabel class="form-label" for="status">Client Represtative&nbsp;<span
+                    class="text-danger">*</span></label>
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                <!-- <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                </mdb-error>
+                <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                </mdb-success> -->
+              </mdb-form-control>
+              <mdb-form-control style="margin-top: 12px;">
+                <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink">
+                  <option value="" disabled selected hidden></option>
+                  <option value="Lion">Lion</option>
+                  <option value="Tiger">Tiger</option>
+                </select>
+                <label mdbLabel class="form-label" for="status">Meeting Attended by Team Name&nbsp;<span
+                    class="text-danger">*</span></label>
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                <!-- <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                </mdb-error>
+                <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                </mdb-success> -->
+              </mdb-form-control>
+              <mdb-form-control style="margin-top: 12px;">
+                <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"/>
+                <label mdbLabel class="form-label" for="form8Example1">Date&nbsp;<span
+                    class="text-danger">*</span></label>
+                <!-- <mdb-error *ngIf="warrantyStart?.invalid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                </mdb-error>
+                <mdb-success *ngIf="warrantyStart?.valid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                </mdb-success> -->
+              </mdb-form-control>
+              <mdb-form-control  style="margin-top: 12px;">
+                <textarea mdbInput class="form-control" id="textAreaExample" rows="2"></textarea>
+                <label mdbLabel class="form-label" for="textAreaExample">Description</label>
+              </mdb-form-control>
+              <div class="col-lg-4 col-sm-8 mt-3">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                <div *ngIf="imageUrl" class="image-container">
+                  <img [src]="imageUrl" alt="Uploaded Image" class="uploadImg">
+                </div>
+              </div>
+            </div>
+            </div>
+            <br>
+            <div style="border-bottom: 2px solid lightgray;"></div>
+            <br>
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-outline-primary btn-rounded cancel-button" data-mdb-ripple-init
+                  (click)="toggleTask()" data-mdb-ripple-color="dark">Cancel</button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </form>
+  </div>
+</div>
+</div>

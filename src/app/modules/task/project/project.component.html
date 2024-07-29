@@ -1,0 +1,660 @@
+<app-task-sub-header></app-task-sub-header>
+<div class="container-fluid" style="width: 98%; position: relative;">
+  <div class="navbar2 ">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding-bottom:10px ; margin-top: 40px;">
+      <div>
+        <h3 style="font-weight: bold;"> Project </h3>
+      </div>
+
+      <mat-form-field class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search Here..." #input>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Round Button -->
+  <div class="round-button">
+    <button mat-fab extended (click)="toggleTabs()" matTooltip="Create Project"
+      aria-label="Button that displays a tooltip in various positions" color="warn">
+      <i class="fas fa-plus fa-2x" style="color: rgba(10, 253, 253, 0.773);"></i>
+    </button>
+  </div>
+  <!-- Pop up component html-->
+  <div *ngIf="showTabs" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+      <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 1001;">
+        <i class="far fa-times-circle " style="background-color:orange;
+              border-radius: 14px;"></i>
+      </button>
+
+
+      <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm)" class="modal-content"
+        style="position: relative; border-radius: 20px;">
+        <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+          style="position: absolute; top: -20px; right: -20px; cursor: pointer; z-index: 1000;">
+          <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position: absolute; top: 20px; left: 20px; width: 95%;">
+            <div style="border-bottom: 2px solid lightgray; width: 100%;">
+              <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color:#939090;"><b>Create Project </b></h2>
+            </div>
+            <div class="container" style="margin-top: 10px;">
+              <div class="row ">
+                <div class="col-sm-6 mb-3 ">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="text" id="form1" class="form-control"
+                      formControlName="projectName" required />
+                    <label mdbLabel class="form-label" for="form1">Project Name <span
+                        class="text-danger">*</span></label>
+                    <mdb-error *ngIf="projectName?.invalid && (projectName?.dirty || projectName?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectName?.valid && (projectName?.dirty || projectName?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <mdb-form-control>
+
+                    <select mdbValidate mdbInput id="form1" class="form-control" aria-labelledby="dropdownMenuLink"
+                      formControlName="clientName" required>
+                      <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control mb-2">
+                      <option [value]="" disabled selected hidden></option>
+
+                      <option *ngFor="let option of filOptions" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form1">Client&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error *ngIf="clientName?.invalid && (clientName?.dirty || clientName?.touched)"></mdb-error>
+                    <mdb-success *ngIf="clientName?.valid && (clientName?.dirty || clientName?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="startDate"
+                      required />
+                    <label mdbLabel class="form-label" for="form1">Start Date&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <mdb-error *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)"></mdb-error>
+                    <mdb-success *ngIf="startDate?.valid && (startDate?.dirty || startDate?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="endDate"
+                      required />
+                    <label mdbLabel class="form-label" for="form1">End Date &nbsp;<span
+                        class="text-danger">*</span></label>
+                    <mdb-error *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)"></mdb-error>
+                    <mdb-success *ngIf="endDate?.valid && (endDate?.dirty || endDate?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-sm-3 mb-3">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="text" id="form1" class="form-control" placeholder="&#8377;"
+                      formControlName="projectRate" required />
+                    <label mdbLabel class="form-label" for="form1">Rate <span class="text-danger">*</span></label>
+                    <mdb-error *ngIf="projectRate?.invalid && (projectRate?.dirty || projectRate?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectRate?.valid && (projectRate?.dirty || projectRate?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-3 mb-3">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                      aria-labelledby="dropdownMenuLink" formControlName="rateType" required>
+                      <option [value]="" disabled selected hidden></option>
+                      <option>Hourly</option>
+                      <option>Fixed</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">RateType&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error *ngIf="rateType?.invalid && (rateType?.dirty || rateType?.touched)"></mdb-error>
+                    <mdb-success *ngIf="rateType?.valid && (rateType?.dirty || rateType?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                      aria-labelledby="dropdownMenuLink" formControlName="priority" required>
+                      <option [value]="" disabled selected hidden></option>
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Priority&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error *ngIf="priority?.invalid && (priority?.dirty || priority?.touched)"></mdb-error>
+                    <mdb-success *ngIf="priority?.valid && (priority?.dirty || priority?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-sm-6 mb-2">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                      aria-labelledby="dropdownMenuLink" formControlName="projectLeader" required>
+                      <option [value]="" disabled selected hidden></option>
+                      <option *ngFor="let option of options" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Add Project Leader&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error
+                      *ngIf="projectLeader?.invalid && (projectLeader?.dirty || projectLeader?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectLeader?.valid && (projectLeader?.dirty || projectLeader?.touched)"></mdb-success>
+
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <!-- <label class="col-for-label">Team Leader</label> -->
+                  <div class="project-members">
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-2">
+                  <mdb-form-control>
+                    <mat-form-field class="small custom-mat-field" appearance="outline">
+                      <mat-label>Add Team Members</mat-label>
+                      <mat-select [(value)]="selectedOption" formControlName="teamLeader" multiple required>
+                        <mat-form-field class="field" appearance="outline">
+                          <input type="text" matInput (keyup)="filterOptions($any($event.target).value)">
+                          <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+
+                        <mat-option [value]="" disabled selected hidden></mat-option>
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option.value">{{
+                          option.name}}</mat-option>
+                        <mat-option *ngIf="filteredOptions.length===0 && options.length > 0">No options
+                          found</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="teamLeader?.invalid && (teamLeader?.dirty || teamLeader?.touched)"></mat-error>
+                      <mat-hint *ngIf="teamLeader?.valid && (teamLeader?.dirty || teamLeader?.touched)"></mat-hint>
+                    </mat-form-field>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <!-- <label class="col-for-label">Team Leader</label> -->
+                  <div class="project-members">
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="Tyson" title="Tyson" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="John" title="John" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <span >+2</span>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-sm-12">
+                  <mdb-form-control>
+                    <label for="projectDescriptions">Project Descriptions</label>
+                    <ckeditor mdbValidate mdbInput id="projectDescriptions" [editor]="Editor" formControlName="projectDescriptions" [config]="editorConfig" ></ckeditor>
+                    
+                    <mdb-error
+                      *ngIf="projectDescriptions?.invalid && (projectDescriptions?.dirty || projectDescriptions?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectDescriptions?.valid && (projectDescriptions?.dirty || projectDescriptions?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              <!-- New row for file upload -->
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <label mdbLabel class="form-label">Upload Files<span class="text-danger">
+                      *</span></label>
+                  <div>
+                    <input type="file" class="file-upload" (change)="previewFunction($event)" multiple />
+                  </div>
+                  <div class="image-container">
+                    <div *ngFor="let file of files">
+                      <img [src]="file.url" *ngIf="file.url && file.type.startsWith('image')" alt="Preview"
+                        class="preview-image" style="max-width: 100px; max-height: 40px;" />
+                      <pdf-viewer *ngIf="file.url && file.type.startsWith('application/pdf')" [src]="file.url"
+                        [render-text]="true" [original-size]="false" style="width: 100px; height: 100px"></pdf-viewer>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+            <br />
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right">
+                <button type="reset" class="btn btn-outline-primary btn-rounded" (click)="toggleTabs()"
+                  data-mdb-ripple-init data-mdb-ripple-color="dark"
+                  style="color: orange; border: 2px solid orange; margin-right: 20px; box-shadow: 1px 1px;">
+                  Cancel
+                </button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- ProjectId Column -->
+      <ng-container matColumnDef="projectId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.projectId}} </td>
+      </ng-container>
+
+      <!-- Project Column -->
+      <ng-container matColumnDef="projectName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Project</th>
+        <td mat-cell *matCellDef="let row" class="no-wrap">
+          <span (click)="openProjectDetail(row.projectId)" style="cursor: pointer;">
+            {{row.projectName}}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- leader Column -->
+      <ng-container matColumnDef="projectLeader">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Leader</th>
+        <td mat-cell *matCellDef="let row" class="no-wrap"> {{row.projectLeader}} </td>
+      </ng-container>
+
+      <!-- team Column -->
+      <ng-container matColumnDef="teamLeader">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+        <td mat-cell *matCellDef="let row" class="team-column"> {{row.teamLeader}} </td>
+      </ng-container>
+
+      <!-- Priority Column -->
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+        <td mat-cell *matCellDef="let row">
+          <div mdbDropdown class="dropdown">
+            <button class="btn btn-light btn-sm border btn-rounded dropdown-toggle" type="button"
+              id="dropdownMenuButton" aria-expanded="false" mdbDropdownToggle>
+              <i class="far fa-circle-dot" [ngClass]="{
+              'text-danger': row.priority === 'High',
+              'text-warning': row.priority === 'Medium',
+              'text-success': row.priority === 'Low'
+            }"></i> {{row.priority}}
+            </button>
+            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item"><i class="far fa-circle-dot text-danger"></i> High</a></li>
+              <li><a class="dropdown-item"><i class="far fa-circle-dot text-warning"></i> Medium</a></li>
+              <li><a class="dropdown-item"><i class="far fa-circle-dot text-success"></i> Low</a></li>
+              <div class="dropdown-divider"></div>
+            </ul>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row">
+          <div mdbDropdown class="dropdown">
+            <button class="btn btn-light btn-sm border btn-rounded dropdown-toggle" type="button"
+              id="dropdownMenuButton" aria-expanded="false" mdbDropdownToggle>
+              <i class="far fa-circle-dot text-success"></i> Active
+            </button>
+            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item"><i class="far fa-circle-dot text-success"></i> Active</a></li>
+              <li><a class="dropdown-item"><i class="far fa-circle-dot text-danger"></i> Inactive</a></li>
+              <div class="dropdown-divider"></div>
+            </ul>
+          </div>
+        </td>
+      </ng-container>
+      <!-- Created By Column -->
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+      </ng-container>
+      <!-- created On Column -->
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdOn| date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+      <!-- Updated By Column -->
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated By </th>
+        <td mat-cell *matCellDef="let row"> {{row.updatedBy}} </td>
+      </ng-container>
+      <!-- updatedOn Column -->
+      <ng-container matColumnDef="updatedOn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated On </th>
+        <td mat-cell *matCellDef="let row"> {{row.updatedOn| date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="toggleEdit(row.projectId)"><i class="fa fa-pencil m-r-5 p-2"></i>
+              Edit</button>
+            <button mat-menu-item (click)="deleteUser(row)"><i
+                class="fa-regular fa-trash-can m-r-5 p-2"></i>Delete</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator class="paginator" [pageSizeOptions]="[7, 10, 25, 100]"
+    aria-label="Select page of users"></mat-paginator>
+</div>
+
+<!-- Edit POPUP-->
+<div *ngIf="showEdits" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="closeFunction()"
+      style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+    </button>
+
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmitEdit(updateForm)" class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  270px ;
+      width: 500px;">
+      <button mat-icon-button (click)="closeFunction()"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+        <i class="far fa-times-circle " style="background-color:orange;
+          border-radius: 14px;"></i>
+      </button>
+
+      <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+        <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+          <div style=" border-bottom: 2px solid lightgray;width:100%;">
+            <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color:#939090;"><b>Edit Project </b></h2>
+          </div>
+          <div class="container" style="margin-top: 10px;">
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form1" class="form-control" formControlName="projectName"
+                    required />
+                  <label mdbLabel class="form-label" for="form1">Project Name <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="ProjectName?.invalid && (ProjectName?.dirty || ProjectName?.touched)"></mdb-error>
+                  <mdb-success *ngIf="ProjectName?.valid && (ProjectName?.dirty || ProjectName?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <mdb-form-control>
+
+                  <select mdbValidate mdbInput id="form1" class="form-control" aria-labelledby="dropdownMenuLink"
+                    formControlName="clientName" required>
+                    <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control mb-2">
+                    <option [value]="" disabled selected hidden></option>
+
+                    <option *ngFor="let option of filOptions" [value]="option.value">{{ option.name }}</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="form1">Client&nbsp;<span class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                  <mdb-error *ngIf="clientName?.invalid && (clientName?.dirty || clientName?.touched)"></mdb-error>
+                  <mdb-success *ngIf="clientName?.valid && (clientName?.dirty || clientName?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="startDate"
+                    required />
+                  <label mdbLabel class="form-label" for="form1">Start Date&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)"></mdb-error>
+                  <mdb-success *ngIf="startDate?.valid && (startDate?.dirty || startDate?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="endDate"
+                    required />
+                  <label mdbLabel class="form-label" for="form1">End Date &nbsp;<span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)"></mdb-error>
+                  <mdb-success *ngIf="endDate?.valid && (endDate?.dirty || endDate?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3 mb-3">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form1" class="form-control" placeholder="$"
+                    formControlName="projectRate" required />
+                  <label mdbLabel class="form-label" for="form1">Rate <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="projectRate?.invalid && (projectRate?.dirty || projectRate?.touched)"></mdb-error>
+                  <mdb-success *ngIf="projectRate?.valid && (projectRate?.dirty || projectRate?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-3 mb-3">
+                <mdb-form-control>
+                  <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                    aria-labelledby="dropdownMenuLink" formControlName="rateType" required>
+                    <option [value]="" disabled selected hidden></option>
+                    <option>Hourly</option>
+                    <option>Fixed</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="form8Example6">RateType&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                  <mdb-error *ngIf="rateType?.invalid && (rateType?.dirty || rateType?.touched)"></mdb-error>
+                  <mdb-success *ngIf="rateType?.valid && (rateType?.dirty || rateType?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <mdb-form-control>
+                  <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                    aria-labelledby="dropdownMenuLink" formControlName="priority" required>
+                    <option [value]="" disabled selected hidden></option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="form8Example6">Priority&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                  <mdb-error *ngIf="priority?.invalid && (priority?.dirty || priority?.touched)"></mdb-error>
+                  <mdb-success *ngIf="priority?.valid && (priority?.dirty || priority?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row ">
+                <div class="col-sm-6 mb-2">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                      aria-labelledby="dropdownMenuLink" formControlName="projectLeader" required>
+                      <option [value]="" disabled selected hidden></option>
+                      <option *ngFor="let option of options" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Add Project Leader&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error
+                      *ngIf="projectLeader?.invalid && (projectLeader?.dirty || projectLeader?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectLeader?.valid && (projectLeader?.dirty || projectLeader?.touched)"></mdb-success>
+
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <!-- <label class="col-for-label">Team Leader</label> -->
+                  <div class="project-members">
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-2">
+                  <mdb-form-control>
+                    <mat-form-field class="small custom-mat-field" appearance="outline">
+                      <mat-label>Add Team Members</mat-label>
+                      <mat-select [(value)]="selectedOption" formControlName="teamLeader" multiple required>
+                        <mat-form-field class="field" appearance="outline">
+                          <input type="text" matInput (keyup)="filterOptions($any($event.target).value)">
+                          <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+
+                        <mat-option [value]="" disabled selected hidden></mat-option>
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option.value">{{
+                          option.name}}</mat-option>
+                        <mat-option *ngIf="filteredOptions.length===0 && options.length > 0">No options
+                          found</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="teamLeader?.invalid && (teamLeader?.dirty || teamLeader?.touched)"></mat-error>
+                      <mat-hint *ngIf="teamLeader?.valid && (teamLeader?.dirty || teamLeader?.touched)"></mat-hint>
+                    </mat-form-field>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <!-- <label class="col-for-label">Team Leader</label> -->
+                  <div class="project-members">
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="Tyson" title="Tyson" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="John" title="John" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <a href="" data-tooltip="JEffrey Laler" title="Jeffrey Laler" class="avatar tooltipped">
+                      <img src="assets/img/profile.png" alt="">
+                    </a>
+                    <span >+2</span>
+                    
+                  </div>
+                </div>
+              </div>
+            <div class="row mb-2">
+              <div class="col-sm-12">
+                <mdb-form-control>
+                    <label mdbLabel class="form-label" for="projectDescriptions">Project Descriptions</label>
+                    <ckeditor mdbValidate mdbInput id="projectDescriptions" [editor]="Editor" formControlName="projectDescriptions" [config]="editorConfig" ></ckeditor>
+                    
+                    <mdb-error
+                      *ngIf="projectDescriptions?.invalid && (projectDescriptions?.dirty || projectDescriptions?.touched)"></mdb-error>
+                    <mdb-success
+                      *ngIf="projectDescriptions?.valid && (projectDescriptions?.dirty || projectDescriptions?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <!-- New row for file upload -->
+
+            <div class="row">
+              <div class="col-sm-12">
+                <label mdbLabel class="form-label">Upload Files<span class="text-danger">
+                    *</span></label>
+                <div>
+                  <input type="file" class="file-upload" (change)="previewFunction($event)" multiple />
+                </div>
+                <div class="image-container">
+                  <div *ngFor="let file of files">
+                    <img [src]="file.url" *ngIf="file.url && file.type.startsWith('image')" alt="Preview"
+                      class="preview-image" style="max-width: 100px; max-height: 40px;" />
+                    <pdf-viewer *ngIf="file.url && file.type.startsWith('application/pdf')" [src]="file.url"
+                      [render-text]="true" [original-size]="false" style="width: 100px; height: 100px"></pdf-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+          <br />
+          <div class="mycontainer">
+            <div class="req">
+              <span class="text-danger req">*</span> Required
+            </div>
+            <div style="text-align: right">
+              <button type="reset" class="btn btn-outline-primary btn-rounded" (click)="cancelEdit()"
+                data-mdb-ripple-init data-mdb-ripple-color="dark"
+                style="color: orange; border: 2px solid orange; margin-right: 20px; box-shadow: 1px 1px;">
+                Cancel
+              </button>
+            </div>
+            <div class="sub">
+              <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+</div>
+</div>

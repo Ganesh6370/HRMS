@@ -1,0 +1,846 @@
+<app-asset-sub-header></app-asset-sub-header>
+<div class="container-fluid">
+  <div class="navbar2 mt-2">
+    <div>
+      <h2 class="assetlist">Asset List</h2>
+    </div>
+    <mat-form-field class="filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search Here...." #input>
+    </mat-form-field>
+  </div>
+  <!-- pop up buttom -->
+  <div class="round-button">
+    <button mat-fab extended (click)="toggleTabs()" matTooltip="Add Asset Details"
+      aria-label="Button that displays a tooltip in various positions" color="warn">
+      <i class="fas fa-plus fa-2x" style="color: rgba(10, 253, 253, 0.773);"></i>
+    </button>
+  </div>
+  <!-- popup button open -->
+  <div *ngIf="showTabs" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+      <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+        <i class="far fa-times-circle " style="background-color:orange;
+            border-radius: 14px;"></i>
+      </button>
+      <form class="modal-content" style="border: 0px solid green; position: relative;border-radius:20px;">
+        <form [formGroup]="officeForm" (ngSubmit)="onSubmit(officeForm)">
+          <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+            style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+            <i class="far fa-times-circle " style="background-color:orange;
+              border-radius: 14px;"></i>
+          </button>
+          <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+            <div style="position:absolute;top:10px;left:20px; width: 95%; ">
+              <div style=" border-bottom: 2px solid lightgray ;width: 98%; ">
+                <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color:rgb(147, 144, 144);"><b>Asset Details</b></h2>
+              </div>
+              <div style="flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 5px;padding-right: 10px;">
+                <!-- first row -->
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="assetId" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Asset Id&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <mdb-error *ngIf="assetId?.invalid && (assetId?.dirty || assetId?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="assetId?.valid && (assetId?.dirty || assetId?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="serialNumber" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Serial Number&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <mdb-error *ngIf="serialNumber?.invalid && (serialNumber?.dirty || serialNumber?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="serialNumber?.valid && (serialNumber?.dirty || serialNumber?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 2 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="brand">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of BrandOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Brand&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          <mdb-error *ngIf="brand?.invalid && (brand?.dirty || brand?.touched)"></mdb-error>
+                          <mdb-success *ngIf="brand?.valid && (brand?.dirty || brand?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="vendor">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of VendorOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Vendor&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          <mdb-error *ngIf="vendor?.invalid && (vendor?.dirty || vendor?.touched)"></mdb-error>
+                          <mdb-success *ngIf="vendor?.valid && (vendor?.dirty || vendor?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 3 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="model" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Model&nbsp;<span class="text-danger">
+                              *</span></label>
+                          <mdb-error *ngIf="model?.invalid && (model?.dirty || model?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="model?.valid && (model?.dirty || model?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="category">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of CategoryOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Category&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          <mdb-error *ngIf="category?.invalid && (category?.dirty || category?.touched)"></mdb-error>
+                          <mdb-success *ngIf="category?.valid && (category?.dirty || category?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 4 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="location">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of LocationOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Location&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          <mdb-error *ngIf="location?.invalid && (location?.dirty || location?.touched)"></mdb-error>
+                          <mdb-success *ngIf="location?.valid && (location?.dirty || location?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="acquired" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Acquired&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <mdb-error *ngIf="acquired?.invalid && (acquired?.dirty || acquired?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="acquired?.valid && (acquired?.dirty || acquired?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!--5 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="warrantyStart" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Warranty Starts&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <mdb-error *ngIf="warrantyStart?.invalid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="warrantyStart?.valid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="warrantyEnd" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Warranty Ends&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <mdb-error *ngIf="warrantyEnd?.invalid && (warrantyEnd?.dirty || warrantyEnd?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="warrantyEnd?.valid && (warrantyEnd?.dirty || warrantyEnd?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select mdbValidate mdbInput id="form8Example4" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="status" required>
+                            <option value="Decommission" selected>Decommission</option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example4">Status<span
+                              class="text-danger">*</span></label>
+                              <i class="fas fa-caret-down"
+                              style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                          </mdb-error>
+                          <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                          </mdb-success>
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <textarea mdbInput class="form-control" id="textAreaExample" rows="1"></textarea>
+                          <label mdbLabel class="form-label" for="textAreaExample">Description</label>
+                        </mdb-form-control>
+             </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-8 mt-3">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                    <div *ngIf="imageUrl" class="image-container" style="margin-top: 10px;">
+                      <img [src]="imageUrl" alt="Uploaded Image" class="addimg">
+                    </div>
+                  </div>
+                </div>
+                 
+              </div>
+              <div style="border-bottom: 2px solid lightgray; padding-bottom: 15px;"></div>
+              <br>
+              <div class="mycontainer">
+                <div class="req">
+                  <span class="text-danger req">*</span> Required
+                </div>
+                <div style="text-align: right;">
+                  <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                    (click)="addDepartment()" data-mdb-ripple-color="dark"
+                    style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px;">
+                    Cancel</button>
+                </div>
+                <div class="sub">
+                  <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </form>
+    </div>
+  </div>
+  <div class="tablex mt-2 mat-elevation-z8"
+    style="background-color: #ECECEC; max-width: 100% !important;width: 100% !important; overflow: scroll;position:relative;
+    height:425px;">
+    <table mat-table [dataSource]="dataSource"matSort>
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="assetId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="assetId"> Asset Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="category">Category</th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="model">Models </th>
+        <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+      </ng-container>
+      <ng-container matColumnDef="serialNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="serialNumber">Serial Number </th>
+        <td mat-cell *matCellDef="let element" (click)="toggleEditTabs(element.assetId)"> {{element.serialNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="status">Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container> 
+      <ng-container matColumnDef="assignEmp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="assignEmp"> Assigned Employee </th>
+        <td mat-cell *matCellDef="let element"> {{element.assignEmp}} </td>
+      </ng-container>
+      <ng-container matColumnDef="assignDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="assignDate">Assigned On</th>
+        <td mat-cell *matCellDef="let element"> {{element.assignDate?.toString() | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="warrantyEnd">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="warrantyEnd">Warranty Ends</th>
+        <td mat-cell *matCellDef="let element"> {{element.warrantyEnd?.toString() | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="toggleEditTabs(row.assetId)"><i class="fa fa-pencil m-r-5"></i>Edit</button>
+            <button mat-menu-item><i class="fa-regular fa-trash-can m-r-5"></i>Delete</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </div>
+  <div class="pages">
+    <mat-paginator [pageSizeOptions]="[7,10,20,50,100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+  <!-- SERIAL NUMBER POPUP -->
+  <div *ngIf="showSerialData" class="modal-overlay">
+    <div class="modal-dialog" (click)="preventCloseSerial($event)" style="position:relative;">
+      <button mat-icon-button (click)="toggleSerialEdit()" class="close-icon"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+        <i class="far fa-times-circle " style="background-color:orange;
+            border-radius: 14px;"></i>
+      </button>
+      <form [formGroup]="officeForm3" (ngSubmit)="onSerialSubmit(officeForm3)" class="modal-content"
+        style="border: 0px solid green; position: relative;border-radius:20px;">
+        <!-- <form > -->
+        <button mat-icon-button (click)="toggleSerialEdit()" class="close-icon"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+              border-radius: 14px;"></i>
+        </button>
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+            <div style=" border-bottom: 2px solid lightgray ;width: 100%; ">
+              <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: black;"><b>Asset Details</b></h2>
+            </div>
+            <div style="flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 5px;padding-right: 5px;">
+              <!-- first row -->
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                          formControlName="assetId" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Asset Id&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <mdb-error *ngIf="assetId?.invalid && (assetId?.dirty || assetId?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="assetId?.valid && (assetId?.dirty || assetId?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                          formControlName="serialNumber" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Serial Number&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <mdb-error *ngIf="serialNumber?.invalid && (serialNumber?.dirty || serialNumber?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="serialNumber?.valid && (serialNumber?.dirty || serialNumber?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <!-- 2 row -->
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                          aria-labelledby="dropdownMenuLink" formControlName="brand">
+                          <option [value]="" disabled selected hidden></option>
+                          <option *ngFor="let option of BrandOptions" [value]="option.value">{{ option.name }}</option>
+                        </select>
+                        <label mdbLabel class="form-label" for="form8Example6">Brand&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                          style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                        <mdb-error *ngIf="brand?.invalid && (brand?.dirty || brand?.touched)"></mdb-error>
+                        <mdb-success *ngIf="brand?.valid && (brand?.dirty || brand?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                          aria-labelledby="dropdownMenuLink" formControlName="vendor">
+                          <option [value]="" disabled selected hidden></option>
+                          <option *ngFor="let option of VendorOptions" [value]="option.value">{{ option.name }}</option>
+                        </select>
+                        <label mdbLabel class="form-label" for="form8Example6">Vendor&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                          style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                        <mdb-error *ngIf="vendor?.invalid && (vendor?.dirty || vendor?.touched)"></mdb-error>
+                        <mdb-success *ngIf="vendor?.valid && (vendor?.dirty || vendor?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <!-- 3 row -->
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                          formControlName="model" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Model&nbsp;<span class="text-danger">
+                            *</span></label>
+                        <mdb-error *ngIf="model?.invalid && (model?.dirty || model?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="model?.valid && (model?.dirty || model?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                          aria-labelledby="dropdownMenuLink" formControlName="category">
+                          <option [value]="" disabled selected hidden></option>
+                          <option *ngFor="let option of CategoryOptions" [value]="option.value">{{ option.name }}
+                          </option>
+                        </select>
+                        <label mdbLabel class="form-label" for="form8Example6">Category&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                          style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                        <mdb-error *ngIf="category?.invalid && (category?.dirty || category?.touched)"></mdb-error>
+                        <mdb-success *ngIf="category?.valid && (category?.dirty || category?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <!-- 4 row -->
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <select mdbValidate mdbInput id="status" class="form-control" aria-labelledby="dropdownMenuLink"
+                          formControlName="status" required (change)="onEditOptionSelected($event, deptId)">
+                          <option value="" disabled selected hidden></option>
+                          <option value="option2">Decommission</option>
+                          <option value="option1">Assign</option>
+                        </select>
+                        <label mdbLabel class="form-label" for="status">Status&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                          style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        <mdb-error *ngIf="status?.invalid && (status?.dirty || status?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="status?.valid && (status?.dirty || status?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                          aria-labelledby="dropdownMenuLink" formControlName="location">
+                          <option [value]="" disabled selected hidden></option>
+                          <option *ngFor="let option of LocationOptions" [value]="option.value">{{ option.name }}
+                          </option>
+                        </select>
+                        <label mdbLabel class="form-label" for="form8Example6">Location&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <i class="fas fa-caret-down"
+                          style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                        <mdb-error *ngIf="location?.invalid && (location?.dirty || location?.touched)"></mdb-error>
+                        <mdb-success *ngIf="location?.valid && (location?.dirty || location?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                          formControlName="acquired" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Acquired&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <mdb-error *ngIf="acquired?.invalid && (acquired?.dirty || acquired?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="acquired?.valid && (acquired?.dirty || acquired?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                          formControlName="warrantyStart" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Warranty Starts&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <mdb-error *ngIf="warrantyStart?.invalid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="warrantyStart?.valid && (warrantyStart?.dirty || warrantyStart?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                      <mdb-form-control>
+                        <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control"
+                          formControlName="warrantyEnd" required />
+                        <label mdbLabel class="form-label" for="form8Example1">Warranty Ends&nbsp;<span
+                            class="text-danger">*</span></label>
+                        <mdb-error *ngIf="warrantyEnd?.invalid && (warrantyEnd?.dirty || warrantyEnd?.touched)">
+                        </mdb-error>
+                        <mdb-success *ngIf="warrantyEnd?.valid && (warrantyEnd?.dirty || warrantyEnd?.touched)">
+                        </mdb-success>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 mt-3">
+                  <div class="image">
+                    <a mdbRipple href="#!">
+                      <img style="background-size: cover; background-attachment: fixed; height: 180px;" alt="example"
+                        class="img-fluid rounded" src="https://m.media-amazon.com/images/I/61+r3+JstZL.jpg" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- first row end and 2 row start -->
+              <div class="row">
+                <div class="col-lg-12 mt-3">
+                  <mdb-form-control>
+                    <textarea mdbInput class="form-control" id="textAreaExample" rows="2"></textarea>
+                    <label mdbLabel class="form-label" for="textAreaExample">Description</label>
+                  </mdb-form-control>
+                </div>
+              </div>
+            </div>
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 15px;"></div>
+            <br>
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                  (click)="addSerial()" data-mdb-ripple-color="dark"
+                  style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px;">
+                  Cancel</button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </form> -->
+      </form>
+    </div>
+  </div>
+  <!-- //////Assign Asset popup in edit popup *////// -->
+  <div *ngIf="showAssignEdit" class="modal-overlay" style="z-index: 10000;">
+    <div class="modal-dialogs " style="position: relative;">
+      <button mat-icon-button class="close-icon" style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+        <i class="far fa-times-circle " style="background-color:orange;
+          border-radius: 14px;"></i>
+      </button>
+      <form class="modal-contents">
+        <button mat-icon-button (click)="confirmEditAssign()" class="close-icon"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+            border-radius: 14px;"></i>
+        </button>
+        <form [formGroup]="officeForm5" (ngSubmit)="onSubmitEditAssign(officeForm5)">
+          <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+            <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+              <div style=" border-bottom: 2px solid lightgray ;width: 100%; ">
+                <h2 style="border: 0px solid;margin: 0px 0px 5px 0px;color:rgb(147, 144, 144);"><b>Assign Asset</b></h2>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px; margin-left:5%;margin-right:5%;"
+                class="commentresp">
+                <!-- first row -->
+                <div class="row">
+                <div class="col-lg-6 sm-4 mt-2">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control"
+                      aria-labelledby="dropdownMenuLink" formControlName="assignEmp" required>
+                      <option [value]="" disabled selected hidden></option>
+                      <option *ngFor="let option of EmployeeOptions" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Employee&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                  </mdb-form-control>
+                </div>
+                <div class="col-lg-6 sm-4 mt-2">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="date" id="form8Example1" class="form-control" 
+                    formControlName="assignDate" required/>
+                    <label mdbLabel class="form-label" for="form8Example1">Assigned On&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <mdb-error *ngIf="assignDate?.invalid && (assignDate?.dirty || assignDate?.touched)">
+                    </mdb-error>
+                    <mdb-success *ngIf="assignDate?.valid && (assignDate?.dirty || assignDate?.touched)">
+                    </mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              </div>
+              <div style="border-bottom: 2px solid lightgray; padding-bottom: 15px;"></div>
+              <br>
+              <div class="mycontainer">
+                <div class="req">
+                  <span class="text-danger req">*</span> Required
+                </div>
+                <div style="text-align: right;">
+                  <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                    (click)="confirmEditAssign()" data-mdb-ripple-color="dark"
+                    style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px ;">
+                    Cancel</button>
+                </div>
+                <div class="sub">
+                  <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </form>
+    </div>
+  </div>
+  <!-- Edit popup  -->
+  <div *ngIf="showEditTabs" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+      <button mat-icon-button (click)="closeFunction()" class="close-icon"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+        <i class="far fa-times-circle " style="background-color:orange;
+          border-radius: 14px;"></i>
+      </button>
+      <form class="modal-content" style="border: 0px solid green; position: relative;border-radius:20px; 
+      height:580px;width: 800px;">
+        <form [formGroup]="officeForm2" (ngSubmit)="onSubmitEdit(officeForm2)">
+          <button mat-icon-button (click)="closeFunction()" class="close-icon"
+            style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+            <i class="far fa-times-circle " style="background-color:orange;
+            border-radius: 14px;"></i>
+          </button>
+          <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+            <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+              <div style=" border-bottom: 2px solid lightgray ;width: 100%; ">
+                <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color:rgb(147, 144, 144);"><b>Edit Asset Details</b></h2>
+              </div>
+              <div style="flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 10px;padding-right: 10px;">
+                <!-- first row -->
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="assetId" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Asset Id&nbsp;<span
+                              class="text-danger">*</span></label>
+                          
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="serialNumber" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Serial Number&nbsp;<span
+                              class="text-danger">*</span></label>
+                       
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 2 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select  mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="brand">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of BrandOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Brand&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select  mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="vendor">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of VendorOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Vendor&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 3 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="text" id="form8Example1" class="form-control"
+                            formControlName="model" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Model&nbsp;<span class="text-danger">
+                              *</span></label>
+                           
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select  mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="category">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of CategoryOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Category&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!-- 4 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select  mdbInput id="form8Example6" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="location">
+                            <option [value]="" disabled selected hidden></option>
+                            <option *ngFor="let option of LocationOptions" [value]="option.value">{{ option.name }}
+                            </option>
+                          </select>
+                          <label mdbLabel class="form-label" for="form8Example6">Location&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                          
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="acquired" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Acquired&nbsp;<span
+                              class="text-danger">*</span></label>
+                           
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <!--5 row -->
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="warrantyStart" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Warranty Starts&nbsp;<span
+                              class="text-danger">*</span></label>
+                           
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <input  mdbInput type="date" id="form8Example1" class="form-control"
+                            formControlName="warrantyEnd" required />
+                          <label mdbLabel class="form-label" for="form8Example1">Warranty Ends&nbsp;<span
+                              class="text-danger">*</span></label>
+                          
+                        </mdb-form-control>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <select  mdbInput id="status" class="form-control"
+                            aria-labelledby="dropdownMenuLink" formControlName="status" required
+                            (change)="onEditOptionSelected($event,deptId)">
+                            <option value="" disabled selected hidden></option> 
+                            <option value="Decommission">Decommission</option>
+                            <option value="Assign">Assign</option>
+                          </select>
+                          <label mdbLabel class="form-label" for="status">Status&nbsp;<span
+                              class="text-danger">*</span></label>
+                          <i class="fas fa-caret-down"
+                            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                          
+                        </mdb-form-control>
+                      </div>
+                      <div class="col-lg-6 col-sm-8 mt-3">
+                        <mdb-form-control>
+                          <textarea mdbInput class="form-control" id="textAreaExample" rows="1"></textarea>
+                          <label mdbLabel class="form-label" for="textAreaExample">Description</label>
+                        </mdb-form-control>
+             </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-8 mt-3">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                    <div *ngIf="imageUrl" class="image-container" style="margin-top: 10px;">
+                      <img [src]="imageUrl" alt="Uploaded Image" width="230px" height="230px">
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div style="border-bottom: 2px solid lightgray; padding-bottom: 15px;"></div>
+              <br>
+              <div class="mycontainer">
+                <div class="req">
+                  <span class="text-danger req">*</span> Required
+                </div>
+                <div style="text-align: right;">
+                  <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                    (click)="closeFunction()" data-mdb-ripple-color="dark"
+                    style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px;">
+                    Cancel</button>
+                </div>
+                <div class="sub">
+                  <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </form>
+    </div>
+</div>
+</div>

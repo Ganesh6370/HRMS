@@ -1,0 +1,479 @@
+<app-asset-sub-header></app-asset-sub-header>
+<div class="navbar2">
+    <div style="margin-left: 4%;">
+      <h2 style="font-weight: bold">Vendor</h2>
+    </div>
+    <mat-form-field class="filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search Here..." #input />
+    </mat-form-field>
+</div>
+<!--  form submit-->
+<div *ngIf="showTabs" class="modal-overlay">
+  <div class="modal-dialog" (click)="preventClose($event)" style="position: relative">
+    <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+      style="position: absolute; top: -20px; right: -20px; cursor: pointer">
+      <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px"></i>
+    </button>
+    <form [formGroup]="AssetVonderForm" (ngSubmit)="onSubmit(AssetVonderForm)" class="modal-content" style="
+          border: 0px solid green;
+          position: relative;
+          border-radius: 20px;
+          height: 270px;
+          width: 500px;
+        ">
+      <button mat-icon-button (click)="toggleTabs()" class="close-icon" style="
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            cursor: pointer;
+            z-index: 30;
+          ">
+        <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px"></i>
+      </button>
+      <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black">
+        <div style="position: absolute; top: 20px; left: 20px; width: 95%">
+          <div style="border-bottom: 2px solid lightgray; width: 95%">
+            <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color: black">
+              <b>Add Vendor </b>
+            </h2>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="name"
+                    class="form-control" formControlName="name" required />
+                  <label mdbLabel class="form-label" for="name">Name <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="Name.errors?.['required'] && Name.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="Name.errors?.['required'] && Name.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="email"
+                    class="form-control" formControlName="email" />
+                  <label mdbLabel class="form-label" for="email">Email Id <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="Email.errors?.['required'] && Email.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="Email.errors?.['required'] && Email.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="address"
+                    class="form-control" formControlName="address" />
+                  <label mdbLabel class="form-label" for="address">Address <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="Address.errors?.['required'] && Address.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="Address.errors?.['required'] && Address.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="contactNo"
+                    class="form-control" formControlName="contactNo"  maxlength="10" (keypress)="isNumberKey($event)" />
+                  <label mdbLabel class="form-label" for="contactNo">Contact No <span
+                      class="text-danger">*</span></label>
+                      <div *ngIf="ContactNo.hasError('maxlength')" class="text-danger"></div>
+                  <mdb-error *ngIf="ContactNo.errors?.['required'] && ContactNo.touched"
+                    class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="ContactNo.errors?.['required'] && ContactNo.touched"
+                    class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="organizN"
+                    class="form-control" formControlName="organizN" />
+                  <label mdbLabel class="form-label" for="organizN">Organization <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="OrganizN.errors?.['required'] && OrganizN.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="OrganizN.errors?.['required'] && OrganizN.touched"
+                    class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="alternatPh"
+                    class="form-control" formControlName="alternatPh" maxlength="10" (keypress)="isNumberKey($event)" />
+                  <label mdbLabel class="form-label" for="alternatPh">Alternate Phone No
+                    <span class="text-danger">*</span></label>
+                    <div *ngIf="AlternatPh.hasError('maxlength')" class="text-danger"></div>
+                  <mdb-error *ngIf="AlternatPh.errors?.['required'] && AlternatPh.touched"
+                    class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="AlternatPh.errors?.['required'] && AlternatPh.touched"
+                    class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="state"
+                    class="form-control" formControlName="state" />
+                  <label mdbLabel class="form-label" for="state">State <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="State.errors?.['required'] && State.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="State.errors?.['required'] && State.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="city"
+                    class="form-control" formControlName="city" />
+                  <label mdbLabel class="form-label" for="city">
+                    City <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="City.errors?.['required'] && City.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="City.errors?.['required'] && City.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="zipcode"
+                    class="form-control" formControlName="zipcode" maxlength="6" (keypress)="isNumberKey($event)"/>
+                  <label mdbLabel class="form-label" for="zipcode">Zip code <span class="text-danger">*</span></label>
+                  <div *ngIf="Zipcode.hasError('maxlength')" class="text-danger"></div>
+                  <mdb-error *ngIf="Zipcode.errors?.['required'] && Zipcode.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="Zipcode.errors?.['required'] && Zipcode.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbValidate mdbInput type="text" id="remarks"
+                    class="form-control" formControlName="remarks" />
+                  <label mdbLabel class="form-label" for="remarks">Remark
+                    <span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="Remarks.errors?.['required'] && Remarks.touched" class="text-danger text-center">
+                  </mdb-error>
+                  <mdb-success *ngIf="Remarks.errors?.['required'] && Remarks.touched" class="text-danger text-center">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px"></div>
+          <br />
+          <div class="mycontainer">
+            <div class="req">
+              <span class="text-danger req">*</span> Required
+            </div>
+            <div style="text-align: right">
+              <button type="reset" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init
+                data-mdb-ripple-color="dark" style="
+                    color: orange;
+                    border: 2px solid orange;
+                    margin-right: 20px;
+                    box-shadow: 1px 1px;
+                  " (click)="toggleTabs()">
+                Cancel
+              </button>
+            </div>
+            <div class="sub">
+              <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--  form for Edit the  data -->
+<div *ngIf="showEdits" class="modal-overlay">
+  <div class="modal-dialog" (click)="preventClose($event)" style="position: relative">
+    <button mat-icon-button (click)="closeFunction()" class="close-icon"
+      style="position: absolute; top: -20px; right: -20px; cursor: pointer">
+      <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px"></i>
+    </button>
+    <form [formGroup]="AssetVonderForm2" (ngSubmit)="editVendorData(AssetVonderForm2)" class="modal-content" style="
+          border: 0px solid green;
+          position: relative;
+          border-radius: 20px;
+          height: 270px;
+          width: 500px;
+        ">
+      <button mat-icon-button (click)="closeFunction()" class="close-icon" style="
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            cursor: pointer;
+            z-index: 30;
+          ">
+        <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px"></i>
+      </button>
+      <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black">
+        <div style="position: absolute; top: 20px; left: 20px; width: 95%">
+          <div style="border-bottom: 2px solid lightgray; width: 95%">
+            <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color: black">
+              <b>Edit Vendor </b>
+            </h2>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="name"
+                    class="form-control" [ngModel]="name" name="name" formControlName="name" />
+                  <label mdbLabel class="form-label" for="name">Name <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="email"
+                    class="form-control" [ngModel]="emailId" name="emailId" formControlName="email" />
+                  <label mdbLabel class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="address"
+                    class="form-control" [ngModel]="address" name="address" formControlName="address" />
+                  <label mdbLabel class="form-label" for="address">Address <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="contactNo"
+                    class="form-control" [ngModel]="mobile" name="mobile" formControlName="contactNo" maxlength="10" (keypress)="isNumberKey($event)" />
+                  <label mdbLabel class="form-label" for="contactNo">Contact No <span
+                      class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="organizN"
+                    class="form-control" [ngModel]="gstin" name="gstin" formControlName="organizN" />
+                  <label mdbLabel class="form-label" for="organizN">Organization <span
+                      class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="alternatPh"
+                    class="form-control" [ngModel]="alternateMobile" name="alternateMobile"
+                    formControlName="alternatPh" maxlength="10" (keypress)="isNumberKey($event)"/>
+                  <label mdbLabel class="form-label" for="alternatPh">Alternate Phone No
+                    <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="state"
+                    class="form-control" [ngModel]="state" name="state" formControlName="state" />
+                  <label mdbLabel class="form-label" for="state">State <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="city"
+                    class="form-control" [ngModel]="city" name="city" formControlName="city" />
+                  <label mdbLabel class="form-label" for="city">
+                    City <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="zipcode"
+                    class="form-control" [ngModel]="zipcode" name="zipcode" formControlName="zipcode" maxlength="6" (keypress)="isNumberKey($event)"/>
+                  <label mdbLabel class="form-label" for="zipcode">Zip code <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+              <div class="col-md-6 col-sm-10">
+                <mdb-form-control class="tex-tbox">
+                  <input mdbInput type="text" id="remarks"
+                    class="form-control" [ngModel]="remarks" name="remarks" formControlName="remarks" />
+                  <label mdbLabel class="form-label" for="remarks">Remarks
+                    <span class="text-danger">*</span></label>
+                </mdb-form-control>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px"></div>
+          <br />
+          <div class="mycontainer">
+            <div class="req">
+              <span class="text-danger req">*</span> Required
+            </div>
+            <div style="text-align: right">
+              <button type="reset" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-init
+                data-mdb-ripple-color="dark" style="
+                    color: orange;
+                    border: 2px solid orange;
+                    margin-right: 20px;
+                    box-shadow: 1px 1px;
+                  " (click)="closeFunction()">
+                Cancel
+              </button>
+            </div>
+            <div class="sub">
+              <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- columns table -->
+<div class="container-fluid" style="position: relative; margin-left:10px;width:93vw; ">
+  <!-- Round Button -->
+  <div class="round-button">
+    <button mat-fab extended (click)="toggleTabs()" matTooltip="Add Education "
+      aria-label="Button that displays a tooltip in various positions" color="warn">
+      <i class="fas fa-plus fa-2x" style="color: rgba(8, 253, 253, 0.773)"></i>
+    </button>
+  </div>
+  <div class="table-container mat-elevation-z8 bg-light">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef style="width: 50px">
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row" style="width: 50px">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <!--  ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.vendorId }}
+        </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="name" mat-sort-header class="sticky">Name</th>
+        <td mat-cell *matCellDef="let row" class="sticky">{{ row.name }}</td>
+      </ng-container>
+      <!-- phone -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td mat-cell *matCellDef="let element">{{ element.mobile }}</td>
+      </ng-container>
+      <!-- email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.emailId }}</td>
+      </ng-container>
+      <!-- Address -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef class="address" mat-sort-header>Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
+      <!-- state  -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+        <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+      </ng-container>
+      <!-- city  -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef class="city" mat-sort-header>City</th>
+        <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+      </ng-container>
+      <!-- Zibe code  -->
+      <ng-container matColumnDef="zipCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="zipCode">Zip Code</th>
+        <td mat-cell *matCellDef="let element">{{ element.zipcode }}</td>
+      </ng-container>
+      <!-- Organization  -->
+      <ng-container matColumnDef="organization">
+        <th mat-header-cell *matHeaderCellDef class="organization" mat-sort-header>Organization</th>
+        <td mat-cell *matCellDef="let element">{{ element.gstin }}</td>
+      </ng-container>
+      <!-- Website   -->
+      <ng-container matColumnDef="remark">
+        <th mat-header-cell *matHeaderCellDef class="remark" mat-sort-header>Remark</th>
+        <td mat-cell *matCellDef="let element">{{ element.remarks }}</td>
+      </ng-container>
+      <!-- create by -->
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef class="createdBy" mat-sort-header>Created By</th>
+        <td mat-cell *matCellDef="let element">{{ element.createdBy }}</td>
+      </ng-container>
+      <!-- create on-->
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef class="createdOn" mat-sort-header>Created On</th>
+        <td mat-cell *matCellDef="let element">{{ element.createdOn | date: 'dd/MM/yy'}}</td>
+      </ng-container>
+      <!--update by -->
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef class="updatedBy" mat-sort-header>Updated By</th>
+        <td mat-cell *matCellDef="let element">{{ element.updatedBy }}</td>
+      </ng-container>
+      <!-- Update on  -->
+      <ng-container matColumnDef="updatedOn">
+        <th mat-header-cell *matHeaderCellDef class="updatedOn" mat-sort-header>Updated On</th>
+        <td mat-cell *matCellDef="let element">{{ element.updatedOn | date: 'dd/MM/yy'}}</td>
+      </ng-container>
+      <!-- active-->
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
+        <td mat-cell *matCellDef="let row">
+          <span *ngIf="row.isActive" class="badge badge-success">True</span>
+          <span *ngIf="!row.isActive" class="badge rounded-pill badge-danger">False</span>
+        </td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="toggleEdit(row.vendorId)">
+              <i class="fa fa-pencil m-r-5"></i> Edit
+            </button>
+            <button mat-menu-item>
+              <i class="fa-regular fa-trash-can m-r-5"></i>Delete
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator class="paginator" [pageSizeOptions]="[7, 10, 25, 100]"
+    aria-label="Select page of users"></mat-paginator>
+</div>

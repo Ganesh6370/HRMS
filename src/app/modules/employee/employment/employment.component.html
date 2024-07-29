@@ -1,0 +1,392 @@
+<app-employee-sub-header></app-employee-sub-header>
+<div class="main ">
+    <div class="tab1">
+        <form [formGroup]="addEmployeeForm" (ngSubmit)="handleSaveBtn(addEmployeeForm)">
+
+            <fieldset class="border p-2">
+                <legend class="float-none w-auto ">Add Employee</legend>
+
+                <div class="row md-4">
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                                mdbValidate required formControlName="officeLocation">
+                                <option [value]="" disabled selected hidden></option>
+                                <option *ngFor="let office of officeList" [value]="office.id">{{ office.name }}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Office Location<span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <!-- Email input -->
+                        <mdb-form-control>
+                            <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                                mdbValidate [required]="true" formControlName="employeeStatus">
+                                <option value="" disabled selected hidden></option>
+                                <option value="option1">Full-Time Contract
+                                </option>
+                                <option value="option2">Full-Time Internship
+                                </option>
+                                <option value="option3">Full-Time Permanent
+                                </option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Employee Status <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <!-- Email input -->
+                        <mdb-form-control>
+                            <input mdbInput mdbValidate type="date" id="form8Example10" class="form-control"
+                                [required]="true" formControlName="probEndDate" />
+                            <label mdbLabel class="form-label" for="form8Example10">Probation End Date</label>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <input mdbInput mdbValidate type="date" id="form8Example10" class="form-control"
+                                [required]="true" formControlName="dateOfPermanency" />
+                            <label mdbLabel class="form-label" for="form8Example10">Date Of Permanency</label>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <select mdbInput mdbValidate id="form8Example6" class="form-control"
+                                aria-labelledby="dropdownMenuLink" [(ngModel)]="deptInputVal"
+                                (change)="handleDeptInput($event)" [required]="true" formControlName="department">
+                                <option value="" disabled selected hidden></option>
+                                <option *ngFor="let department of departmentList" [value]="department.id">{{ department.name }}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Department <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <select mdbInput mdbValidate id="form8Example6" class="form-control"
+                                aria-labelledby="dropdownMenuLink" [(ngModel)]="designationInputVal"
+                                (change)="handleDesignationInput($event)" [required]="true"
+                                formControlName="designation">
+                                <option value="" disabled selected hidden></option>
+                                <option *ngFor="let designation of designationList" [value]="designation.id">{{ designation.name }}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Designation <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <select mdbInput mdbValidate id="form8Example6" class="form-control"
+                                aria-labelledby="dropdownMenuLink" [required]="true" formControlName="supervisor">
+                                <option value="" disabled selected hidden>Select Supervisor</option>
+                                <option *ngFor="let supervisor of supervisorList" [ngValue]="supervisor">
+                                    {{supervisor.name}}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Supervisor <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+                    </div>
+
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <input mdbInput mdbValidate type="email" id="form8Example8" class="form-control"
+                                [disabled]="!enableEmployeeID" [required]="true" formControlName="employeeId">
+                            <label mdbLabel class="form-label" for="form8Example8">Employee ID <span
+                                    class="text-danger">*</span></label>
+                          <!-- Checkbox to enable/disable added by Amandeep on 19-07-2024-->
+                          <label class="enable-checkbox" (change)="toggleEmployeeID($event)"> 
+                            <input type="checkbox">
+                 </label>
+                        </mdb-form-control>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 mb-4">
+                        <!-- Email input -->
+                        <mdb-form-control>
+                            <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                                [required]="true" mdbValidate formControlName="role">
+                                <option value="" disabled selected hidden></option>
+                                <option value="" disabled selected hidden></option>
+                                <option *ngFor="let role of roleList" [value]="role.id">{{ role.name }}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Select Role <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+
+                    </div>
+
+                    <div class="col-sm-3 mb-4">
+                        <mdb-form-control>
+                            <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                                mdbValidate [class.validateError]="true" [required]="true" formControlName="workShift">
+                                <option value="" disabled selected hidden></option>
+                                <option *ngFor="let workShift of workShiftList" [value]="workShift | json">{{ workShift.name }} ({{workShift.workFrom}} to {{workShift.workTo}})
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Work Shift <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+
+                    </div>
+                    <div class="col-sm-3 mb-4">
+                        <!-- Email input -->
+                        <mdb-form-control>
+                            <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                                mdbValidate [required]="true" formControlName="workType">
+                                <option value="" disabled selected hidden></option>
+                                <option *ngFor="let workType of workTypeList" [value]="workType.id">{{ workType.name }}</option>
+                            </select>
+                            <label mdbLabel class="form-label" for="form8Example6">Work Type <span
+                                    class="text-danger">*</span></label>
+                            <i class="fas fa-caret-down"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                        </mdb-form-control>
+
+                    </div>
+                </div>
+
+        </fieldset>
+            <div class="button col-sm-4">
+                <a routerLink="../personal" mdbRipple class="btnClass btnClass-secondary"><i
+                        class="fa-solid fa-backward"></i> &nbsp; Back</a>
+                <button mdbRipple type="submit" class="btnClass btnClass-primary"><i
+                        class="fas fa-save fa-fw me-2"></i>Save</button>
+                <a routerLink="../contact" mdbRipple type="button" class="btnClass btnClass-secondary">
+                    Next
+                    &nbsp; <i class="fa-solid fa-forward"></i></a>
+            </div>
+        </form>
+        <div class="toogle-button">
+            <span class="span">Create Login Details</span>
+            &nbsp;
+            <label class="toggle-label">
+                <input class="toggle-checkbox" type="checkbox" (click)="toggleTabs3()" [checked]="isChecked">
+
+                <div class="toggle-slot">
+                    <div class="sun-icon-wrapper">
+                        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false">
+                        </div>
+                    </div>
+                    <div class="toggle-button"></div>
+                    <div class="moon-icon-wrapper">
+                        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false">
+                        </div>
+                    </div>
+                </div>
+            </label>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="showTabs3" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+        <button mat-icon-button (click)="toggleTabs3()" class="close-icon"
+            style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+            <i class="far fa-times-circle " style="background-color:lightgray;
+        border-radius: 14px;"></i>
+        </button>
+
+
+        <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px "
+            [formGroup]="loginForm" (ngSubmit)="handleFormSubmission(loginForm)">
+            <button mat-icon-button (click)="toggleTabs3()" class="close-icon"
+                style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+                <i class="far fa-times-circle " style="background-color:lightgray;
+          border-radius: 14px;"></i>
+            </button>
+
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+                <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                    <div style=" border-bottom: 2px solid lightgray ;">
+                        <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Add Login Details</h2>
+                    </div>
+
+                    <div
+                        style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                        <div class="widthdecider">
+                            <mdb-form-control>
+                                <input mdbInput mdbValidate type="text" id="form1b" class="form-control"
+                                    style="padding:10px;" formControlName="userName" autocomplete="userName" />
+                                <label mdbLabel class="form-label" for="form1b">
+                                    <h3 style="margin-top: 2px;">UserName</h3>
+                                </label>
+                                <mdb-error
+                                    *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)"></mdb-error>
+                                <mdb-success
+                                    *ngIf="userName?.valid && (userName?.dirty || userName?.touched)"></mdb-success>
+                            </mdb-form-control>
+                        </div>
+                        <div class="margmobiletop" class="widthdecider">
+                            <mdb-form-control style="height: 45px;">
+                                <input mdbInput mdbValidate type="text" id="form1b" class="form-control"
+                                    style="padding:10px;" formControlName="fullName" autocomplete="off" />
+                                <label mdbLabel class="form-label" for="form1b">
+                                    <h3 style="margin-top: 2px;">FullName</h3>
+                                </label>
+                                <mdb-error
+                                    *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)"></mdb-error>
+                                <mdb-success
+                                    *ngIf="fullName?.valid && (fullName?.dirty || fullName?.touched)"></mdb-success>
+                            </mdb-form-control>
+
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                        <div class="widthdecider">
+                            <mdb-form-control>
+                                <input mdbInput mdbValidate type="email" id="form1b" class="form-control"
+                                    style="padding:10px;" formControlName="email" />
+                                <label mdbLabel class="form-label" for="form1b">
+                                    <h3 style="margin-top: 2px;">Email Id</h3>
+                                </label>
+                                <mdb-error *ngIf="email?.invalid && (email?.dirty || email?.touched)"></mdb-error>
+                                <mdb-success *ngIf="email?.valid && (email?.dirty || email?.touched)"></mdb-success>
+                            </mdb-form-control>
+                        </div>
+                        <div class="margmobiletop" class="widthdecider">
+                            <mdb-form-control style="height: 45px;">
+                                <input mdbInput mdbValidate type="text" id="form1b" class="form-control"
+                                    style="padding:10px;" formControlName="mobileNo" maxlength="10"
+                                    (keypress)="isNumberKey($event)" />
+                                <label mdbLabel class="form-label" for="form1b">
+                                    <h3 style="margin-top: 2px;">Mobile No</h3>
+                                </label>
+                                <mdb-error
+                                    *ngIf="mobileNo?.invalid && (mobileNo?.dirty || mobileNo?.touched)"></mdb-error>
+                                <mdb-success
+                                    *ngIf="mobileNo?.valid && (mobileNo?.dirty || mobileNo?.touched)"></mdb-success>
+                            </mdb-form-control>
+
+                        </div>
+                    </div>
+
+                    <div class="margmobileright"
+                        style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                        <div style="width: 48%;">
+
+                            <mdb-form-control>
+                                <input mdbInput mdbValidate formControlName="password" type="password" id="form1a"
+                                    class="form-control" style="padding:10px;" [type]="hide ? 'password' : 'text'" />
+                                <label mdbLabel class="form-label" for="form1a">
+                                    <h3 style="margin-top: 2px;">Password</h3>
+                                </label>
+                                 <button style="position: absolute; top:-4px;
+                               right: 5px;  
+                              " mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>
+                                  {{hide ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
+                              </button> 
+                            </mdb-form-control>
+                        </div>
+                        <div style="width: 48%;">
+
+                            <mdb-form-control>
+                                <input mdbInput mdbValidate formControlName="confirmPassword" type="password" id="form1"
+                                    class="form-control" style="padding:10px;" [type]="confirmHide ? 'password' : 'text'" />
+                                <label mdbLabel class="form-label" for="form1">
+                                    <h3 style="margin-top: 2px;">Confirm Password</h3>
+                                </label>
+                                <button style="position: absolute; top:-4px;
+                                right: 5px;  
+                               " mat-icon-button matSuffix (click)="confirmHide = !confirmHide" [attr.aria-label]="'Hide Password'"
+                                 [attr.aria-pressed]="hide">
+                                 <mat-icon>
+                                   {{confirmHide ? 'visibility_off' : 'visibility'}}
+                                 </mat-icon>
+                         </button>
+                            </mdb-form-control>
+                        </div>
+                    </div>
+                    <div class="margmobileright"
+                        style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 14px;">
+
+                        <div style="width: 48%;">
+                            <mdb-form-control style="height: 45px;">
+                                <select mdbValidate mdbInput id="form8Example4a" formControlName="superVisor"
+                                    class="form-control" aria-labelledby="dropdownMenuLink">
+                                    <option value="" disabled selected hidden></option>
+                                    <option *ngFor="let option of supervisorOptions" [value]="option.value">{{ option.name}}</option>
+                                </select>
+                                <label mdbLabel class="form-label" for="form8Example4a">
+                                    <h3 style="margin-top: 2px;">Supervisor</h3>
+                                </label>
+                                <i class="fas fa-caret-down"
+                                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+                                <mdb-error *ngIf="superVisor?.invalid && (superVisor?.dirty || superVisor?.touched)"></mdb-error>
+                                <mdb-success *ngIf="superVisor?.valid && (superVisor?.dirty || superVisor?.touched)"></mdb-success>
+                            </mdb-form-control>
+                        </div>
+                        <div style="width: 48%;">
+                            <mdb-form-control style="height: 45px;">
+                                <select mdbValidate mdbInput id="form8Example4x" formControlName="empType"
+                                    class="form-control" aria-labelledby="dropdownMenuLink">
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="1">1</option>
+                                    <option value="0">0</option>
+                                </select>
+                                <label mdbLabel class="form-label" for="form8Example4x">
+                                    <h3 style="margin-top: 2px;">Select Employee Type</h3>
+                                </label>
+                                <i class="fas fa-caret-down"
+                                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+                                <mdb-error *ngIf="empType?.invalid && (empType?.dirty || empType?.touched)"></mdb-error>
+                                <mdb-success *ngIf="empType?.valid && (empType?.dirty || empType?.touched)"></mdb-success>
+                            </mdb-form-control>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;border-bottom: 2px solid lightgray; padding-bottom: 10px;">
+                        <div style="width: fit-content">
+                            <div>
+                                <mdb-form-control>
+                                    <label class="status-label" style="padding-right: 20px;">
+                                        <h4>Status:</h4>
+                                    </label>
+                                    <label for="status_enable" class="status-label">Enable</label>
+                                    <input type="radio" id="status_enable" name="status" value="enable" checked
+                                        style="margin-left:5px;">
+                                    &nbsp;
+                                    <label for="status_disable" class="status-label">Disable</label>
+                                    <input type="radio" id="status_disable" name="status" value="disable"
+                                        style="margin-left:5px;"></mdb-form-control>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margmobileright mergecentermobile"
+                        style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse">
+                        <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+
+                        <button type="button" class="btn btn-outline-primary btn-rounded " data-mdb-ripple-init
+                            data-mdb-ripple-color="dark"
+                            style="color: orange; border: 2px solid orange; margin-right:20px;box-shadow: 1px 1px ;"
+                            (click)="toggleTabs3()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

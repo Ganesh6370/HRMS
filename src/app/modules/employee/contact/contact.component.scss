@@ -1,0 +1,27 @@
+.main {
+  padding: 5px 20px;
+}
+
+// .tab1 {
+//   overflow-x: hidden;
+// }
+
+
+.tab1 {
+width: 100%;
+box-sizing: border-box; 
+}
+
+.form-container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.button {
+text-align: center;
+margin-top: 20px;
+width: 100%; 
+display: flex;
+justify-content: space-between;
+
+}

@@ -1,0 +1,247 @@
+<app-employee-sub-header></app-employee-sub-header>
+<div class="main ">
+ 
+      
+        <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm)">
+
+          <fieldset class="border p-2">
+            <legend class="float-none w-auto ">Add Identity</legend>
+            <div class="row md-4">
+              <div class="col-sm-3 mb-4">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form8Example1" class="form-control"
+                    formControlName="AadhaarNo" maxlength="14" required />
+                  <label mdbLabel class="form-label" for="form8Example1">Aadhar number <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    AadhaarNo?.invalid && (AadhaarNo?.dirty || AadhaarNo?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    AadhaarNo?.valid && (AadhaarNo?.dirty || AadhaarNo?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-3 mb-4">
+                <!-- Email input -->
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form8Example2" class="form-control"
+                    formControlName="NameAsAadhaar" required />
+                  <label mdbLabel class="form-label" for="form8Example2">Name as Per Aadhar <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    NameAsAadhaar?.invalid && (NameAsAadhaar?.dirty || NameAsAadhaar?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    NameAsAadhaar?.valid && (NameAsAadhaar?.dirty || NameAsAadhaar?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+              </div>
+
+              <div class="col-sm-3 mb-4">
+                <!-- Name dropdown list -->
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form8Example2" class="form-control"
+                    formControlName="DobAsAadhaar" required />
+                  <label mdbLabel class="form-label" for="form8Example2">D.O.B as Per Aadhar <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    DobAsAadhaar?.invalid && (DobAsAadhaar?.dirty || DobAsAadhaar?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    DobAsAadhaar?.valid && (DobAsAadhaar?.dirty || DobAsAadhaar?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+              </div>
+
+              <div class="col-sm-3 mb-4">
+                <mdb-form-control >
+                  <label mdbValidate mdbLabel for="aadhaarAttachInput">(Adhar Attach) <span
+                    class="text-danger">*</span></label>
+                  <input mdbValidate mdbInput type="file" id="aadhaarAttachInput" (change)="onFileSelected($event)"
+                    formControlName="AadhaarAttach" accept="image/*" />
+                  <br />
+                  <img *ngIf="selectedFile" [src]="getObjectURL(selectedFile)" alt="Selected Image" width="50"
+                    height="50" style="margin-left: 70%; margin-top: -20%;"  />
+                  <mdb-error *ngIf="
+                  AadhaarAttach?.invalid && (AadhaarAttach?.dirty || AadhaarAttach?.touched)
+                      "></mdb-error>
+                  <mdb-success *ngIf="
+                  AadhaarAttach?.valid && (AadhaarAttach?.dirty || AadhaarAttach?.touched)
+                      "></mdb-success>
+                </mdb-form-control>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-3 mb-4">
+                <!-- Country dropdown list -->
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form8Example3" class="form-control"
+                    formControlName="PanNo" maxlength="10" required />
+                  <label mdbLabel class="form-label" for="form8Example3">Pan Number <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    PanNo?.invalid && (PanNo?.dirty || PanNo?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    PanNo?.valid && (PanNo?.dirty || PanNo?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+
+              </div>
+
+              <div class="col-sm-3 mb-4">
+                <!-- Country dropdown list -->
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form8Example4" class="form-control"
+                    formControlName="NameAsPan" required />
+                  <label mdbLabel class="form-label" for="form8Example4">Name as Per Pan <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    NameAsPan?.invalid && (NameAsPan?.dirty || NameAsPan?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    NameAsPan?.valid && (NameAsPan?.dirty || NameAsPan?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+
+              </div>
+
+              <div class="col-sm-3 mb-4">
+                <!-- Country dropdown list -->
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form8Example5" class="form-control"
+                    formControlName="DobAsPan" required />
+                  <label mdbLabel class="form-label" for="form8Example5">D.O.B as Per Pan <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                    DobAsPan?.invalid && (DobAsPan?.dirty || DobAsPan?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                    DobAsPan?.valid && (DobAsPan?.dirty || DobAsPan?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+
+              </div>
+              <div class="col-sm-3 mb-4">
+
+                <mdb-form-control>
+                  <label mdbLabel for="imageInput">(Attach Pan) <span class="text-danger">*</span></label>
+                  <input mdbValidate mdbInput type="file" id="panAttachInput" (change)="onFileSelectedPan($event)"
+                  formControlName="PanAttach" accept="image/*" />
+                  <br />
+                  <img *ngIf="selectedPanFile" [src]="getObjectPanURL(selectedPanFile)" alt="Selected Image" width="50"
+                    height="50" style="margin-left: 70%; margin-top: -20%;" />
+                    <mdb-error *ngIf="
+                    PanAttach?.invalid && (PanAttach?.dirty || PanAttach?.touched)
+                        "></mdb-error>
+                      <mdb-success *ngIf="
+                    PanAttach?.valid && (PanAttach?.dirty || PanAttach?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3 mb-4">
+                <!-- Email input -->
+                <mdb-form-control>
+                  <input  mdbInput type="text" id="form8Example3" class="form-control"
+                    formControlName="PassportNo"  />
+                  <label mdbLabel class="form-label" for="form8Example3">Passport Number</label>
+                  
+                </mdb-form-control>
+
+              </div>
+              <div class="col-sm-3 mb-4">
+                <!-- Marital status input -->
+                <mdb-form-control>
+                  <input  mdbInput type="text" id="form8Example4" class="form-control"
+                    formControlName="PassportType"  />
+                  <label mdbLabel class="form-label" for="form8Example4">Passport Issue Number</label>
+                  
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-3 mb-4">
+                <!-- Date of Marriage input -->
+                <mdb-form-control>
+                  <input  mdbInput type="date" id="form8Example5" class="form-control"
+                    formControlName="PassportVaildTill"  />
+                  <label mdbLabel class="form-label" for="form8Example5">Passport Valid Date</label>
+                  
+                </mdb-form-control>
+              </div>
+
+              <!-- Date of Marriage input -->
+              <div class="col-sm-3 mb-4">
+
+                <mdb-form-control>
+                  <label mdbLabel for="imageInput">(Attach Passport)</label>
+                  <input  mdbInput type="file" id="passportAttachInput" (change)="onFileSelectedPassport($event)"
+                  formControlName="PassportAttach" accept="image/*" />
+                  <br />
+                  <img *ngIf="selectedPassportFile" [src]="getObjecPassporttURL(selectedPassportFile)" alt="Selected Image" width="50"
+                    height="50"style="margin-left: 70%; margin-top: -20%;" />
+                  
+                </mdb-form-control>
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="col-sm-3 mb-4">
+                <!-- Email input -->
+                <mdb-form-control>
+                  <input  mdbInput type="text" id="form8Example3" class="form-control" formControlName="DlNo"
+                    maxlength="16"  />
+                  <label mdbLabel class="form-label" for="form8Example3">DL No</label>
+                  
+                </mdb-form-control>
+
+              </div>
+              <div class="col-sm-3 mb-4">
+                <!-- Marital status input -->
+                <mdb-form-control>
+                  <input  mdbInput type="date" id="form8Example4" class="form-control"
+                    formControlName="DlVaildTill"  />
+                  <label mdbLabel class="form-label" for="form8Example4">DL Valid Till</label>
+                 
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-3 mb-4">
+                <!-- Date of Marriage input -->
+                <mdb-form-control>
+                  <input  mdbInput type="date" id="form8Example5" class="form-control"
+                    formControlName="DobAsDL"  />
+                  <label mdbLabel class="form-label" for="form8Example5">D.O.B</label>
+                  
+                </mdb-form-control>
+              </div>
+
+              <div class="col-sm-3 mb-4">
+
+                <mdb-form-control>
+                  <label mdbLabel for="imageInput">(Attach DL)</label>
+                  <input  mdbInput type="file" id="dlAttachInput" (change)="onFileSelectedDL($event)"
+                  formControlName="DlAttach" accept="image/*" />
+                  <br />
+                  <img *ngIf="selectedDLFile" [src]="getObjectURLDL(selectedDLFile)" alt="Selected Image" width="50"
+                    height="50" style="margin-left: 70%; margin-top: -20%;"/>
+                   
+                </mdb-form-control>
+              </div>
+
+            </div>
+
+          </fieldset>
+          <div class="button col-sm-4">
+            <a routerLink="../address" mdbRipple class="btnClass btnClass-secondary"><i
+                class="fa-solid fa-backward"></i> &nbsp; Back</a>
+            <button mdbRipple type="submit" class="btnClass btnClass-primary"><i
+                class="fas fa-save fa-fw me-2"></i>Save</button>
+            <a routerLink="../Qualification" mdbRipple type="button" class="btnClass btnClass-secondary"> Next
+              &nbsp; <i class="fa-solid fa-forward"></i></a>
+          </div>
+        </form> 
+   
+</div>

@@ -1,0 +1,44 @@
+<div class="full-container">
+  <div class="modal-header">
+    <h2 class="modal-title" id="exampleModalLabel">{{isEdit ? 'Edit' : 'Add'}} Language</h2>
+    <button type="button" class="btn-close close-btn" aria-label="Close" (click)="modalRef.close()"></button>
+    <!-- <hr> -->
+  </div>
+  <div class="modal-body">
+    <form class="form-body" [formGroup]="langForm" (submit)="addLanguage(langForm)">
+      <div class="input-row">
+        <mdb-form-control>
+          <input mdbInput mdbValidate type="text" id="form1" [value]="formValues && formValues.lang" class="form-control input-item" formControlName="languageName" />
+          <label mdbLabel class="form-label" for="form1">Language&nbsp;<span class="text-danger">*</span></label>
+        </mdb-form-control>
+        <mdb-form-control>
+          <select mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink" mdbValidate
+            required formControlName="fluencyLevel">
+            <option [value]="" disabled selected hidden></option>
+            <option value="poor">Poor</option>
+            <option value="basic">Basic</option>
+            <option value="good">Good</option>
+            <option value="mother tongue">Mother Tongue</option>
+          </select>
+          <label mdbLabel class="form-label" for="form8Example6">Fluency Level&nbsp;<span class="text-danger">*</span></label>
+          <i class="fas fa-caret-down"
+            style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+        </mdb-form-control>
+      </div>  
+      
+        <mdb-form-control class="input-row">
+          <textarea mdbInput class="form-control" formControlName="remarks" id="textAreaExample" rows="4"></textarea>
+          <label mdbLabel class="form-label" for="textAreaExample">Comment</label>
+        </mdb-form-control>
+
+
+      <div class="divider">&nbsp;</div>
+      <div class="footer">
+        <button class="btn btn-rounded mx-2"
+          style="border: 1px solid var(--orange-primary); color: var(--orange-primary);"
+          (click)="modalRef.close()">Cancel</button>
+        <button type="submit" (click)="modalRef.close()" class="btn btn-primary btn-rounded mx-2">Submit</button>
+      </div>
+    </form>
+</div>
+</div>

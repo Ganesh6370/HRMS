@@ -1,0 +1,191 @@
+<app-employee-sub-header></app-employee-sub-header>
+<div class="main ">
+  <div class="tab1">
+    <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm)">
+
+      <fieldset class="border p-2">
+        <legend class="float-none w-auto ">Contact
+          Person Details</legend>
+        <div class="row md-4">
+          <div class="col-sm-3 mb-4">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="text" id="text1" class="form-control" formControlName="MobileNo"
+                required maxlength="10" (keypress)="isNumberKey($event)" />
+              <label mdbLabel class="form-label" for="form8Example1">Mobile No
+                <span class="text-danger">*</span></label>
+              <mdb-error *ngIf="
+                  MobileNo?.invalid && (MobileNo?.dirty || MobileNo?.touched)
+                      "></mdb-error>
+              <mdb-success *ngIf="
+                                            MobileNo?.valid && (MobileNo?.dirty || MobileNo?.touched)
+                      "></mdb-success>
+            </mdb-form-control>
+          </div>
+          <div class="col-sm-3 mb-4">
+            <!-- Email input -->
+            <mdb-form-control>
+              <input type="text" id="text2" class="form-control" formControlName="AlternateMobile" maxlength="10"
+                (keypress)="isNumberKey($event)" mdbInput />
+              <label mdbLabel class="form-label" for="form8Example2">Alternate
+                Mobile Number</label>
+              <mdb-error *ngIf="
+                  AlternateMobile?.invalid && (AlternateMobile?.dirty || AlternateMobile?.touched)
+                      "></mdb-error>
+              <mdb-success *ngIf="
+                                            AlternateMobile?.valid && (AlternateMobile?.dirty || AlternateMobile?.touched)
+                      "></mdb-success>
+            </mdb-form-control>
+          </div>
+          <div class="col-sm-3 mb-4">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="email" id="text3" class="form-control" formControlName="PersonalEmailId"
+                required />
+              <label mdbLabel class="form-label" for="form8Example2">Personal
+                Email Id <span class="text-danger">*</span></label>
+              
+            </mdb-form-control>
+          </div>
+          <div class="col-sm-3 mb-4">
+            <mdb-form-control>
+              <input type="email" id="text4" class="form-control" formControlName="ProfessionalEmailId" mdbInput/>
+              <label mdbLabel class="form-label" for="form8Example2">Professional Email Id</label>
+             
+            </mdb-form-control>
+          </div>
+          <div class="col-sm-3 mb-4">
+            <mdb-form-control>
+              <input mdbValidate mdbInput type="text" id="text5" class="form-control" formControlName="HomeTelephone"
+                required maxlength="10" (keypress)="isNumberKey($event)" />
+              <label mdbLabel class="form-label" for="form8Example1">Home
+                Telephone <span class="text-danger">*</span></label>
+              
+            </mdb-form-control>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="Emergency1">
+        <fieldset class="border p-2">
+          <legend class="float-none w-auto ">Emergency Contact Detail
+            1</legend>
+          <div class="row md-4">
+            <div class="col-sm-3 mb-4">
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="text" id="text6" class="form-control"
+                  formControlName="EmergencyContactPersonName" required />
+                <label mdbLabel class="form-label" for="form8Example1">Emergency Contact Person Name <span
+                    class="text-danger">*</span></label>
+                 
+              </mdb-form-control>
+            </div>
+            <div class="col-sm-3 mb-4">
+              <!-- Email input -->
+              <mdb-form-control>
+                <select mdbValidate mdbInput id="dd1" class="form-control"
+                  formControlName="RelationshipWithContactPerson" required aria-labelledby="dropdownMenuLink">
+                  <option value disabled selected hidden></option>
+                  <option *ngFor="let option of familyOptions" [value]="option.value">{{ option.name}}</option>
+                </select>
+                <label mdbLabel class="form-label" for="form8Example6">Relationship With Contact Person <span
+                    class="text-danger">*</span></label>
+                
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+              </mdb-form-control>
+            </div>
+
+            <div class="col-sm-3 mb-4">
+              <!-- Name dropdown list -->
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="text" id="text7" class="form-control"
+                  formControlName="ContactPersonNumber" required maxlength="10" (keypress)="isNumberKey($event)" />
+                <label mdbLabel class="form-label" for="form8Example2">Contact
+                  Person Number <span class="text-danger">*</span></label>
+                 
+              </mdb-form-control>
+            </div>
+            <div class="col-sm-3 mb-4">
+              <!-- Name dropdown list -->
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="Text" id="text8" class="form-control"
+                  formControlName="ContactPersonAddress" required />
+                <label mdbLabel class="form-label" for="form8Example2">Contact
+                  Person Address <span class="text-danger">*</span></label>
+                
+              </mdb-form-control>
+            </div>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <div class="Emergency2">
+        <fieldset class="border p-2">
+          <legend class="float-none w-auto ">Emergency Contact Detail
+            2</legend>
+          <div class="row md-4">
+            <div class="col-sm-3 mb-4">
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="text" id="text9" class="form-control"
+                  formControlName="AlternateEmergencyContactPersonName" required />
+                <label mdbLabel class="form-label" for="form8Example1">Emergency Contact Person Name <span
+                    class="text-danger">*</span></label>
+                 
+              </mdb-form-control>
+            </div>
+            <div class="col-sm-3 mb-4">
+              <!-- Email input -->
+              <mdb-form-control>
+                <select mdbValidate mdbInput id="dd2" class="form-control"
+                  formControlName="AlternateRelationshipWithContactPerson" required aria-labelledby="dropdownMenuLink">
+                  <option value disabled selected hidden></option>
+                  <option *ngFor="let option of familyOptions" [value]="option.value">{{ option.name}}</option>
+                </select>
+                <label mdbLabel class="form-label" for="form8Example6">Relationship With Contact Person <span
+                    class="text-danger">*</span></label>
+               
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+              </mdb-form-control>
+            </div>
+
+            <div class="col-sm-3 mb-4">
+              <!-- Name dropdown list -->
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="text" id="text10" class="form-control"
+                  formControlName="AlternateContactPersonNumber" required maxlength="10"
+                  (keypress)="isNumberKey($event)" />
+                <label mdbLabel class="form-label" for="form8Example2">Contact
+                  Person Number <span class="text-danger">*</span></label>
+                
+              </mdb-form-control>
+            </div>
+            <div class="col-sm-3 mb-4">
+              <!-- Name dropdown list -->
+              <mdb-form-control>
+                <input mdbValidate mdbInput type="Text" id="text11" class="form-control"
+                  formControlName="AlternateContactPersonAddress" required />
+                <label mdbLabel class="form-label" for="form8Example2">Contact
+                  Person Address <span class="text-danger">*</span></label>
+                 
+              </mdb-form-control>
+            </div>
+          </div>
+
+
+        </fieldset>
+        <div class="button col-sm-4">
+          <a routerLink="../employement" mdbRipple class="btnClass btnClass-secondary"><i
+              class="fa-solid fa-backward"></i> &nbsp; Back</a>
+          <button mdbRipple type="submit" class="btnClass btnClass-primary"><i
+              class="fas fa-save fa-fw me-2"></i>Save</button>
+          <a routerLink="../address" mdbRipple type="button" class="btnClass btnClass-secondary"> Next
+            &nbsp; <i class="fa-solid fa-forward"></i></a>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+</div>

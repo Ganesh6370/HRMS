@@ -1,0 +1,22 @@
+th{
+    white-space: nowrap;
+  }
+  .pay-policy,
+  .attendance-sheet {
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    height: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  
+    .col-md-4 {
+      margin-bottom: 10px; 
+      margin-top:10px;
+  }
+  }

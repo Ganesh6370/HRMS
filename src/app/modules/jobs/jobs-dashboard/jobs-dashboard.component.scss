@@ -1,0 +1,137 @@
+.container-fluid{
+  width: 98%;
+  height: 900px;
+  
+}
+
+.userjob{
+font-size: 20px; 
+font-weight: bold;
+}
+
+.dash-widget-icon i {
+font-size: 50px;
+}
+
+.card1{
+background-color: rgb(242, 206, 162);
+border-radius: 7px;
+}
+.card2{
+background-color:#faa5a5;
+border-radius: 7px;
+}
+.card3{
+background-color: rgb(246, 224, 199);
+border-radius: 7px;
+}
+.card4{
+background-color:#ffa75b;
+border-radius: 7px;
+}
+
+.latestjob{
+font-size: 20px; 
+text-align: center; 
+padding-left: 35%;
+}
+
+.offeredjob{
+caption-side: top; 
+font-size: 25px;
+ color: black
+
+}
+
+.tablex{
+background-color: #ECECEC; 
+max-width: 100% !important;
+width: 100% !important; 
+overflow: scroll;
+position: relative;
+height:320px;
+}
+
+.jobtitle{
+min-width:160px;
+}
+
+.appliedjob{
+caption-side: top; 
+font-size: 25px;
+ color: black
+}
+
+.startdate{
+min-width:110px;
+}
+.expiredate{
+min-width:120px;
+}
+
+.jobtype{
+min-width:170px;
+}
+
+.status{
+min-width:170px;
+}
+th,td{
+  color: black;
+  
+
+}
+
+tr:nth-child(even){
+  background-color:rgb(245, 239, 239);
+}
+
+tr{
+  border:solid rgb(213, 209, 209);
+}
+.nav-tabs.nav-tabs-solid li a.active {
+  background-color: #ff9b44;
+  border-color: #ff9b44;
+  color: #fff;
+  border-radius: 0;
+}
+
+.card-body .dash-widget-info h3 {
+font-size: 30px;
+font-weight: 600;
+margin-bottom: 8px;
+
+}
+
+.dash-widget .card-body .dash-widget-info {
+text-align: right;
+width: calc(100% - 70px);
+}
+
+.card-body {
+flex: 1 1 auto;
+padding: 1rem;
+}
+
+
+#downloadbutton{
+background-color:#ff9b44;
+color: black;
+}
+
+// #jobtype:hover{
+//   background-color: orange;
+
+// }
+
+.actionbutton{
+min-width: 153px;
+}
+
+.card {
+border: 1px solid #ededed;
+margin-bottom: 30px;
+-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.2);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+box-shadow: 0 1px 1px rgba(0,0,0,.2);
+}

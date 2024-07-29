@@ -1,0 +1,307 @@
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  // width: 300px;/* Adjust as needed */
+  height: 190px;
+  max-width: 100%;/* Set maximum width to make it responsive */
+  margin-right: 1px;
+  // width: calc(25% - 10px);
+}
+.image-container {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.text-container {
+  text-align: center;
+}
+.app-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.developer {
+  font-size: 14px;
+  color: #555;
+}
+.main5 {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  /* Set maximum width for the container */
+  // padding-right: 5px;
+  // margin-left: 30px;
+}
+@media (max-width: 668px) {
+  .main5 {
+    flex-direction: column;/* Stack cards vertically on smaller screens */
+    align-items: center;/* Center the cards vertically */
+    margin-top: 1%;
+  }
+  .card {
+    width: calc(50% - 20px);
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 950px) {
+  .main5 {
+    margin-top: 5%;
+  }
+  .card {
+    width: calc(50% - 20px);/* 50% width for two cards in a row on screens up to 950px */
+  }
+}
+@media (max-width: 480px) {
+  .main5 {
+    margin-top: 5%;
+  }
+  .card {
+    width: calc(100% - 20px);/* Full width for a single card on screens up to 480px */
+  }
+}
+.options {
+  position: absolute;
+  right: 25px;
+  top: 60px;/* Adjust the top position as needed */
+  background-color: #fff;// border: 1px solid #ccc;
+  padding: 5px;// box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+.btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.btn i {
+  font-size: 18px;
+  color: black;
+  margin-left: px;
+}
+.btn span {
+  color: black;
+  margin-left: 0px;
+}
+.btn1 {
+  margin: 3px;
+  margin-left: -80px;
+}
+.options button {
+  margin-right: 5px;
+}
+#icon {
+  margin-right: 10px;
+}
+#button-footer {
+  margin: 0 auto;
+}
+.modal-header h1 {
+  text-align: center;
+  margin: auto;
+  font-size: 50px;
+}
+label {
+  margin-bottom: 5px;
+}
+.rk {
+  margin-top: 45px;
+  height: 700px;
+}
+.top {
+  margin-top: 10vh;
+  margin-left: 20vw;
+}
+#button {
+  width: 20vw;
+}
+.icon {
+  font-size: 40px;
+}
+a {
+  text-decoration: none;
+  color: black !important;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.button-links a {
+  margin-left: 10px;
+}
+a i {
+  font-size: 40px;
+}
+////////////////header CSS***********************
+#search {
+  width: 20vw;
+}
+.top {
+  display: flex;
+  flex-direction: row-reverse;
+}
+#div {
+  margin-left: 1vw;
+}
+.width {
+  width: 19%;
+}
+.bgcolor {
+  background-color: #ff7022;
+}
+.addEmp {
+  width: 4vw;
+}
+.outer {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100vw;
+}
+.heading {
+  text-align: left;
+}
+.button-links {
+  text-align: right;
+}
+.icon-container {
+  display: flex;
+  margin-right: 60px;
+}
+.icon-square {
+  background-color: rgb(254, 254, 254);
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0px; /* Adjust the spacing between icons */
+  border-radius: 50% ;
+  background-color: var(--orange-primary);
+  color: white;
+}
+.icon-square i {
+  color: rgb(53, 49, 49); /* Adjust the icon color */
+  font-size: 20px; /* Adjust the icon size */
+}
+.head {
+  font-weight: bolder;
+  font-size: 5vh;
+  margin-left: 24%;
+}
+.sub-head{
+  margin-left: 24%;
+}
+.outerbox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8vh;
+}
+.container-fluid {
+  width: 98%;
+  height: 100%;
+}
+#searchbtn {
+  background-color: var(--orange-primary);
+  color: white;
+  width: 9vw;
+  border-radius: 18px 18px 18px 18px;
+}
+@media only screen and (max-width: 650px) {
+  #input-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  #input-field .col {
+    margin: 1vh;
+  }
+  #input-field #searchbtn {
+    width: 87vw;
+  }
+  .outerbox {
+    width: 95%;
+  }
+}
+.outer {
+  display: flex;
+  flex-direction: row;
+}
+.spinner-container {
+  position: absolute;
+  margin-top: 50px;/* Adjust the margin as per your requirement */
+  bottom: 0;/* Position from the top */
+  left: 50%;/* Center horizontally */
+  transform: translateX(-50%);
+  z-index: 999;/* Ensure it's above other elements */
+}
+.spinner-border {
+  color: royalblue;/* Set the color of the spinner */
+  width: 1.5rem;/* Set the size of the spinner */
+  height: 1.5rem;/* Set the size of the spinner */
+}
+.scrollable {
+  max-height: 900px;/* Set maximum height for scrolling */
+  overflow-y: auto;/* Enable vertical scrolling */
+}
+//region Updated by Amandeep Virdhi
+.round-button {
+  size:4px;
+  position: absolute;
+  top: 0px;
+  right: 5px; 
+
+}
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    margin-top: 1%;
+    max-width: 345px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .modal-content{
+    background: rgba(0, 0, 0, 0.5);
+    max-width: 340px;
+    max-height: 247px;
+  }
+}
+div.mycontainer {
+  display: grid;
+  grid-template-columns:40%30%30%;
+}
+
+

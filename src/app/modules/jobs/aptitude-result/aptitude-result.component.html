@@ -1,0 +1,100 @@
+<app-job-sub-header></app-job-sub-header>
+<div class="container-fluid">
+
+  <div class="navbar2">
+      <div>
+        <h2 class="aptituderesult" >Aptitude Result</h2>
+      </div>
+
+      <mat-form-field class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search Here...." #input>
+      </mat-form-field>
+    
+  </div>
+
+  <div class="tablex mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort  >
+
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+   
+      <ng-container matColumnDef="id">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="profile">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profile</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            *ngIf="element.profile"
+            [src]="element.profile"
+            alt="User Image"
+            class="image rounded-circle" />
+        </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="name"> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="jobtitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="jobtitle"> Job Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.jobtitle}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="categorywisemark">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="categorywisemark"> Category Wise Mark </th>
+        <td mat-cell *matCellDef="let element"> {{element.categorywisemark}} </td>
+      </ng-container>
+
+     
+      <ng-container matColumnDef="totalmark">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="totalmarks"> Total Mark </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalmark}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="status"> Status </th>
+        <td mat-cell *matCellDef="let element"><a id="status" class="btn btn-rounded btn-sm"><i
+              class="far fa-circle-dot text-danger text-sm"></i> {{element.status}}</a> </td>
+      </ng-container>
+    
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </div>
+
+  <div class="pages">
+    <mat-paginator [pageSizeOptions]="[6,10,20]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+</div>

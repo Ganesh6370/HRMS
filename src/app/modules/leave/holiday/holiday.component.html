@@ -1,0 +1,353 @@
+<app-leave-sub-header></app-leave-sub-header>
+<div class="container-fluid" style="width: 98%;position: relative; margin-top: 40px;">
+  <div class="navbar2 ">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 10px;margin-bottom: 10px;">
+      <div>
+        <h3 style="font-weight: bold;">Holiday</h3>
+      </div>
+
+      <mat-form-field class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search Here..." #input>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Pop up component html-->
+  <div *ngIf="showTabs" class="modal-overlay">
+    <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+      <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+        <i class="far fa-times-circle " style="background-color:orange;
+              border-radius: 14px;"></i>
+      </button>
+
+
+      <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm)" class="modal-content"
+        style="position: relative; border-radius: 20px; height: 270px; width: 500px;">
+        <button mat-icon-button (click)="toggleTabs()" class="close-icon"
+          style="position: absolute; top: -20px; right: -20px; cursor: pointer; z-index: 1000;">
+          <i class="far fa-times-circle" style="background-color: orange; border-radius: 14px;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position: absolute; top: 20px; left: 20px; width: 95%;">
+            <div style="border-bottom: 2px solid lightgray; width: 100%;">
+              <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color:#939090;"><b>Add Holiday </b></h2>
+            </div>
+            <div class="container" style="margin-top: 10px;">
+              <div class="row">
+                <div class="col-sm-6 mb-4">
+                  <mdb-form-control>
+                    <select mdbValidate mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                      formControlName="holiDayType" >
+                      <option [value]="" disabled selected hidden></option>
+                      <option *ngFor="let option of holidayOptions" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Holiday Type&nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                    <mdb-error *ngIf="holiDayType?.invalid && (holiDayType?.dirty || holiDayType?.touched)"></mdb-error>
+                    <mdb-success *ngIf="holiDayType?.valid && (holiDayType?.dirty || holiDayType?.touched)">
+                    </mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-4">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="text" id="form1" class="form-control"
+                      formControlName="holiDayName" required />
+                    <label mdbLabel class="form-label" for="form1">Holiday Name <span
+                        class="text-danger">*</span></label>
+                    <mdb-error *ngIf="
+                          holiDayName?.invalid && (holiDayName?.dirty || holiDayName?.touched)
+                          "></mdb-error>
+                    <mdb-success *ngIf="
+                        holiDayName?.valid && (holiDayName?.dirty || holiDayName?.touched)
+                          "></mdb-success>
+
+                  </mdb-form-control>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-4">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="fromDate" required />
+                    <label mdbLabel class="form-label" for="form1">From Date&nbsp;<span class="text-danger">*</span></label>
+                    <mdb-error *ngIf="
+                          fromDate?.invalid && (fromDate?.dirty || fromDate?.touched)
+                          "></mdb-error>
+                    <mdb-success *ngIf="
+                        fromDate?.valid && (fromDate?.dirty || fromDate?.touched)
+                          "></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-6 mb-4">
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="toDate" required />
+                    <label mdbLabel class="form-label" for="form1">To Date &nbsp;<span class="text-danger">*</span></label>
+                    <mdb-error *ngIf="toDate?.invalid && (toDate?.dirty || toDate?.touched)"></mdb-error>
+                    <mdb-success *ngIf="toDate?.valid && (toDate?.dirty || toDate?.touched)"></mdb-success>
+                  </mdb-form-control>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <mdb-form-control>
+                    <textarea mdbInput class="form-control" id="form5" rows="2"></textarea>
+                    <label mdbLabel class="form-label" for="form5">Description</label>
+                  </mdb-form-control>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+            <br />
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right">
+                <button type="reset" class="btn btn-outline-primary btn-rounded" (click)="toggleTabs()" data-mdb-ripple-init
+                  data-mdb-ripple-color="dark"
+                  style="color: orange; border: 2px solid orange; margin-right: 20px; box-shadow: 1px 1px;">
+                  Cancel
+                </button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Round Button -->
+  <div class="round-button">
+    <button mat-fab extended (click)="toggleTabs()" matTooltip="Add Holiday "
+      aria-label="Button that displays a tooltip in various positions" color="warn">
+      <i class="fas fa-plus fa-2x" style="color: rgba(10, 253, 253, 0.773);"></i>
+    </button>
+  </div>
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!--  ID Column -->
+      <ng-container matColumnDef="holidayId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.holidayId}} </td>
+      </ng-container>
+      <!--  Holiday Type Column -->
+      <ng-container matColumnDef="holiDayType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Holiday Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.holiDayType}} </td>
+      </ng-container>
+      <!-- Holiday Name Column -->
+      <ng-container matColumnDef="holiDayName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Holiday Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.holiDayName}} </td>
+      </ng-container>
+      <!-- From Date Column-->
+      <ng-container matColumnDef="fromDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.fromDate| date}} </td>
+      </ng-container>
+      <!-- To Date Column -->
+      <ng-container matColumnDef="toDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>To Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.toDate| date}} </td>
+      </ng-container>
+      <!-- Created By Column -->
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+      </ng-container>
+      <!-- created On Column -->
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdOn| date}} </td>
+      </ng-container>
+      <!-- Updated By Column -->
+      <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated By </th>
+        <td mat-cell *matCellDef="let row"> {{row.updatedBy}} </td>
+      </ng-container>
+      <!-- updatedOn Column -->
+      <ng-container matColumnDef="updatedOn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated On </th>
+        <td mat-cell *matCellDef="let row"> {{row.updatedOn| date}} </td>
+      </ng-container>
+      <!-- Active Column -->
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let row">
+          <span *ngIf="row.isActive" class="badge badge-success">True</span>
+          <span *ngIf="!row.isActive" class="badge rounded-pill badge-danger">False</span>
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="toggleEdit(row.holidayId)"><i
+                class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button mat-menu-item><i class="fas fa-trash"></i> Delete</button>
+            </mat-menu>
+        </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator class="paginator" [pageSizeOptions]="[7, 10, 25, 100]"
+    aria-label="Select page of users"></mat-paginator>
+</div>
+
+
+<!-- Edit POPUP-->
+<div *ngIf="showEdits" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="closeFunction()"
+      style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+    </button>
+
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmitEdit(updateForm)" class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  270px ;
+      width: 500px;">
+      <button mat-icon-button (click)="closeFunction()"
+        style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+        <i class="far fa-times-circle " style="background-color:orange;
+          border-radius: 14px;"></i>
+      </button>
+
+      <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+        <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+          <div style=" border-bottom: 2px solid lightgray;width:100%;">
+            <h2 style="border: 0px solid; margin: 0px 0px 7px 0px; color:#939090;"><b>Edit Holiday </b></h2>
+          </div>
+          <div class="container" style="margin-top: 10px;">
+            <div class="row">
+              <div class="col-sm-6 mb-4">
+                <mdb-form-control>
+                  <select mdbValidate  mdbInput id="form8Example6" class="form-control" aria-labelledby="dropdownMenuLink"
+                  formControlName="holiDayType" required>
+                    <option [value]="" disabled selected hidden></option>
+                    <option *ngFor="let option of holidayOptions" [value]="option.value">{{ option.name }}</option>
+                  </select>
+                  <label mdbLabel class="form-label" for="form8Example6">Holiday Type&nbsp;<span
+                      class="text-danger">*</span></label>
+                  <i class="fas fa-caret-down"
+                    style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+                  <mdb-error *ngIf="holiDayType?.invalid && (holiDayType?.dirty || holiDayType?.touched)"></mdb-error>
+                  <mdb-success *ngIf="holiDayType?.valid && (holiDayType?.dirty || holiDayType?.touched)">
+                  </mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-6 mb-4">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="text" id="form1" class="form-control" formControlName="holiDayName" required />
+                  <label mdbLabel class="form-label" for="form1">Holiday Name <span
+                      class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                        holidayName?.invalid && (holidayName?.dirty || holidayName?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                      holidayName?.valid && (holidayName?.dirty || holidayName?.touched)
+                        "></mdb-success>
+
+                </mdb-form-control>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-sm-6 mb-4">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="fromDate" required >
+                  <label mdbLabel class="form-label" for="form1">From Date&nbsp;<span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="
+                        fromDate?.invalid && (fromDate?.dirty || fromDate?.touched)
+                        "></mdb-error>
+                  <mdb-success *ngIf="
+                      fromDate?.valid && (fromDate?.dirty || fromDate?.touched)
+                        "></mdb-success>
+                </mdb-form-control>
+              </div>
+              <div class="col-sm-6 mb-4">
+                <mdb-form-control>
+                  <input mdbValidate mdbInput type="date" id="form1" class="form-control" formControlName="toDate" required>
+                  <label mdbLabel class="form-label" for="form1">To Date &nbsp;<span class="text-danger">*</span></label>
+                  <mdb-error *ngIf="toDate?.invalid && (toDate?.dirty || toDate?.touched)"></mdb-error>
+                  <mdb-success *ngIf="toDate?.valid && (toDate?.dirty || toDate?.touched)"></mdb-success>
+                </mdb-form-control>
+              </div>
+            </div> 
+            <div class="row">
+              <div class="col-sm-12">
+                <mdb-form-control>
+                  <textarea mdbInput class="form-control" id="form5" rows="2"></textarea>
+                  <label mdbLabel class="form-label" for="form5">Description</label>
+                </mdb-form-control>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+          <br />
+          <div class="mycontainer">
+            <div class="req">
+              <span class="text-danger req">*</span> Required
+            </div>
+            <div style="text-align: right">
+              <button type="reset" class="btn btn-outline-primary btn-rounded" (click)="cancelEdit()" data-mdb-ripple-init
+                data-mdb-ripple-color="dark"
+                style="color: orange; border: 2px solid orange; margin-right: 20px; box-shadow: 1px 1px;">
+                Cancel
+              </button>
+            </div>
+            <div class="sub">
+              <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+</div>
+</div>

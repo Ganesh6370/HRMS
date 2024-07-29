@@ -1,0 +1,129 @@
+<div class="full-container">
+  <div class="logo-container">
+    <img src="../../../assets/img/logo_small.png" alt="" class="logo-img" *ngIf="!isSidebarActive">
+    <img src="../../../assets/img/logo_big.png" alt="" class="logo-img-active" *ngIf="isSidebarActive">
+  </div>
+  <div class="profile-container">
+    <div [ngClass]="{'profile-image': true, 'profile-image-active': isSidebarActive}">
+      <ng-container *ngIf="personal?.profileImage; else defaultImage">
+        <img [src]="'./../../../assets/img/' + personal.profileImage" class="profile-photo">
+      </ng-container>
+      <ng-template #defaultImage>
+        <img src="../../../../assets/img/default.png" class="profile-photo">
+      </ng-template>
+    </div>
+    <div class="profile-text" *ngIf="isSidebarActive">
+      <span class="profile-text-bold">{{ personal?.fullName || 'NA' }}</span>
+      <br>
+      <span>{{ employment?.designation || 'NA' }}</span>
+    </div>
+  </div>
+  <div class="search-container" *ngIf="isSidebarActive">
+    <input type="text" class="search" placeholder="Search">
+    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+  <button class="toggle-btn"
+    [ngClass]="{'rotate-btn': (isSidebarActive && isLayoutLtr), 'rotate-btn-rtl': (isSidebarActive && !isLayoutLtr), 'toggle-btn': true, 'toggle-btn-rtl': !isLayoutLtr}">
+    >
+  </button>
+
+  <div class="inactive-icon-container" *ngIf="!isSidebarActive">
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa-regular fa-circle-user fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class=" fa-regular fa-user fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa-solid fa-screwdriver-wrench fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa-solid fa-fingerprint fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa-solid fa-person-through-window fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa-solid fa-boxes-stacked fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa fa-briefcase fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+    <div class="sidebar-icon-div" (click)="inactiveSidebarClick()" *ngIf="!isSidebarActive">
+      <button>
+        <i class="fa fa-tasks fa-xl" style="color: var(--link-icon-color);"></i>
+      </button>
+    </div>
+  </div>
+  <div class="active-links-container" *ngIf="isSidebarActive">
+    <a routerLink="dashboard" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa-regular fa-circle-user fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Dashboard</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="employee/Empdashboard" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class=" fa-regular fa-user fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Employee</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="master/MasterHeader" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa-solid fa-screwdriver-wrench fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Master</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="attendence/empatt" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa-solid fa-fingerprint fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Attendance</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="leave/apply" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa-solid fa-person-through-window fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Leave</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="asset/category" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa-solid fa-boxes-stacked fa-xl" style="color: var(--link-icon-color);"></i>
+      <span>Assets</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="jobs/JobDashboard" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa fa-briefcase fa-xl" aria-hidden="true" style="color: var(--link-icon-color);"></i>
+      <span>Jobs</span>
+    </a>
+    <div class="divider">&nbsp;</div>
+    <a routerLink="task/ProjectDashboard" routerLinkActive="active"
+      [ngClass]="{'active-links-container-links':true, 'active-links-container-links-rtl':!isLayoutLtr}"
+      (click)="activeSidebarClick()">
+      <i class="fa fa-tasks fa-xl" aria-hidden="true" style="color: var(--link-icon-color);"></i>
+      <span>Project</span>
+    </a>
+  </div>
+</div>

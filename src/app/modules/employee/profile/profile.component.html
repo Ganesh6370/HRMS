@@ -1,0 +1,1798 @@
+<div style="padding-left:15px; margin-right:-10px; overflow-x: hidden; background-color:whitesmoke">
+  <div style="display: flex; flex-direction: row;
+  ">&nbsp; &nbsp;&nbsp; &nbsp;
+    <div>
+      <a routerLink="/main/employee/Empdashboard">
+        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+    <div style="display: flex; flex-direction: column;
+         ">
+      <h2>&nbsp; &nbsp;Profile
+        <h2><a routerLink="/main/employee/Empdashboard">Dashboard </a>/Profile Details</h2>
+      </h2>
+    </div>
+  </div>
+  <div class="card"
+    style="display: flex; flex-direction: row; padding-left: 4vh; padding-top: 1vh;flex-wrap: wrap; width: 96%;margin-top: -20px;">
+    <div class="bg-image imagec"> 
+       <ng-container *ngIf="personal?.profileImage; else defaultImage">
+      <img [src]="'./../../../assets/img/' + personal.profileImage" class="img-fluid" 
+      style="height:20vh;width:20vh; border-radius: 10vh; margin-top: 3.3vh;">
+      </ng-container>
+      <ng-template #defaultImage>
+        <img src="../../../../assets/img/default.png" class="img-fluid" 
+        style="height:20vh;width:20vh; border-radius: 10vh; margin-top: 3.3vh; margin-left:0px">
+      </ng-template>
+ </div>
+    <div class="card-body cardc " style="display: flex;
+        flex-direction: column; justify-content: center;border:0px solid red; ">
+      <div style="display: flex; flex-direction: column;" class=" card2c">
+        <h2 class="card-title namec padx " *ngIf="personal">{{personal.fullName ? personal.fullName : "NA"}} </h2>
+        <h2 class="card-title namec padx " *ngIf="!personal">"NA" </h2>
+
+        <div class="right-main" style="display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Department :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.department ? employment.department : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style=" margin-top: -6px;display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Designation :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.designation ? employment.designation : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style=" margin-top: -6px;display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Employee ID :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ personal?.empPersDtlId ? personal.empPersDtlId : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style=" margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Date of Join :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.dateofPermanecy ? employment.dateofPermanecy : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style=" margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Office Location :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.officeLocation ? employment.officeLocation : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style=" margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Role :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.role ? employment.role : "NA" }}</h4>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column;margin-left:0px" class=" card2xs">
+        <h2 *ngIf="personal" style="margin-left:0px">{{personal.fullName ? personal.fullName : "NA"}} </h2>
+        <div class="right-main" style=" margin-top: -15px;display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Designation :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.designation ? employment.designation : "NA" }}</h4>
+        </div>
+
+        <div class="right-main" style="display: flex; border:0px solid red;margin-top: -8px">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Department :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.department ? employment.department : "NA" }}</h4>
+        </div>
+        <h5 class="padx" style="font-size: 17px; margin-left: 0px;font-size: 17px;margin-top: -8px;" class="idc">Employee ID : {{personal?.empPersDtlId ?
+          personal.empPersDtlId : "NA"}}</h5>
+
+        <h5 style="font-size: 17px; color: grey; text-wrap: nowrap;margin-left: 0px;margin-top: -10px;" class="datecx">
+          Date of Join : {{ formatDate(personal.dob) }}
+        </h5>
+      </div>
+      <!-- <a href="#!" class="btn btn-custom">Send Message</a> -->
+    </div>
+    <div class="vertical_dotted_lined" style="margin-right: 0px;"></div>
+
+    <div class="card-body card-body-x2"
+      style="display: flex; width:48vw;padding-top: 30px; height: auto; border:0px solid green;">
+      <div class="vertical_dotted_line "
+        style="width: 65vw;padding: 0;display:flex ;padding-left: 34px; justify-content: center; flex-direction: column; height: auto; ">
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Phone :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ personal?.mobileNo ? personal.mobileNo : "NA" }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Email:&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ personal?.email ? personal.email : "na" }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; flex-wrap: wrap;border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Date Of Birth :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ formatDate(personal?.dob) }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Gender :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ personal?.gender ? personal.gender :"NA" }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Report to :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.supervisor ? employment.supervisor :"NA" }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Work Shift :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.workShift ? employment.workShift :"NA" }}</h4>
+        </div>
+        <div class="right-main" style="margin-top: -6px; display: flex; border:0px solid red">
+          <h4
+            style="font-weight: 600; padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            Work Type :&nbsp;</h4>
+          <h4 class="second-right"
+            style="padding-top:0px !important;margin-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important">
+            {{ employment?.workType ? employment.workType :"NA" }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0px;  border: 0px;">
+    <div class=" tab-box" style="border-radius: 8px;  width: 96%;">
+      <div style="padding-top: 10px;">
+        <mdb-tabs [justified]="true" class="custom-tabs">
+          <mdb-tab>
+            <ng-template mdbTabTitle>
+              <span style="color: orange;" class="tabing"><i class="fa fa-person "></i> Profile </span>
+            </ng-template>
+            <div>
+              <div
+                style="display: flex; flex-direction: row; padding-bottom:20px ;flex-wrap: wrap; border:0px solid black;padding-top:20px;overflow-x: scroll; justify-content: center; gap:30px">
+                <div class="card" *ngIf="personal"
+                  style=" width:   48%;margin-bottom: 30px;height:330px; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display:flex;justify-content: space-between">
+                      <h3 style="font-size: 20px; font-weight: 500;"> Personal Informations</h3>
+                      <!-- <button (click)="toggleTabs()"  class="editbutton"><i class="fas fa-pen"></i> </button> -->
+                      <button (click)="toggleTabs()" class="edit-icon modal-trigger " matTooltip="Edit Personal Info"><i
+                          class="fas fa-pen"></i></button>
+                    </div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Full Name</td>
+                          <td>{{ personal?.fullName || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Father Name</td>
+                          <td>{{personal?.fatherorHusbandName || 'NA' }}</td>
+              </tr>
+                        <tr>
+                          <td>Mobile No</td>
+                          <td>{{ personal?.mobileNo || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Nationality</td>
+                          <td>Indian</td>
+                        </tr>
+                        <tr>
+                          <td>Religion</td>
+                          <td>{{ personal?.reliegion || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Marital status</td>
+                          <td>{{ personal?.maritalStatus || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Date of Marriage</td>
+                          <td>{{ personal?.dateofMarriage ? formatDate(personal.dateofMarriage) : 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Blood Group</td>
+                          <td>{{ personal?.bloodGroup || 'NA' }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              <!-- Contact -->
+                <div class="card"
+                  style=" width:48%;margin-bottom: 30px;height:fit-content; ; overflow:hidden ;  border:0px solid red; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex;justify-content: space-between;">
+                      <h3 style="font-size: 20px; font-weight: 500; "> Contact Details</h3>
+                      <!-- <button (click)="toggleTabs3()" class="editbutton"><i class="fas fa-pen"></i> </button> -->
+                      <button (click)="toggleTabs3()" class="edit-icon modal-trigger" matTooltip="Edit Contact">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                    </div>
+                    <table style="margin-top: -20px; border: 2px;">
+                      <tbody>
+                        <tr>
+                          <td style="font-weight: 600; text-wrap:nowrap">Main Contact</td>
+                        </tr>
+                        <tr>
+                          <td> Name:</td>
+                          <td>{{ contact?.emergencyContactPersonName || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Address:</td>
+                          <td>{{contact?.contactPersonAddress || 'NA'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Personal Email:</td>
+                          <td>{{contact?.personalEmailId || 'NA'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Professonal Email:</td>
+                          <td>{{contact?.professionalEmailId || 'NA'}}</td>
+                        </tr>
+                        <tr>
+                        <tr>
+                          <td>Home Telephone:</td>
+                          <td>{{contact?.homeTelephone || 'NA'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Mobile No:</td>
+                          <td>
+                            {{contact?.contactPersonNumber || 'NA'}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Alternate Mobile No:</td>
+                          <td>
+                            {{contact?.mobileNo || 'NA'}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="row">
+                      <div class="col">
+                        <table style="padding-top: -10px;">
+                          <tbody>
+                            <tr>
+                              <td style="font-weight: 600;font-size: medium;text-wrap:nowrap">Emergency ContactNo1</td>
+                            </tr>
+                            <tr>
+                              <!-- <td>Name :</td>
+                              <td> {{contact?.emergencyContactPersonName || 'NA'}}</td> -->
+                              <td>Name : {{contact?.emergencyContactPersonName ||'NA'}}</td>
+                            </tr>
+                            <tr> 
+                              <td>Relationship : {{contact?.relationshipWithContactPerson || 'NA'}}
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td>
+                                Contact No : {{contact?.contactPersonNumber || 'NA'}}
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td>Address : {{contact?.contactPersonAddress || 'NA'}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col">
+                        <table style="padding-top: -10px;">
+                          <tbody>
+                            <tr>
+                              <td style="font-weight: 600;font-size: medium;text-wrap:nowrap">Emergency ContactNo2</td>
+                            </tr>
+                            <tr> 
+                              <td> Name : {{contact?.alternateEmergencyContactPersonName || 'NA'}}</td>
+                            </tr>
+                            <tr> 
+                              <td>Relationship : {{contact?.alternateRelationshipWithContactPerson || 'NA'}}
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td>
+                                Contact No : {{contact?.alternateContactPersonNumber || 'NA'}}
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td>Address : {{contact?.alternateContactPersonAddress || 'NA'}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>                   
+                </div>
+              </div>
+              
+              <div
+                style="display: flex; flex-direction: row; padding-bottom:40px  ;  flex-wrap: wrap; border:0px solid black;justify-content: center; gap:30px">
+                <!-- Address -->
+                <div class="card" style="width: 48%; margin-bottom: 30px; height: fit-content; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h3 style="font-size: 20px; font-weight: 500;">Address Informations</h3>
+                      <button (click)="toggleTabs2()" class="edit-icon modal-trigger " matTooltip="Edit Address"><i
+                          class="fas fa-pen"></i></button>
+                    </div>
+                    <table style="margin-top: -10px;">
+                      <tbody>
+                        <tr>
+                          <td style="font-weight: 600; font-size: medium;">Permanent</td>
+                        </tr>
+                        <tr>
+                          <td>Address 1:</td>
+                          <td>{{ address?.permanentAddress || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Address 2:</td>
+                          <td>{{ address?.permanentAddress2 || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Postal Code:</td>
+                          <td>{{ address?.permanentPostalcode || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>City, State, Country:</td>
+                          <td>
+                            {{ address?.permanentCity || 'NA' }},
+                            {{ address?.permanentState || 'NA' }},
+                            {{ address?.permanentCountry || 'NA' }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-weight: 600; font-size: medium;">Present</td>
+                        </tr>
+                        <tr>
+                          <td>Address 1:</td>
+                          <td>{{ address?.presentAddress || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Address 2:</td>
+                          <td>{{ address?.presentAddress2 || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>Postal Code:</td>
+                          <td>{{ address?.presentPostalcode || 'NA' }}</td>
+                        </tr>
+                        <tr>
+                          <td>City, State, Country:</td>
+                          <td>
+                            {{ address?.presentCity || 'NA' }},
+                            {{ address?.presentState || 'NA' }},
+                            {{ address?.presentCountry || 'NA' }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- Family -->
+                <div class="card"
+                  style="width: 48%; margin-bottom: 30px; height: 320px; overflow: scroll; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h3 style="font-size: 20px; font-weight: 500;">Family Informations</h3>
+                      <button (click)="toggleTabs4()" class="edit-icon modal-trigger " matTooltip="Edit Family"><i
+                          class="fas fa-pen"></i></button>
+                    </div>
+                    <table class="tablex" style="overflow-x: scroll; min-width: 330px;">
+                      <thead style="border-bottom: 1px solid rgb(200, 192, 192);">
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Relationship</th>
+                          <th scope="col" style="white-space: nowrap; width: fit-content !important">
+                            <span>Date of Birth</span>
+                          </th>
+                          <th scope="col">Phone</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let member of familyList">
+                          <td style="white-space: nowrap;">{{ member?.name || 'NA' }}</td>
+                          <td>{{ member?.relation || 'NA' }}</td>
+                          <td style="white-space: nowrap; width: fit-content !important">
+                            {{ member?.dateOfBirth ? formatDate(member.dateOfBirth) : 'NA' }}
+                          </td>
+                          <td>{{ member?.contactNo || 'NA' }}</td>
+                        </tr>
+                        <tr *ngIf="!familyList || familyList.length === 0">
+                          <td>NA</td>
+                          <td>NA</td>
+                          <td style="white-space: nowrap; width: fit-content !important">NA</td>
+                          <td>NA</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div
+                style="display: flex; flex-direction: row; padding:0vh  ; flex-wrap: wrap; border:0px solid black;justify-content: center; gap:30px">
+                <!-- Education -->
+                <div class="card" style="  width:48%;margin-bottom: 30px;height:fit-content ; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h1 style="font-size: 20px; font-weight: 500;">Education Information</h1>
+                      <button (click)="toggleTabs6()" class="edit-icon modal-trigger" matTooltip="Edit Education"><i
+                          class="fas fa-pen"></i> </button>
+                    </div>
+                    <ul class="sessions" *ngIf="educationList && educationList.length > 0; else noEducations">
+                      <li *ngFor="let education of educationList" style="display:flex; margin-bottom: 10px;">
+                        <div class="time">
+                          <h5 style="font-weight: 800;">Institute : {{education.institute}}</h5>
+                          <p style="font-weight: 700; color:grey;"><b>Specialization : </b> {{ education.specialization}} <b>, Score/GPA : </b>
+                            {{education.score}}</p>
+                          <p style="font-weight: 700; color:grey">{{ education.startDate | date: 'yyyy' }}- {{
+                            education.endDate | date: 'yyyy'}}</p>
+                        </div>
+                      </li>
+                    </ul>
+                    <ng-template #noEducations>
+                      <p style="font-weight: 700; color:grey">No Educations available.</p>
+                    </ng-template>
+                  </div>
+                </div>
+                <!-- Experience -->
+                <div class="card" style="  width:48%;margin-bottom: 30px; margin-left: 0px; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h1 style="font-size: 20px; font-weight: 500;">Experience Information</h1>
+                      <button (click)="toggleTabs7()" class="edit-icon modal-trigger" matTooltip="Edit Experience"><i
+                          class="fas fa-pen"></i> </button>
+                    </div>
+                    <ul class="sessions" *ngIf="jobList && jobList.length > 0; else noJobs">
+                      <li *ngFor="let job of jobList" style="display:flex; margin-bottom: 10px;">
+                        <div class="time">
+                          <h5 style="font-weight: 800;">Title : {{ job.jobTitle }}</h5>
+                          <p style="font-weight: 700; color:grey"><b>Company :</b> {{ job.company }}</p>
+                          <p style="font-weight: 700; color:grey">{{ job.fromDate }} - {{ job.toDate }}</p>
+                        </div>
+                      </li>
+                    </ul>
+                    <ng-template #noJobs>
+                      <p style="font-weight: 700; color:grey">No job experiences available.</p>
+                    </ng-template>
+                  </div>
+                </div>
+
+                <!-- certification -->
+                <div class="card" style="  width:48%;margin-bottom: 30px;height:fit-content ; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h1 style="font-size: 20px; font-weight: 500;">Certifications</h1>
+                      <button class="edit-icon modal-trigger" matTooltip="Edit Certifications"><i
+                          class="fas fa-pen"></i> </button>
+                    </div>
+                    <ul class="sessions" *ngIf="certificateList && certificateList.length > 0; else noCertificate">
+                      <li *ngFor="let certificate of certificateList" style="display:flex; margin-bottom: 10px;">
+                        <div class="time">
+                          <h5 style="font-weight: 800;">Skill : {{certificate.skill}}</h5>
+                          <p style="font-weight: 700; color:grey"><b>Year Of Experience :</b> {{ certificate.yearOfExperience}}
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                    <ng-template #noCertificate>
+                      <p style="font-weight: 700; color:grey">No Certificate available.</p>
+                    </ng-template>
+                  </div>
+                </div>
+
+                <!-- Language -->
+                <div class="card" style="  width:48%;margin-bottom: 30px;height:fit-content ; min-width: 330px;">
+                  <div class="card-body">
+                    <div style="display: flex; justify-content: space-between;">
+                      <h1 style="font-size: 20px; font-weight: 500;">Language Information</h1>
+                      <button class="edit-icon modal-trigger" matTooltip="Edit Language"><i class="fas fa-pen"></i>
+                      </button>
+                    </div>
+                    <ul class="sessions" *ngIf="languageList && languageList.length > 0; else noLanguage">
+                      <li *ngFor="let language of languageList" style="display:flex; margin-bottom: 10px;">
+                        <div class="time">
+                          <h5 style="font-weight: 800;">Language Name : {{language.languageName}}</h5>
+                          <p style="font-weight: 700; color:grey"> <b>Fluency Level :</b> {{ language.fluencyLevel}}</p>
+                        </div>
+                      </li>
+                    </ul>
+                    <ng-template #noLanguage>
+                      <p style="font-weight: 700; color:grey">No Language available.</p>
+                    </ng-template>
+                  </div>
+                </div>
+     </div>
+            </div>
+          </mdb-tab>
+          <mdb-tab>
+            <ng-template mdbTabTitle>
+              <span style="color: orange;" class="tabing"> <i class="fa fa-project-diagram"></i> Identity</span>
+            </ng-template>
+            <div>
+              <hr style="width: 94%;">
+              <!-- <button *ngIf="identity" (click)="toggleTabs5()" class="editbutton" style="height: 50px; width: 50px; margin-left:85%;margin-top:-60px"> <i class="fas fa-pen"></i></button> -->
+              <button *ngIf="identity" (click)="toggleTabs5()" class="edit-icon modal-trigger "
+                matTooltip="Edit Identity" style="height: 50px; width: 50px; margin-left:85%;margin-top:-60px"><i
+                  class="fas fa-pen"></i></button>
+              <div *ngIf="identity == undefined" style="display: flex;justify-content: center;gap:30px">
+                <h1 style="font-size: 20px; font-weight: 500;padding-right: 40px;">Identity Information</h1>
+                <!-- <button   class="editbutton" style="width: fit-content;height:30px;padding-left: 4px;padding-right: 4px;"> <a href="http://localhost:4200/#/main/employee/identity" style="text-decoration: none;"> Fill them<i class="fas fa-arrow-right"></i> </a></button> -->
+                <a routerLink="../identity"><button class="editbutton" type="button"
+                    class="btn btn-outline-primary btn-rounded cancel-button" data-mdb-ripple-init
+                    data-mdb-ripple-color="dark" matTooltip="Add Identity">Fill them</button></a>
+              </div>
+              <div class="card cardx " *ngIf="identity"
+                style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+                <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                  <div style="padding-left: 60px ;" class="iconx"></div>
+                  <div>
+                    <h2 class="card-title">ADHAR Card</h2>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Aadhar Card No: {{ identity.aadhaarNo ?
+                      identity.aadhaarNo : "NA"}} </h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: {{ identity.nameAsAadhaar ?
+                      identity.nameAsAadhaar : "NA"}}</h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : {{ identity.dobAsAadhaar ?
+                      identity.dobAsAadhaar : "na"}} </h3>
+                  </div>
+                  <div class="spacecd">
+                    <img src={{identity.aadhaarAttach}} style="width: 250px; height: 150px; " alt=""
+                      (click)="toggleTabs9()">
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+              <div class="card cardx" *ngIf="identity"
+                style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+                <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                  <div style="padding-left: 60px ;" class="iconx"></div>
+                  <div>
+                    <h2 class="card-title">PAN Card</h2>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">PAN CARD No: {{ identity.panNo }} </h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: {{ identity.nameAsPan }}</h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : {{ identity.dobAsPan }} </h3>
+                  </div>
+                  <div class="spacecd">
+                    <img src={{identity.panAttach}} style="width: 250px; height: 150px; " alt=""
+                      (click)="toggleTabs8()">
+                  </div>
+                </div>
+              </div>
+              <div class="card cardx" *ngIf="identity"
+                style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+
+                <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                  <div style="padding-left: 60px ;" class="iconx"></div>
+                  <div>
+                    <h2 class="card-title">Passport Details</h2>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Passport No: {{ identity.passportNo }}
+                    </h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">PassportType: {{ identity.passportType
+                      }}</h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">ValidTill : {{
+                      identity.passportVaildTill }} </h3>
+                  </div>
+                  <div class="spacecd">
+                    <img src={{identity.passportAttach}} style="width: 250px; height: 150px;margin-left:-20px " alt=""
+                      (click)="toggleTabs10()">
+                  </div>
+                </div>
+              </div>
+              <div class="card cardx" *ngIf="identity"
+                style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+                <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                  <div style="padding-left: 60px ;" class="iconx"></div>
+                  <div>
+                    <h2 class="card-title">Driving License</h2>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Driving License No: {{ identity.dlNo }}
+                    </h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: {{ identity.dlVaildTill }}</h3>
+                    <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : {{ identity.dobAsDL }} </h3>
+                  </div>
+                  <div class="spacecd">
+                    <img src="{{identity.dlAttach}}" style="width: 250px; height: 150px; " alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card cardx" *ngIf="identity == undefined"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="iconx"></div>
+
+                <div>
+                  <h2 class="card-title">Identity not Available</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Driving License No: Na </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: Na</h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : Na </h3>
+                </div>
+
+                <div class="spacecd">
+                  <img src="" style="width: 250px; height: 150px; " alt="">
+                </div>
+              </div>
+            </div>
+            <div class="card cardx" *ngIf="identity == undefined"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="iconx"></div>
+
+                <div>
+                  <h2 class="card-title">Identity not Available</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Pan License No: Na </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: Na</h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : Na </h3>
+                </div>
+
+                <div class="spacecd">
+                  <img src="" style="width: 250px; height: 150px; " alt="">
+                </div>
+              </div>
+            </div>
+            <div class="card cardx" *ngIf="identity == undefined"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px;margin-left:40px">
+
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="iconx"></div>
+
+                <div>
+                  <h2 class="card-title">Identity not Available</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Aadhar No: Na </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Name: Na</h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Dob : Na </h3>
+                </div>
+
+                <div class="spacecd">
+                  <img src="" style="width: 250px; height: 150px; " alt="">
+                </div>
+              </div>
+            </div>
+          </mdb-tab>
+          <mdb-tab>
+            <ng-template mdbTabTitle>
+              <span style="color: orange; " class="tabing"><i class="fa fa-person"></i>Account </span>
+            </ng-template>
+            <div class="card cardmove"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px; ">
+
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="spacec"></div>
+                <div>
+                  <h2 class="card-title">Bank Account</h2>
+                  <tr>
+                    <td>Bank Name : </td>
+                      <td>{{ bank?.bankName || 'NA' }}</td>
+                  </tr>
+                  <tr>
+                    <td>Bank Account No : </td>
+                    <td>{{ bank?.accountNo || "NA"}}</td>
+                  </tr>
+                  <tr>
+                    <td>Account Holder Name : </td>
+                    <td> {{ bank?.accountHolderName || "NA"}}</td>
+                  </tr>
+                  <tr>
+                    <td>Branch Name : </td>
+                    <td> {{ bank?.branchName || "NA"}}</td>
+                  </tr>
+                  <tr>
+                    <td>Branch Location : </td>
+                    <td> {{ bank?.bankLocation || "NA"}}</td>
+                  </tr>
+                  <tr>
+                    <td> Ifsc Code : </td>
+                    <td> {{ bank?.ifscCode || "NA"}}</td>
+                  </tr>
+       </div>
+                <div style="padding-left: 290px ;" class="spacec"></div>
+              </div>
+            </div>
+            <div class="card cardmove"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px; ">
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="spacec"></div>
+                <div>
+                  <h2 class="card-title">SALARY(API NOT AVAILABLE)</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Salary Basis: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Salary Amount Per Month: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Payment Type: </h3>
+                </div>
+                <div style="padding-left: 290px ;" class="spacec"></div>
+              </div>
+            </div>
+            <div class="card cardmove"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px; ">
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="spacec"></div>
+                <div>
+                  <h2 class="card-title">PF(API NOT AVAILABLE)</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">PF contribution: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">PF No: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Employee Pf Rate: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Additional Rate: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Total Rate: </h3>
+                </div>
+                <div style="padding-left: 290px ;" class="spacec"></div>
+              </div>
+            </div>
+            <div class="card cardmove"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px; ">
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="spacec"></div>
+                <div>
+                  <h2 class="card-title">ESI(API NOT AVAILABLE)</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">ESI Contribution: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">ESI No: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Employee Esi Rate: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Additional Rate: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Total Rate: </h3>
+                </div>
+                <div style="padding-left: 290px ;" class="spacec"></div>
+              </div>
+            </div>
+            <div class="card cardmove"
+              style="display: flex; justify-content: center;  flex-direction: row; margin-bottom: 40px;max-width: 1200px; ">
+              <div class="card-body" style="display: flex; flex-wrap: wrap;">
+                <div style="padding-left: 60px ;" class="spacec"></div>
+                <div>
+                  <h2 class="card-title">MEDICAL(API NOT AVAILABLE)</h2>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Patient Name: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px">Patient Account No: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Patient Disease: </h3>
+                  <h3 style="border: 0px solid black; margin:5px;padding:0px"> Prescription: </h3>
+                </div>
+                <div style="padding-left: 290px ;" class="spacec"></div>
+              </div>
+            </div>
+          </mdb-tab>
+        </mdb-tabs>
+      </div>
+      <div *ngIf="showTabs" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  400px ;
+    width: 900px; " (ngSubmit)="handleFormSubmission(EmployeeForm)" [formGroup]="EmployeeForm">
+            <button mat-icon-button (click)="toggleTabs()" class="close-icon  "
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Personal
+                    Details</h2>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div class="widthdecider">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="fullName" type="text" id="form1" class="form-control"
+                        style="padding:10px;" value={{personal.fullName}} />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Full Name</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div class="margmobiletop" class="widthdecider">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput mdbValidate id="form8Example3" formControlName="gender" class="form-control"
+                        aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Others</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">
+                        <h3 style="margin-top: 2px;">Gender</h3>
+                      </label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="fatherorHusbandName" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">FatherOrHusbandName</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 22%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput mdbValidate id="form8Example4" formControlName="reliegion" class="form-control"
+                        aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="Hinduism">Hinduism</option>
+                        <option value="Islam">Islam</option>
+                        <option value="christianity">christianity</option>
+                        <option value="Sikhism">Sikhism</option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Others">Others</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">Religion <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 22%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example4" formControlName="bloodGroup" mdbValidate class="form-control"
+                        aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">Blood Group <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput mdbValidate id="form8Example6" formControlName="maritalStatus"
+                        name="maritalStatus" class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="Unmarried">Unmarried</option>
+                        <option value="Married">Married</option>
+                        <option value="Other">Other</option>
+
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example6">Marital status <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width:48%">
+                    <mdb-form-control>
+                      <input formControlName="mobileNo" type="number" id="form8Example1" mdbValidate mdbInput
+                        type="text" class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Mobile No</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;padding-top: 15px;border-bottom: 2px solid lightgray; padding-bottom: 10px;">
+
+                  <div style="width: 48%;">
+                    <mdb-form-control style="height: 45px;">
+                      <input mdbInput mdbValidate formControlName="dob" type="date" id="form8Example2s"
+                        class="form-control" />
+                      <label mdbLabel class="form-label" for="formx2">
+                        <h3 style="margin-top: 2px;">Date Of Birth</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;">
+                    <mdb-form-control style="height: 45px;">
+                      <input mdbInput mdbValidate type="date" id="form8Example10" formControlName="dateofMarriage"
+                        class="form-control" />
+                      <label mdbLabel class="form-label" for="formx1">
+                        <h3 style="margin-top: 2px;"> Date of Marriage</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs2" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  550px ;
+width: 900px; " (ngSubmit)="handleFormSubmissionAddress(addressForm)" [formGroup]="addressForm">
+            <button mat-icon-button (click)="toggleTabs2()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%;">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Address Details</h2>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 49%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="presentAddress" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Address1</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 49%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="presentAddress2" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Address2</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="presentPostalcode" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">PostalCode</h3>
+                      </label>
+
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 22%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example4" formControlName="presentCountry" mdbValidate
+                        class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="1">India</option>
+                        <option value="2">Nepal</option>
+                        <option value="3">Srilanka</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">Country <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 21%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example4" formControlName="presentState" mdbValidate
+                        class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="1">Bihar </option>
+                        <option value="2">Jharkhand</option>
+                        <option value="3">Delhi</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">State <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;padding-top: 15px;border-bottom: 2px solid lightgray; padding-bottom: 10px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control style="height: 45px;">
+                      <input mdbInput mdbValidate formControlName="presentCity" type="text" id="form8Example2s"
+                        class="form-control" />
+                      <label mdbLabel class="form-label" for="formx2">
+                        <h3 style="margin-top: 2px;">City</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="permanentAddress" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Address1</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="permanentAddress2" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Address2</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="permanentPostalcode" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">PostalCode</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 22%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example4" formControlName="permanentCountry" mdbValidate
+                        class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="1">India</option>
+                        <option value="2">Nepal</option>
+                        <option value="3">Srilanka</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">Country <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 21%;">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example4" formControlName="permanentState" mdbValidate
+                        class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option value disabled selected hidden></option>
+                        <option value="1">Bihar </option>
+                        <option value="2">Jharkhand</option>
+                        <option value="3">Delhi</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example4">State <span
+                          class="text-danger">*</span></label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;padding-top: 15px;border-bottom: 2px solid lightgray; padding-bottom: 10px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control style="height: 45px;">
+                      <input mdbInput mdbValidate formControlName="permanentCity" type="text" id="form8Example2s"
+                        class="form-control" />
+                      <label mdbLabel class="form-label" for="formx2">
+                        <h3 style="margin-top: 2px;">City</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs2()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs3" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  550px ;
+width: 900px; " (ngSubmit)="handleFormSubmissionContact(contactForm)" [formGroup]="contactForm">
+            <button mat-icon-button (click)="toggleTabs3()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%;">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Contact Details</h2>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="mobile" type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">MobileNo</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="alternateMobile" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Alternate Mobile</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="personalEmailId" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">personalEmailId</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 22%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="professionalEmailId" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">professionalEmailId</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 21%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="homeTelephone" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">homeTelephone</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="emergencyContactPersonName" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">emergencyContactPersonName</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="relationshipWithContactPerson" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">relationshipWithContactPerson</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="contactPersonNumber" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">contactPersonNumber</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="contactPersonAddress" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">contactPersonAddress</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="alternateEmergencyContactPersonName" type="text"
+                        id="form1" class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">alternateEmergencyContactPersonName</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="alternateRelationshipWithContactPerson" type="text"
+                        id="form1" class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">alternateRelationshipWithContactPerson</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="alternateContactPersonNumber" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">alternateContactPersonNumber</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 47%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="alternateContactPersonAddress" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">alternateContactPersonAddress</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs3()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs4" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  300px ;
+width: 900px; " (ngSubmit)="handleFormSubmissionFamily(familyForm)" [formGroup]="familyForm">
+            <button mat-icon-button (click)="toggleTabs4()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Family Details
+                  </h2>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div class="widthdecider">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="name" type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Full Name</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div class="margmobiletop" class="widthdecider">
+                    <mdb-form-control style="height: 45px;">
+                      <select mdbInput id="form8Example6"  [required]="true" formControlName="relation"
+                        class="form-control" aria-labelledby="dropdownMenuLink">
+                        <option [value]="" disabled selected hidden></option>
+                        <option *ngFor="let family of empRelationList; let i = index" value="{{family.value}}">
+                          {{family.name}}</option>
+                      </select>
+                      <label mdbLabel class="form-label" for="form8Example6">Relation</label>
+                      <i class="fas fa-caret-down"
+                        style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright"
+                  style="display: flex; flex-wrap: wrap; gap:4%;padding-top: 15px;border-bottom: 2px solid lightgray; padding-bottom: 10px;">
+                  <div class="widthdecider">
+                    <mdb-form-control style="height: 45px;">
+                      <input mdbInput mdbValidate formControlName="dateOfBirth" type="date" id="form8Example2s"
+                        class="form-control" />
+                      <label mdbLabel class="form-label" for="formx2">
+                        <h3 style="margin-top: 2px;">Date Of Birth</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div class="widthdecider">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="contactNo" type="text" id="form1"
+                        class="form-control" style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Contact No</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs4()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs5" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content marginformobidentity" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  680px !important;
+width: 900px; " (ngSubmit)="handleFormSubmissionIdentity(identityForm)" [formGroup]="identityForm">
+            <button mat-icon-button (click)="toggleTabs5()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Identity
+                    Details</h2>
+                </div>
+                <fieldset style="border-top:0px solid lightgray;">
+                  <legend>AAdhaar:</legend>
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 0px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="aadhaarNo" type="text" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">aadhaarNo</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="nameAsAadhaar" type="text" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">nameAsAadhaar</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 3px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="dobAsAadhaar" type="date" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">dobAsAadhaar</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control class="mb-4" style="display: flex;">
+                        <label for="upload" style="border:2px solid white;color:white;background-color: orange;border-radius: 7px;
+      padding:5px">Upload a file</label>
+                        <input type="file" (change)="onFileSelected1($event)" accept="image/*" id="upload" />
+                        <img *ngIf="selectedFile1" [src]="getObjectURL1(selectedFile1)" alt="Selected Image"
+                          style="height:40px;width: 40px;border-radius:10px;" class="iconx margin-apply-identity" />
+                        <img *ngIf="!selectedFile1 && identity.aadhaarAttach" src={{identity.aadhaarAttach}}
+                          alt="Selected Image" style="height:40px;width: 40px;border-radius:10px;"
+                          class="iconx margin-apply-identity" />
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset style="border-top:1px solid lightgray;">
+                  <legend>Pan Card:</legend>
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 0px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="panNo" type="text" id="form1" class="form-control"
+                          style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">panNo</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="nameAsPan" type="text" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">nameAsPan</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 3px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="dobAsPan" type="date" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">dobAsPan</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control class="mb-4" style="display: flex;">
+                        <label for="upload1" style="border:2px solid white;color:white;background-color: orange;border-radius: 7px;
+      padding:5px">Upload a file</label>
+                        <input type="file" (change)="onFileSelected2($event)" accept="image/*" id="upload1" />
+                        <img *ngIf="selectedFile2" [src]="getObjectURL2(selectedFile2)" alt="Selected Image"
+                          style="height:40px;width: 40px;border-radius:10px;" class="iconx margin-apply-identity" />
+                        <img *ngIf="!selectedFile2 && identity.panAttach" src={{identity.panAttach}}
+                          alt="Selected Image" style="height:40px;width: 40px;border-radius:10px;"
+                          class="iconx margin-apply-identity" />
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset style="border-top:1px solid lightgray;">
+                  <legend>Passport:</legend>
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 0px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="passportNo" type="text" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">passportNo</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+
+                    <div style="width: 48%;padding-right: 10px;">
+
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="passportType" type="text" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">passportType</h3>
+                        </label>
+                      </mdb-form-control>
+
+                    </div>
+                  </div>
+
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 3px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="passportVaildTill" type="date" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">passportVaildTill</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control class="mb-4" style="display: flex;">
+                        <label for="upload2" style="border:2px solid white;color:white;background-color: orange;border-radius: 7px;
+      padding:5px">Upload a file</label>
+                        <input type="file" (change)="onFileSelected3($event)" accept="image/*" id="upload2" />
+                        <img *ngIf="selectedFile3" [src]="getObjectURL3(selectedFile3)" alt="Selected Image"
+                          style="height:40px;width: 40px;border-radius:10px;" class="iconx margin-apply-identity" />
+                        <img *ngIf="!selectedFile3 && identity.passportAttach" src={{identity.passportAttach}}
+                          alt="Selected Image" style="height:40px;width: 40px;border-radius:10px;"
+                          class="iconx margin-apply-identity" />
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset style="border-top:1px solid lightgray;border-bottom:1px solid lightgray;width: 100%;">
+                  <legend>Driving License:</legend>
+
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 0px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="dlVaildTill" type="date" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">dlVaildTill</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="dlNo" type="text" id="form1" class="form-control"
+                          style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">dlNo</h3>
+                        </label>
+                      </mdb-form-control>
+
+                    </div>
+                  </div>
+
+                  <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 3px;min-width:320px">
+                    <div style="width: 48%;">
+                      <mdb-form-control>
+                        <input mdbInput mdbValidate formControlName="dobAsDL" type="date" id="form1"
+                          class="form-control" style="padding:10px;" />
+                        <label mdbLabel class="form-label" for="form1">
+                          <h3 style="margin-top: 2px;">dobAsDL</h3>
+                        </label>
+                      </mdb-form-control>
+                    </div>
+                    <div style="width: 48%;padding-right: 10px;">
+                      <mdb-form-control class="mb-4" style="display: flex;">
+                        <label for="upload3" style="border:2px solid white;color:white;background-color: orange;border-radius: 7px;
+      padding:5px">Upload a file</label>
+                        <input type="file" (change)="onFileSelected4($event)" accept="image/*" id="upload3" />
+                        <img *ngIf="selectedFile4" [src]="getObjectURL4(selectedFile4)" alt="Selected Image"
+                          style="height:40px;width: 40px;border-radius:10px;" class="iconx margin-apply-identity" />
+                        <img *ngIf="!selectedFile4 && identity.dlAttach" src={{identity.dlAttach}} alt="Selected Image"
+                          style="height:40px;width: 40px;border-radius:10px;" class="iconx margin-apply-identity" />
+                      </mdb-form-control>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 10px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs5()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs6" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content modal-contenteducationexperience" style="border: 0px solid green; position: relative; border-radius: 20px;  height:300px ;
+              width: 600px; " (ngSubmit)="handleFormSubmissionEducation(educationForm)" [formGroup]="educationForm">
+            <button mat-icon-button (click)="toggleTabs6()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Education Details</h2>
+                </div>
+
+                <mdb-form-control>
+                  <input mdbInput mdbValidate formControlName="educationName" type="text" id="form1"
+                    class="form-control" style="padding:10px;" />
+                  <label mdbLabel class="form-label" for="form1">
+                    <h3 style="margin-top: 2px;">Institue Name</h3>
+                  </label>
+                </mdb-form-control>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 10px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput  type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Institue Name</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput  type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Specialization</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 15px;min-width:320px">
+                  <div style="width: 30%;">
+                    <mdb-form-control>
+                      <input mdbInput   type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Score/gpa</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 30%;">
+                    <mdb-form-control>
+                      <input mdbInput   type="date" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">Start Date</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 30%;">
+                    <mdb-form-control>
+                      <input mdbInput   type="date" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">End Date</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+       </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs6()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs7" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content modal-contentexperience" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  350px ;
+width: 600px; " (ngSubmit)="handleFormSubmissionJob(jobForm)" [formGroup]="jobForm">
+            <button mat-icon-button (click)="toggleTabs7()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+                <div style=" border-bottom: 2px solid lightgray ;width: 95%;">
+                  <h2 style="border: 0px solid;margin: 0px 0px 7px 0px;color: rgb(147, 144, 144);">Update Experience
+                    Details</h2>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 10px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="company" type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">company</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="jobTitle" type="text" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">jobTitle</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 10px;min-width:320px">
+                  <div style="width: 48%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="fromDate" type="date" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">fromDate</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                  <div style="width: 47%;">
+                    <mdb-form-control>
+                      <input mdbInput mdbValidate formControlName="toDate" type="date" id="form1" class="form-control"
+                        style="padding:10px;" />
+                      <label mdbLabel class="form-label" for="form1">
+                        <h3 style="margin-top: 2px;">toDate</h3>
+                      </label>
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div style="display: flex;  gap:4%;border: 0px solid;padding-top: 3px;min-width:320px">
+                  <div style="width: 48%;padding-right: 10px;">
+                    <mdb-form-control style="margin-top: 10px;">
+                      <input mdbInput type="file" id="brandIcon" (change)="onFileSelected($event)" accept="image/*" />
+                      <br />
+                      <img *ngIf="selectedFile" [src]="getObjectURL(selectedFile)" alt="Selected Image" width="50"
+                        height="50" class="uploadimg" />
+                    </mdb-form-control>
+                  </div>
+                </div>
+                <div class="margmobileright mergecentermobile"
+                  style="margin-top: 20px; border:0px solid black !important;display: flex; flex-direction: row-reverse ;justify-content: space-between;">
+                  <div>
+                    <button type="button" class="btn  btn-rounded btnClass-popup-cancel" data-mdb-ripple-init
+                      data-mdb-ripple-color="dark"
+                      style="color: orange; border:2px solid orange;margin-left:15px;margin-right: 15px;"
+                      (click)="toggleTabs7()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+                  </div>
+                  <h3 style="color: red;" class="iconx">*indicates mandatory fields</h3>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs8" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  370px !important;
+width: 530px!important " [formGroup]="jobForm">
+            <button mat-icon-button (click)="toggleTabs8()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="margin-right:30px;padding-top:20px">
+                <img src={{identity.panAttach}} style="width: 480px; height: 300px; " alt="" (click)="toggleTabs8()">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs9" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  370px !important;
+width: 530px!important " [formGroup]="jobForm">
+            <button mat-icon-button (click)="toggleTabs9()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+              <div style="margin-right:30px;padding-top:20px">
+                <img src={{identity.aadhaarAttach}} style="width: 480px; height: 300px; " alt=""
+                  (click)="toggleTabs8()">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="showTabs10" class="modal-overlay">
+        <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+          <form class="modal-content" style="border: 0px solid green; position: relative; border-radius: 20px;  height:  370px !important;
+width: 530px!important " [formGroup]="jobForm">
+            <button mat-icon-button (click)="toggleTabs10()" class="close-icon"
+              style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+              <i class="far fa-times-circle modal-icon "></i>
+            </button>
+            <div class="model-body" style="margin-left: 30px; border-bottom: 0px solid black">
+
+              <div style="margin-right:30px;padding-top:20px">
+                <img src={{identity.passportAttach}} style="width: 480px; height: 300px; " alt=""
+                  (click)="toggleTabs8()">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>

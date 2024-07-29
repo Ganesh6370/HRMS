@@ -1,0 +1,150 @@
+<app-attendance-sub-header></app-attendance-sub-header>
+<div class="attendance" style="margin-left: 2%; margin-top: 40px;" >
+  <h2>Attendance List</h2>
+</div>
+
+<form class="form1" #searchForm="ngForm" (ngSubmit)="onSearch(searchForm)">
+  <mdb-form-control class="mb-4" style="margin-left: 0;">
+    <select mdbValidate mdbInput id="form8Example4" class="form-control" [(ngModel)]="searchModel.month" name="month" required>
+      <option value="" disabled selected hidden></option>
+      <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+    </select>
+    <label mdbLabel class="form-label" for="form8Example4">Select Month<span class="text-danger"> *</span></label>
+    <i class="fas fa-caret-down"
+      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+  </mdb-form-control>
+
+  <mdb-form-control class="mb-4">
+    <select mdbValidate mdbInput id="form8Example4" class="form-control" [(ngModel)]="searchModel.year" name="year" required>
+      <option value="" disabled selected hidden></option>
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+    </select>
+    <label mdbLabel class="form-label" for="form8Example4">Select Year<span class="text-danger"> *</span></label>
+    <i class="fas fa-caret-down"
+      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; pointer-events:none"></i>
+  </mdb-form-control>
+
+  <!-- Search button -->
+  <button mdbRipple type="submit" class="btn mb-4 btn-primary btn-rounded"  [disabled]="!isFormValid()">
+    Search
+  </button>
+</form>
+
+
+<!-- Table -->
+<div *ngIf="empRegId && isEmpRegIdSix();  else userSpecificData">
+  <div class="cardx" style="border: 1px solid lightgray; margin: 15px 14px; border-radius: 10px; overflow: scroll; height: 400px; width: 93vw;">
+    <table class="table align-middle bg-white" style="position: relative">
+      <thead class="bg-light" style="position: sticky; top: 0px">
+        <tr>
+          <th class="sticky">Employee Name</th>
+          <th *ngFor="let item of list1">{{ item.date }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employeeData of allEmployeesAttendanceData">
+          <td class="sticky">{{ employeeData.fullName }}</td>
+          <td *ngFor="let record of employeeData.attendanceDetailData; let i = index" [ngClass]="{'clickable': record.records[0]}" 
+              (click)="record.records[0] ? openPopup(empRegId, record.records[0], list1[i].date) : null" style="cursor: pointer; text-align: center;">
+            <span [ngClass]="{
+              'present': record.records[0] === 'P',
+              'absent': record.records[0] === 'A',
+              'holiday': record.records[0] === 'H'
+            }">
+              {{ record.records[0] || '-' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Display data for the logged-in user if empRegId is not 6 -->
+<ng-template #userSpecificData>
+  <div class="cardx" style="border: 1px solid lightgray; margin: 15px 14px; border-radius: 10px; overflow: scroll; height: 400px; width: 93vw;">
+    <table class="table align-middle bg-white" style="position: relative">
+      <thead class="bg-light" style="position: sticky; top: 0px">
+        <tr>
+          <th>Employee</th>
+          <th *ngFor="let item of list1">{{ item.date }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ fullName }}</td>
+          <td *ngFor="let item of list1; let i = index" [ngClass]="{'clickable': attendanceDetailData[i]?.records[0]}" (click)="attendanceDetailData[i]?.records[0] ? openPopup(empRegId, attendanceDetailData[i]?.records[0], item.date) : null" style="cursor: pointer;text-align: center;">
+            <span [ngClass]="{
+              'present': attendanceDetailData[i]?.records[0] === 'P',
+              'absent': attendanceDetailData[i]?.records[0] === 'A',
+              'holiday': attendanceDetailData[i]?.records[0] === 'H'
+            }">
+              {{ attendanceDetailData[i]?.records[0] || ' ' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<div *ngIf="showTabs" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+    <button mat-icon-button (click)="toggleTabs()" style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange; border-radius: 14px;"></i>
+    </button>
+    <div class="modal-content">
+      <button mat-icon-button (click)="toggleTabs()" style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+        <i class="far fa-times-circle " style="background-color:orange; border-radius: 14px;"></i>
+      </button>
+      <div class="model-body">
+        <div class="content-container" *ngIf="selectedRecord === 'P'">
+          <div class="timesheet card" *ngFor="let attendance of attendanceAttributeData">
+            <h4><b>Time Sheet {{attendance.loginDate | date: 'dd MMM yyyy'}}</b></h4>
+            <div class="punch">
+              <p><b>Punch In at</b> <br />{{attendance.loginDate | date: 'EEE, dd MMM yyyy'}} {{extractTime(attendance.inTime)}}</p>
+            </div>
+            <div class="time">
+              <p><b>{{attendance.totalTime.slice(0, 5)}} hrs</b></p>
+            </div>
+            <div class="punch" style="margin-top: 3%;">
+              <p><b>Punch Out at</b> <br />{{attendance.loginDate | date: 'EEE, dd MMM yyyy'}} {{extractTime(attendance.outTime)}}</p>
+            </div>
+            <div class="break-ov">
+              <div class="break">
+                <p><b>Break</b> <br />00:00 hrs</p>
+              </div>
+              <div class="overtime">
+                <p><b>Overtime</b><br />00:00 hrs</p>
+              </div>
+            </div>
+          </div>
+          <div class="activity card" *ngIf="attendanceData.length > 0">
+            <h4><b>Activity</b></h4>
+            <li *ngFor="let attendance of attendanceData">
+              <p *ngIf="attendance.type === 'Punch In'">Punch In at ----- {{attendance.time}}</p>
+              <p *ngIf="attendance.type === 'Punch Out'">Punch Out at ----- {{attendance.time}}</p>
+            </li>
+          </div>
+        </div>
+        <div class="content-container" *ngIf="selectedRecord === 'A'">
+          <div class="timesheet card" >
+            <p><strong>No Time Sheet data found for today.</strong></p>
+          </div>
+          <div class="activity card">
+            <p><strong>No Activity data found for today.</strong></p>
+          </div>
+        </div>
+        <div class="content-container" *ngIf="selectedRecord === 'H'">
+          <div class="row">
+            <img src="https://images.news18.com/ibnlive/uploads/2023/03/happy-holi-2023-images-and-wishes-4.jpg" alt="">
+          </div>
+        </div>
+        <div class="mycontainer" style="margin-top: 10px;">
+          <div style="text-align: right;position: relative;">
+            <button type="button" class="btn btn-outline-primary btn-rounded cancel-button" (click)="toggleTabs()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+</div>

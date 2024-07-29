@@ -1,0 +1,83 @@
+<app-employee-sub-header></app-employee-sub-header>   
+<div class="main">
+        <div class="tab1">
+          <form [formGroup]="validationForm" (ngSubmit)="onSubmit(validationForm)">
+
+          <fieldset class="border p-2">
+            <legend  class="float-none w-auto">Family Detail</legend>
+            <div class="row">
+               <div class="col-sm-3 mb-4">
+                  <mdb-form-control class="tex-tbox">
+                    <select mdbInput id="form8Example6" mdbValidate [required]="true" formControlName="Relation"
+                      class="form-control" aria-labelledby="dropdownMenuLink">
+                      <option [value]="" disabled selected hidden></option>
+                      <option *ngFor="let option of familyOptions" [value]="option.value">{{ option.name }}</option>
+                    </select>
+                    <label mdbLabel class="form-label" for="form8Example6">Relation &nbsp;<span
+                        class="text-danger">*</span></label>
+                    <i class="fas fa-caret-down"
+                      style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;pointer-events:none"></i>
+                    <mdb-error *ngIf="Relation?.invalid && (Relation?.dirty || Relation?.touched)"></mdb-error>
+                    <mdb-success *ngIf="Relation?.valid && (Relation?.dirty || Relation?.touched)">
+                    </mdb-success>
+                  </mdb-form-control>
+
+
+               </div>
+                <div class="col-sm-3 mb-4">
+                  <!-- Email input -->
+                  <mdb-form-control>
+                    <input mdbValidate mdbInput type="text" id="form8Example2" class="form-control" formControlName="Name"
+                    required/>
+                    <label mdbLabel class="form-label" for="form8Example2">Name <span class="text-danger">*</span></label>
+                    <mdb-error *ngIf="
+                    Name?.invalid && (Name?.dirty || Name?.touched)
+                        "></mdb-error>
+                    <mdb-success *ngIf="
+                    Name?.valid && (Name?.dirty || Name?.touched)
+                        "></mdb-success>
+                  </mdb-form-control>
+                </div>
+                <div class="col-sm-3 mb-4">
+                    <!-- Email input -->
+                    <mdb-form-control>
+                      <input mdbValidate mdbInput type="date" id="form8Example2" class="form-control"formControlName="DateOfBirth"
+                      required />
+                      <label mdbLabel class="form-label" for="form8Example2">D.O.B <span class="text-danger">*</span></label>
+                      <mdb-error *ngIf="
+                      DateOfBirth?.invalid && (DateOfBirth?.dirty || DateOfBirth?.touched)
+                          "></mdb-error>
+                      <mdb-success *ngIf="
+                      DateOfBirth?.valid && (DateOfBirth?.dirty || DateOfBirth?.touched)
+                          "></mdb-success>
+                    </mdb-form-control>
+                  </div>
+                  <div class="col-sm-3 mb-4">
+                    <!-- Email input -->
+                    <mdb-form-control>
+                      <input mdbValidate mdbInput type="text" id="form8Example2" class="form-control" formControlName="ContactNo"
+                      maxlength="10" (keypress)="isNumberKey($event)" required/>
+                      <label mdbLabel class="form-label" for="form8Example2">Phone no <span class="text-danger">*</span></label>
+                      <mdb-error *ngIf="
+                      ContactNo?.invalid && (ContactNo?.dirty || ContactNo?.touched)
+                          "></mdb-error>
+                      <mdb-success *ngIf="
+                      ContactNo?.valid && (ContactNo?.dirty || ContactNo?.touched)
+                          "></mdb-success>
+                    </mdb-form-control>
+                  </div>
+              </div>
+          
+         </fieldset>
+         <div class="button col-sm-4">
+          <a routerLink="../bankaccount" mdbRipple class="btnClass btnClass-secondary"><i
+          class="fa-solid fa-backward"></i> &nbsp; Back</a>
+          <button mdbRipple type="submit" class="btnClass btnClass-primary"><i
+          class="fas fa-save fa-fw me-2"></i>Save</button>
+          <a  mdbRipple class="btnClass btnClass-secondary" id="nextButton">
+            Next
+          &nbsp; <i class="fa-solid fa-forward"></i></a>
+          </div>
+         </form>
+        </div>
+  </div>

@@ -1,0 +1,182 @@
+
+<app-job-sub-header></app-job-sub-header>
+<div class="container-fluid">
+    <div class="navbar2 mt-4">
+        <h2 class="userjob">User Job Dashboard</h2>
+    </div>
+   
+    <div class="row mt-4 ">
+        <div class=" col-md-3 col-sm-1 mt-2">
+            <div class="card1 dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa-regular fa-file-lines"></i></span>
+                    <div class="dash-widget-info">
+                        <h3>110</h3>
+                        <span>Offered</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-1 mt-2">
+            <div class="card2 dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa fa-clipboard"></i></span>
+                    <div class="dash-widget-info">
+                        <h3>40</h3>
+                        <span>Applied</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-1 mt-2">
+            <div class="card3 dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa fa-retweet"></i></span>
+                    <div class="dash-widget-info">
+                        <h3>374</h3>
+                        <span>Visited</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-1 mt-2">
+            <div class="card4 dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa-regular fa-floppy-disk"></i></span>
+                    <div class="dash-widget-info">
+                        <h3>220</h3>
+                        <span>Saved</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 text-dark mt-4 bg-secondary text-center border" id="overview">
+            <h2>Overview</h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <table mat-table [dataSource]="data" class="mat-elevation-8 bg-light text-dark mt-4">
+
+                <ng-container matColumnDef="Department">
+                    <th mat-header-cell *matHeaderCellDef
+                        class="latestjob">Latest Jobs</th>
+                    <td mat-cell *matCellDef="let users0">{{ users0.Department }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Time">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let users0"> {{ users0.Time }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns0"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns0"></tr>
+            </table>
+
+        </div>
+    </div>
+
+
+    <div class="tablex">
+        <table mat-table [dataSource]="users" class="mat-elevation-8 bg-light text-dark mt-4">
+
+            <caption class="offeredjob">Offered Jobs</caption>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>S.No</th>
+                <td mat-cell *matCellDef="let users"> {{ users.id }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Job Title">
+                <th mat-header-cell *matHeaderCellDef class="jobtitle"> Job Title </th>
+                <td mat-cell *matCellDef="let users" class="jobtitle"> {{ users.JobTitle }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Department">
+                <th mat-header-cell *matHeaderCellDef> Department </th>
+                <td mat-cell *matCellDef="let users"> {{ users.Department }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Job Type">
+                <th mat-header-cell *matHeaderCellDef class="jobtype"> Job Type </th>
+                <td mat-cell *matCellDef="let users"> <a class="jobtype" class="btn btn-rounded "><i
+                            class="far fa-circle-dot text-danger" ></i>{{ users.JobType }} </a></td>
+            </ng-container>
+
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let users">
+                    <button id="downloadbutton" class="actionbutton" mat-button><i
+                            class="fa fa-download me-1"></i>Download Offer</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        </div>
+
+
+        <div class="tablex">
+        <table mat-table [dataSource]="users1" class="mat-elevation-8 bg-light text-dark mt-4">
+
+            <caption class="appliedjob">Applied Jobs</caption>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> S.No </th>
+                <td mat-cell *matCellDef="let users1"> {{ users1.id }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Job Title">
+                <th mat-header-cell *matHeaderCellDef class="jobtitle"> Job Title </th>
+                <td mat-cell *matCellDef="let users1" class="jobtitle"> {{ users1.JobTitle }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Department">
+                <th mat-header-cell *matHeaderCellDef> Department </th>
+                <td mat-cell *matCellDef="let users1"> {{ users1.Department }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Start Date">
+                <th mat-header-cell *matHeaderCellDef class="startdate"> Start Date </th>
+                <td mat-cell *matCellDef="let users1" class="startdate"> {{ users1.StartDate }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Expire Date">
+                <th mat-header-cell *matHeaderCellDef class="expiredate"> Expire Date </th>
+                <td mat-cell *matCellDef="let users1" class="expiredate"> {{ users1.ExpireDate }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Job Type">
+                <th mat-header-cell *matHeaderCellDef class="jobtype"> Job Type </th>
+                <td mat-cell *matCellDef="let users1"><a class="jobtype" class="btn btn-rounded"><i
+                            class="far fa-circle-dot text-danger"></i> {{ users1.JobType }} </a></td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef class="status" > Status </th>
+                <td mat-cell *matCellDef="let users1"> <a class="status" class="btn btn-rounded"><i
+                            class="far fa-circle-dot text-danger"></i>{{ users1.Status }} </a></td>
+            </ng-container>
+
+            <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let users1">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item><i class="fa-regular fa-trash-can m-r-5"></i>Delete</button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+        </table>
+        </div>
+
+    </div>

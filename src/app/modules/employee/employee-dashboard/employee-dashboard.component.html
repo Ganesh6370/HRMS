@@ -1,0 +1,376 @@
+<div class="container-fluid ">
+
+  <div class="outerbox" style="margin-top: 4vh;">
+   <div class="inner1">
+     <div class="heading">
+       <div>
+         <p class="sub-head">Employee / Dashboard</p>
+       </div> 
+       <!-- <div> 
+         <p class="sub-head">Dashboard/Employee</p>
+       </div> -->
+     </div>
+   </div> 
+   <div class="inner2">
+    <div class="button-links">
+      <mdb-form-control>
+        <div class="icon-container">
+          <a routerLink="../Empdashboard" matTooltip="Employee Dashboard">
+            <div class="icon-square">
+              <i class="fa-solid fa-border-all" style="color: white;"></i> 
+            </div>
+          </a>
+          <a routerLink="../Emplist" matTooltip="Employee List">
+            <div class="icon-square">
+              <i class="fa-solid fa-list" style="color: white;"></i>
+            </div>
+          </a>
+          <a routerLink="../personal" class="" matTooltip="Add Employee">
+            <!-- <div class="icon-square addEmp"> -->
+              <i class="fa-solid fa-circle-plus" style="color:var(--orange-primary); margin-left: 1opx;"></i>
+            <!-- </div> -->
+          </a>
+        </div>
+      </mdb-form-control>
+   </div>
+</div> 
+  </div> 
+  <div class="row" id="input-field">
+   <div class="col">
+     <!-- Name input -->     
+     <mdb-form-control>
+       <input mdbInput type="text" id="form8Example1" class="form-control" [(ngModel)]="searchQuery"/>
+       <label mdbLabel class="form-label" for="form8Example1">Full Name <span class="text-danger">*</span></label>
+     </mdb-form-control>
+   </div>
+   <div class="col">
+     <!-- Name input -->
+     <mdb-form-control>
+      <mat-form-field class="small custom-mat-field" appearance="outline">
+        <mat-label >Project </mat-label>
+        <mat-select [(value)]="selectedOption" formControlName="project">
+          <mat-form-field class="field" appearance="outline" >
+            <input type="text" matInput (keyup)="filterOptions($any($event.target).value)" placeholder="Search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <mat-option [value]="" disabled selected hidden>Project</mat-option>
+          <mat-option *ngFor="let option of filteredProjectOptions" [value]="option.value">
+            {{ option.name }}
+          </mat-option>
+          <mat-option *ngIf="filteredProjectOptions.length === 0 && options.length > 0">No options found</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mdb-form-control>
+   </div>
+   <div class="col">
+     <!-- Email input -->
+     <mdb-form-control>
+      <mat-form-field class="small custom-mat-field" appearance="outline">
+        <mat-label>Department </mat-label>
+        <mat-select [(value)]="selectedDepartmentOption" formControlName="department">
+          <mat-form-field class="field" appearance="outline">
+            <input type="text" matInput (keyup)="filterDepartmentOptions($any($event.target).value)" placeholder="Search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <mat-option [value]="" disabled selected hidden>Department</mat-option>
+          <mat-option *ngFor="let option of filteredDepartmentOptions" [value]="option.value">
+            {{ option.name }}
+          </mat-option>
+          <mat-option *ngIf="filteredDepartmentOptions.length === 0 && optionsDepartment.length > 0">
+            No options found
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mdb-form-control>
+   </div>
+   <div class="col">
+    <mdb-form-control>
+      <mat-form-field class="small custom-mat-field" appearance="outline">
+        <mat-label>Project Manager </mat-label>
+        <mat-select [(value)]="selectedManagerOption" formControlName="manager">
+          <mat-form-field class="field" appearance="outline">
+            <input type="text" matInput (keyup)="filterManagerOptions($any($event.target).value)" placeholder="Search">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <mat-option [value]="" disabled selected hidden>Project Manager</mat-option>
+          <mat-option *ngFor="let option of filteredManagerOptions" [value]="option.value">
+            {{ option.name }}
+          </mat-option>
+          <mat-option *ngIf="filteredManagerOptions.length === 0 && optionsManager.length > 0">
+            No options found
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mdb-form-control>
+   </div>
+   <div class="col">
+     <button type="button" class="btn" id="searchbtn" (click)="search()">  
+        <div style="display: flex; flex-direction: row;">
+         <div><i class="fa-solid fa-magnifying-glass"></i></div>         
+         <div>&nbsp; &nbsp; Search</div>          
+        </div> 
+       </button>    
+   </div>
+ </div> 
+ </div>
+<hr>
+
+<div class="main5">
+  <div class="card" *ngFor="let item of filteredCategoryGroup.slice(0, numCardsToShow); let i = index">
+    <div class="image-container">
+      <a (click)="sendItem(item.empPersDtlId)">
+        <ng-container *ngIf="item?.profileImage; else defaultImage">
+          <img [src]="'./../../../assets/img/' + item.profileImage">
+        </ng-container>
+        <ng-template #defaultImage>
+          <img src="../../../../assets/img/profile.png">
+        </ng-template>
+ </a>
+    </div>
+    <button mat-icon-button mdbTooltip="More" [matMenuTriggerFor]="menu" aria-label="Toggle menu" style="position: absolute; right: 5px; top: 10px;">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="popUp" (click)="toggleTabs()"><i class="fas fa-cloud-upload-alt p-2"></i>
+        Upload</button>
+        <button mat-menu-item class="popUp" (click)="redirectToEmployment(item.empPersDtlId)"><i class="fa-solid fa-plus p-2"></i> Add Employment</button>
+        <button mat-menu-item class="popUp" (click)="redirectToEmploymentAndOpenLogin(item.empPersDtlId)"><i class="fa-solid fa-sign-in p-2"></i> Create Login</button>
+      <button mat-menu-item class="popUp"><i class="fa fa-pencil m-r-5 p-2"></i> Edit</button>
+      <button mat-menu-item class="popUp"><i class="fa fa-ban m-r-5 p-2"></i>Deactive</button>
+    </mat-menu>
+    <!-- <div *ngIf="showOptions[i]" class="options">
+      <div class="btn">
+        <div class="btn1">
+          <i class="fa-solid fa-pen-to-square" id="icon"></i>
+          <span class="text" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</span>
+        </div>
+        <div class="btn1">
+          <i class="fa-solid fa-trash" id="icon"></i><span>Delete</span>
+        </div>
+      </div>
+    </div> -->
+    <div class="text-container">
+      <p class="app-name">{{item.fullName}}</p>
+      <p class="developer">{{item.fatherorHusbandName}}</p>
+    </div>
+  </div>
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+ 
+
+<div class="modal fade rk" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="row mb-3">
+            <div class="col">
+              <label for>First Name</label>
+              <mdb-form-control>
+                <input mdbInput type="text" id="form6Example1" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example1">First
+                  name</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Last Name</label>
+              <mdb-form-control>
+                <input mdbInput type="text" id="form6Example2" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example2">Last
+                  name</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>UserName</label>
+              <mdb-form-control>
+                <input mdbInput type="text" id="form6Example1" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example1">First
+                  name</label>
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row mb-3">
+
+            <div class="col">
+              <label for>Email</label>
+              <mdb-form-control>
+                <input mdbInput type="email" id="form6Example2" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example2">Last
+                  name</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Password</label>
+              <mdb-form-control>
+                <input mdbInput type="password" id="form6Example1" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example1">Password</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Confirm Password</label>
+              <mdb-form-control>
+                <input mdbInput type="password" id="form6Example2" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example2">Confirm
+                  Password</label>
+              </mdb-form-control>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <label for>Employee ID </label>
+              <mdb-form-control>
+                <input mdbInput type="text" id="form6Example1" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example1">Employee
+                  ID</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Joining Date</label>
+              <mdb-form-control>
+                <input mdbInput type="date" id="form6Example2" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example2">Joining
+                  Date</label>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Phone</label>
+              <mdb-form-control>
+                <input mdbInput type="number" id="form6Example1" class="form-control" />
+                <label mdbLabel class="form-label" for="form6Example1">Phone
+                  Number</label>
+              </mdb-form-control>
+            </div>
+          </div>
+          <div class="row mb-3">
+
+            <div class="col">
+              <label for>Company</label>
+              <mdb-form-control>
+
+                <select mdbInput id="form8Example3" class="form-control" aria-labelledby="dropdownMenuLink">
+                  <option value disabled selected hidden></option>
+                  <option value="option1">Global Technologies</option>
+                  <option value="option2">Delta Infotech</option>
+                  <option value="option3">International Software inc</option>
+                  <!-- Add more options as needed -->
+                </select>
+                <label mdbLabel class="form-label" for="form8Example3">company</label>
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Department</label>
+              <mdb-form-control>
+
+                <select mdbInput id="form8Example3" class="form-control" aria-labelledby="dropdownMenuLink">
+                  <option value disabled selected hidden></option>
+                  <option value="option1">Web Developement</option>
+                  <option value="option2">IT Management</option>
+                  <option value="option3">Marketing</option>
+                  <!-- Add more options as needed -->
+                </select>
+                <label mdbLabel class="form-label" for="form8Example3">Select
+                  Department</label>
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+              </mdb-form-control>
+            </div>
+            <div class="col">
+              <label for>Designation</label>
+              <mdb-form-control>
+
+                <select mdbInput id="form8Example3" class="form-control" aria-labelledby="dropdownMenuLink">
+                  <option value disabled selected hidden></option>
+                  <option value="option1">Global Technologies</option>
+                  <option value="option2">Delta Infotech</option>
+                  <option value="option3">International Software inc</option>
+                  <!-- Add more options as needed -->
+                </select>
+                <label mdbLabel class="form-label" for="form8Example3">Select
+                  Designation</label>
+                <i class="fas fa-caret-down"
+                  style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px;"></i>
+              </mdb-form-control>
+            </div>
+          </div>
+
+        </form>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary" id="button-footer">Save</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+</div>
+
+<div *ngIf="showTabs" class="modal-overlay">
+  <div class="modal-dialog " (click)="preventClose($event)" style="position: relative;">
+
+    <button mat-icon-button (click)="toggleTabs()" style="position: absolute; top:-20px;right: -20px;cursor: pointer;">
+      <i class="far fa-times-circle " style="background-color:orange;
+      border-radius: 14px;"></i>
+    </button>
+
+    <form class="modal-content" style="border: 0px solid rgb(128, 0, 15); position: relative; border-radius: 20px;  height:  250px ;
+    width: 500px;">
+      <form>
+        <button mat-icon-button (click)="toggleTabs()"
+          style="position: absolute; top:-20px;right: -20px;cursor: pointer;z-index: 30;">
+          <i class="far fa-times-circle " style="background-color:orange;
+        border-radius: 14px;"></i>
+        </button>
+
+        <div class="model-body" style="margin-left: 40px; border-bottom: 0px solid black;">
+          <div style="position:absolute;top:20px;left:20px; width: 95%; ">
+            <div style=" border-bottom: 2px solid lightgray ;width: 95%; ">
+              <h2 class="popupheader"><b>Upload Profile Image</b></h2>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap:4%;border: 0px solid;padding-top: 15px;"
+              class="commentresp">
+              <div style="width: 27%;">
+                <mdb-form-control class="mb-4" style="margin-top: 10px; margin-left: 30%;">
+                  <!-- <label for="brandIcon">Brand Icon</label> -->
+                  <input mdbInput type="file" id="brandIcon" (change)="onFileSelected($event)" accept="image/*" />
+                  <br />
+                  <img *ngIf="selectedFile" [src]="getObjectURL(selectedFile)" alt="Selected Image" width="50"
+                    height="50" class="uploadimgs" />
+                </mdb-form-control>
+
+              </div>
+  </div>
+            <div style="border-bottom: 2px solid lightgray; padding-bottom: 20px;"></div>
+            <br>
+            <div class="mycontainer">
+              <div class="req">
+                <span class="text-danger req">*</span> Required
+              </div>
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-outline-primary btn-rounded cancel-button" data-mdb-ripple-init
+                  (click)="toggleTabs()" data-mdb-ripple-color="dark">Cancel</button>
+              </div>
+              <div class="sub">
+                <button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-init>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </form>
+ </div>
+</div>
+
